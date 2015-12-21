@@ -7,10 +7,10 @@ class Config
 	public static $dbconfig = array(
 		'default' => array(
 			'development' => array(
-				'server' => 'localhost',
+				'server' => '127.0.0.1',
 				'username' => 'root',
-				'password' => 'base64_encode',
-				'database' => ''
+				'password' => 'cGFzc3dvcmQ=',
+				'database' => 'project_report'
 			),
 			'production' => array(
 				'server' => 'localhost',
