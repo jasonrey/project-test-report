@@ -30,7 +30,12 @@ class Config
 	// Reset key to force admin log out
 	public static $adminkey = 'adminkey';
 
+	// Unique key to identify user session
+	// This key will be hashed to use as cookie key
+	public static $userkey = 'project-test-report';
+
 	public static $googleClientId = '75424359881-ltlh68uuviheq4tscjqksdl98vmtnqj7';
+	public static $googleAllowedDomain = 'compass-interactive.com';
 
 	public static function getBaseUrl()
 	{

@@ -9,6 +9,58 @@ body {
 	font-family: 'Roboto', sans-serif;
 }
 
+#report-login-frame {
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 100%;
+
+	#report-login-button {
+		background-color: white;
+		color: @bluegrey500;
+		box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+		height: 40px;
+		line-height: 40px;
+		border-radius: 2px;
+		font-size: 14px;
+		padding: 0 16px;
+
+		[data-state="authenticating"]& {
+			display: none;
+		}
+	}
+
+	#report-login-error {
+		margin: 0 0 16px 0;
+		padding: 4px 16px;
+		background-color: @red50;
+		color: @red500;
+		text-shadow: 0 0 5px fade(@red100, 50%);
+		display: none;
+
+		[data-state="error"]& {
+			display: block;
+		}
+	}
+
+	#report-login-authenticating {
+		padding: 4px 16px;
+		background-color: @blue50;
+		color: @blue500;
+		text-shadow: 0 0 5px fade(@blue100, 50%);
+		display: none;
+
+		[data-state="authenticating"]& {
+			display: block;
+		}
+	}
+
+	p {
+		margin: 16px 0;
+	}
+}
+
 #report-close-button {
 	position: fixed;
 	top: 0;

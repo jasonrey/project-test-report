@@ -5,7 +5,74 @@
 })(function() {
 	var $id = function(name) {
 		return document.getElementById(name);
-	}
+	};
+
+	var $ajax = function(method, target, args) {
+		var promise = new Promise(function(resolve, reject) {
+			var request = new XMLHttpRequest();
+			request.open(method.toUpperCase(), target);
+
+			request.onload = function() {
+				if (this.status >= 200 && this.status < 300) {
+					var response = this.response;
+
+					if (this.getResponseHeader('content-type') === 'application/json') {
+						response = JSON.parse(this.response);
+					}
+
+					resolve(response);
+				} else {
+					reject(this.statusText);
+				}
+			};
+			request.onerror = function() {
+				reject(this.statusText);
+			}
+
+			if (method === 'post') {
+				request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+				request.send(args);
+			} else {
+				request.send();
+			}
+		});
+
+		return promise;
+	};
+
+	var $api = function(namespace) {
+
+		var buildDataString = function(args) {
+			if (args === undefined || args === null) {
+				return '';
+			}
+
+			var parameters = [];
+
+			for (var key in args) {
+				parameters.push(encodeURIComponent(key) + '=' + encodeURIComponent(args[key]));
+			}
+
+			return parameters.join('&');
+		}
+
+		namespace = 'api/' + namespace
+
+		return {
+			get: function(args) {
+				var dataString = buildDataString(args);
+
+				if (dataString.length > 0) {
+					namespace += (namespace.indexOf('?') >= 0 ? '&' : '?') + dataString;
+				}
+
+				return $ajax('get', namespace);
+			},
+			post: function(args) {
+				return $ajax('post', namespace, buildDataString(args));
+			}
+		}
+	};
 
 	Element.prototype.on = function(name, fx) {
 		return this.addEventListener(name, fx);
@@ -22,6 +89,45 @@
 
 		return wrapper.firstElementChild;
 	};
+
+	var loginButton = $id('report-login-button');
+
+	if (loginButton) {
+		gapi.load('auth2', function() {
+			var auth2 = gapi.auth2.init({
+				scope: 'profile email'
+			});
+
+			var signIn = function() {
+				auth2.signIn().then(function() {
+					$id('report-login-frame').setAttribute('data-state', 'authenticating');
+
+					var googleUser = auth2.currentUser.get();
+
+					$api('user/authenticate').post({
+						gid: googleUser.getId(),
+						token: googleUser.getAuthResponse().id_token
+					}).done(function(response) {
+						if (response.state) {
+							location.reload();
+						} else {
+							if (response.data !== undefined) {
+								$id('report-login-error-text').innerText = document.createTextNode(response.data).textContent;
+							}
+
+							$id('report-login-frame').setAttribute('data-state', 'error');
+						}
+					});
+				});
+			};
+
+			loginButton.on('click', signIn);
+
+			signIn();
+		});
+
+		return;
+	}
 
 	$id('report-close-button').on('click', function() {
 		parent.document.getElementById('project-report-embed').className = '';
