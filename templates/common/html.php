@@ -9,42 +9,49 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, minimal-ui" />
 
+	<?php if (!empty($meta)) { ?>
+		<?php foreach ($meta as $m) { ?>
+			<meta name="<?php echo $m['name']; ?>" content="<?php echo $m['content']; ?>" />
+		<?php } ?>
+	<?php } ?>
+
 	<?php if (!empty($googlefont)) { ?>
 		<?php if (is_array($googlefont)) { ?>
-		<?php foreach ($googlefont as $font) { ?>
-		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=<?php echo $font; ?>" />
-		<?php } ?>
+			<?php foreach ($googlefont as $font) { ?>
+				<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=<?php echo $font; ?>" />
+			<?php } ?>
 		<?php } ?>
 
 		<?php if (is_string($googlefont)) { ?>
-		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=<?php echo $googlefont; ?>" />
+			<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=<?php echo $googlefont; ?>" />
 		<?php } ?>
 	<?php } ?>
 
 	<?php if (!empty($css)) { ?>
 		<?php if (is_array($css)) { ?>
-		<?php foreach ($css as $file) { ?>
-		<link rel="stylesheet<?php if (Config::env() === 'development') { ?>/less<?php } ?>" type="text/css" href="assets/css/<?php echo $file; ?>.<?php echo Config::env() === 'development' ? 'less' : 'css'; ?>" class="page-stylesheet" />
-		<?php } ?>
+			<?php foreach ($css as $file) { ?>
+				<link rel="stylesheet<?php if (Config::env() === 'development') { ?>/less<?php } ?>" type="text/css" href="<?php echo (strpos($file, 'http') === 0 ? '' : 'assets/css/') . $file; ?>.<?php echo strpos($file, 'http') === 0 ? '' : (Config::env() === 'development' ? 'less' : 'css'); ?>" class="page-stylesheet" />
+			<?php } ?>
 		<?php } ?>
 
 		<?php if (is_string($css)) { ?>
-		<link rel="stylesheet<?php if (Config::env() === 'development') { ?>/less<?php } ?>" type="text/css" href="assets/css/<?php echo $css; ?>.<?php echo Config::env() === 'development' ? 'less' : 'css'; ?>" class="page-stylesheet" />
+			<link rel="stylesheet<?php if (Config::env() === 'development') { ?>/less<?php } ?>" type="text/css" href="<?php echo (strpos($css, 'http') === 0 ? '' : 'assets/css/') . $css; ?>.<?php echo strpos($file, 'http') === 0 ? '' : (Config::env() === 'development' ? 'less' : 'css'); ?>" class="page-stylesheet" />
 		<?php } ?>
 	<?php } ?>
+
 	<?php if (Config::env() === 'development') { ?>
-	<script type="text/javascript" src="assets/static/less.min.js"></script>
+		<script type="text/javascript" src="assets/static/less.min.js"></script>
 	<?php } ?>
 
 	<?php if (!empty($js)) { ?>
 		<?php if (is_array($js)) { ?>
-		<?php foreach ($js as $file) { ?>
-		<script type="text/javascript" src="assets/js/<?php echo $file; ?>.js"></script>
-		<?php } ?>
+			<?php foreach ($js as $file) { ?>
+				<script type="text/javascript" src="<?php echo (strpos($file, 'http') === 0 ? '' : 'assets/js/') . $file . (strpos($file, 'http') === 0 ? '' : '.js'); ?>"></script>
+			<?php } ?>
 		<?php } ?>
 
 		<?php if (is_string($js)) { ?>
-		<script type="text/javascript" src="assets/js/<?php echo $js; ?>.js"></script>
+			<script type="text/javascript" src="<?php echo (strpos($js, 'http') === 0 ? '' : 'assets/js/') . $js . (strpos($js, 'http') === 0 ? '' : '.js'); ?>"></script>
 		<?php } ?>
 	<?php } ?>
 

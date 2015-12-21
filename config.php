@@ -30,6 +30,8 @@ class Config
 	// Reset key to force admin log out
 	public static $adminkey = 'adminkey';
 
+	public static $googleClientId = '75424359881-ltlh68uuviheq4tscjqksdl98vmtnqj7';
+
 	public static function getBaseUrl()
 	{
 		return 'http://' . $_SERVER['SERVER_NAME'];
