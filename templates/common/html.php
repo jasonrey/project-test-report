@@ -58,8 +58,6 @@
 	<title><?php echo !empty($pagetitle) ? $pagetitle : Config::getPageTitle(); ?></title>
 </head>
 <body <?php if (Config::env() === 'development') { ?>data-development="1"<?php } ?>>
-<div class="wrapper">
 <?php echo $body; ?>
-</div>
 </body>
 </html>
