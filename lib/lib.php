@@ -320,6 +320,16 @@ class Lib
 		return hash('sha256', $password);
 	}
 
+	public static function generateHash($length = 64)
+	{
+		$random = hash('sha256', rand());
+		$maxLength = strlen($random);
+		$length = min($maxLength, max(0, $length));
+		$start = rand(0, $maxLength - $length);
+
+		return substr($random, $start, $length);
+	}
+
 	/* Utilities methods - END */
 }
 
