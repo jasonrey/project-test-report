@@ -31,7 +31,7 @@
 <script type="text/html" id="report-screenshot-item">
 <div id="{{id}}" class="report-screenshot">
 	<img src="{{img}}" />
-	<div class="report-screenshot-upload icon-clock"></div>
+	<div class="report-screenshot-upload"><i class="icon-clock"></i></div>
 </div>
 </script>
 <?php } else { ?>

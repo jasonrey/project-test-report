@@ -47,6 +47,10 @@
 				return '';
 			}
 
+			if (args.constructor.name === 'FormData') {
+				return args;
+			}
+
 			var parameters = [];
 
 			for (var key in args) {
@@ -82,6 +86,8 @@
 		var item = $id(id).innerHTML.replace(RegExp('\\{\\{(.+?)\\}\\}', 'g'), function(match, p1) {
 			return data[p1] !== undefined ? data[p1] : '';
 		});
+
+		return item;
 
 		var wrapper = document.createElement('div');
 
@@ -196,7 +202,7 @@
 						img: e.target.result
 					});
 
-					$id('report-screenshots').appendChild(item);
+					$id('report-screenshots').insertAdjacentHTML('beforeend', item);
 
 					resolve();
 				};
