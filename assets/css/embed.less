@@ -92,11 +92,12 @@ body {
 	box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
 	padding: 32px;
 	max-width: 600px;
+	min-width: 164px;
 	margin: 0 auto;
 }
 
 .form-group {
-	margin: 24px 0 0 0;
+	margin: 12px 0;
 
 	&:first-child {
 		margin: 0;
@@ -209,6 +210,8 @@ body {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		flex-shrink: 0;
+		flex-grow: 0;
 
 		&:hover {
 			border-color: @bluegrey300;
