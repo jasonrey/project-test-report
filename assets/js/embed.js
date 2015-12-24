@@ -76,7 +76,10 @@
 			}
 
 			if (method === 'post') {
-				request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+				if (args.constructor.name !== 'FormData') {
+					request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+				}
+
 				request.send(args);
 			} else {
 				request.send();
@@ -240,17 +243,29 @@
 	$id('report-form').on('submit', function(event) {
 		event.preventDefault();
 
-		var report = this['report-text'].value,
+		this.className = 'submitting';
+
+		var content = this['report-text'].value,
 			project = this['project'].value;
 
-		$api('report/save').post({
-			project: project,
-			files: attachedFiles,
-			report: report,
-			location: parent.location.toString()
-		});
+		var formdata = new FormData;
 
-		console.log(attachedFiles, this['report-text'].value, this['project'].value, parent.location);
+		formdata.append('project', project);
+		formdata.append('content', content);
+		formdata.append('url', parent.location.toString());
+
+		for (var fileKey in attachedFiles) {
+			formdata.append(fileKey, attachedFiles[fileKey]);
+		}
+
+		$api('report/save').post(formdata).then(function(response) {
+			if (response.state) {
+				setTimeout(function() {
+					$id('report-form').className = '';
+					resetForm();
+				}, 500);
+			}
+		});
 	});
 
 	var attachedFiles = {};
@@ -301,5 +316,7 @@
 		while (items.length > 0) {
 			items[0].parentNode.removeChild(items[0]);
 		}
+
+		document.forms['report-form']['report-text'].value = '';
 	};
 });

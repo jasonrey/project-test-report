@@ -25,6 +25,11 @@
 		<input type="hidden" name="project" value="<?php echo $project; ?>" />
 
 		<button class="form-submit">Submit</button>
+
+		<div id="report-submitting">
+			<div class="report-submitting-message report-submitting-message-loading"><i class="icon-loader icon-spin"></i></div>
+			<div class="report-submitting-message report-submitting-message-completed"><i class="icon-ok"></i></div>
+		</div>
 	</form>
 </div>
 

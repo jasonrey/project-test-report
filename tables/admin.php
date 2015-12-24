@@ -10,15 +10,6 @@ class AdminTable extends Table
 	public $lastlogin;
 	public $date;
 
-	public function store()
-	{
-		if (empty($this->date)) {
-			$this->date = date('Y-m-d H:i:s');
-		}
-
-		return parent::store();
-	}
-
 	public function login()
 	{
 		if (empty($this->username) && empty($this->password)) {

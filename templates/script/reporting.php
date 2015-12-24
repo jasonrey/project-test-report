@@ -59,6 +59,7 @@
 	var iframe = document.createElement('iframe');
 
 	iframe.id = 'project-report-embed';
+	iframe.className = 'active';
 	iframe.src = '<?php echo $iframepath; ?>';
 
 	document.body.appendChild(iframe);

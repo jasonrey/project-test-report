@@ -8,14 +8,6 @@ class UserTable extends Table
 	public $name;
 	public $email;
 	public $picture;
+	public $role;
 	public $date;
-
-	public function store()
-	{
-		if (empty($this->date)) {
-			$this->date = date('Y-m-d H:i:s');
-		}
-
-		return parent::store();
-	}
 }
