@@ -18,7 +18,7 @@ body {
 
 	#report-login-button {
 		background-color: white;
-		color: @bluegrey500;
+		color: @cyan500;
 		box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 		height: 40px;
 		line-height: 40px;
@@ -46,9 +46,9 @@ body {
 
 	#report-login-authenticating {
 		padding: 4px 16px;
-		background-color: @blue50;
-		color: @blue500;
-		text-shadow: 0 0 5px fade(@blue100, 50%);
+		background-color: @cyan50;
+		color: @cyan500;
+		text-shadow: 0 0 5px fade(@cyan100, 50%);
 		display: none;
 
 		[data-state="authenticating"]& {
@@ -82,16 +82,17 @@ body {
 }
 
 #report-frame {
-	padding: 0 32px;
-	margin: 64px 0 32px 0;
+	position: relative;
+	top: 64px;
+	margin: 0 0 32px 0;
 }
 
 #report-form {
-	background-color: @bluegrey50;
+	background-color: white;
 	border-radius: 2px;
 	box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
 	padding: 32px;
-	max-width: 600px;
+	max-width: 604px;
 	min-width: 164px;
 	margin: 0 auto;
 }
@@ -105,7 +106,7 @@ body {
 
 	label {
 		display: block;
-		color: @bluegrey700;
+		color: @cyan900;
 	}
 
 	input[type="text"] {
@@ -117,14 +118,14 @@ body {
 		height: 48px;
 		line-height: 48px;
 		font-size: 16px;
-		color: @bluegrey500;
-		border-bottom: 2px solid @bluegrey100;
+		color: @cyan500;
+		border-bottom: 2px solid @cyan100;
 		padding: 0 4px;
 		font-family: 'Roboto', sans-serif;
 
 		&:focus {
-			color: @blue700;
-			border-bottom-color: @blue500;
+			color: @cyan700;
+			border-bottom-color: @cyan500;
 		}
 	}
 
@@ -132,60 +133,66 @@ body {
 		display: block;
 		width: 100%;
 		border: 0;
-		background-color: @bluegrey100;
+		background-color: @cyan50;
 		outline: 0;
 		margin: 8px 0;
 		padding: 16px;
 		font-size: 16px;
-		color: @bluegrey500;
+		color: @cyan700;
 		border-bottom: 2px solid transparent;
 		font-family: 'Roboto', sans-serif;
 		transition: border-color .2s;
 
 		&:focus {
-			color: @blue700;
-			border-bottom-color: @blue500;
+			color: @cyan900;
+			border-bottom-color: @cyan500;
 		}
 	}
 }
 
-.form-actions {
-	.clearfix();
+.form-submit {
+	margin: 36px 0 0 0;
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 36px;
+	line-height: 36px;
+	background-color: @cyan700;
+	color: @cyan50;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	font-weight: 500;
+	border: 0;
+	border-radius: 2px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+	transition: background-color .2s;
 
-	button {
-		position: relative;
-		float: right;
-		display: inline-block;
-		background-color: transparent;
-		border: 0;
-		font-family: 'Roboto', sans-serif;
-		font-size: 16px;
-		color: @blue500;
-		padding: 8px 0;
-
-		&::after {
-			content: '';
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			width: 100%;
-			height: 2px;
-			background-color: @blue500;
-			transform: scaleX(0);
-			transition: transform .2s;
-		}
-
-		&:hover {
-			&::after {
-				transform: scaleX(1);
-			}
-		}
+	&:hover {
+		background-color: @cyan800;
 	}
+
+	// &::after {
+	// 	content: '';
+	// 	position: absolute;
+	// 	bottom: 0;
+	// 	left: 0;
+	// 	width: 100%;
+	// 	height: 2px;
+	// 	background-color: @cyan500;
+	// 	transform: scaleX(0);
+	// 	transition: transform .2s;
+	// }
+
+	// &:hover {
+	// 	&::after {
+	// 		transform: scaleX(1);
+	// 	}
+	// }
 }
 
 .form-meta {
 	font-size: 12px;
-	color: @bluegrey400;
+	color: @cyan400;
 
 	.underline {
 		text-decoration: underline;
@@ -200,9 +207,9 @@ body {
 	.report-screenshot {
 		width: 100px;
 		height: 100px;
-		border-radius: 4px;
-		border: 2px solid @bluegrey100;
-		margin: 8px;
+		border-radius: 2px;
+		border: 2px solid @cyan50;
+		margin: 8px 8px 8px 0;
 		position: relative;
 		cursor: pointer;
 		transition: border-color .2s;
@@ -214,7 +221,7 @@ body {
 		flex-grow: 0;
 
 		&:hover {
-			border-color: @bluegrey300;
+			border-color: @cyan300;
 		}
 
 		img {
@@ -222,37 +229,40 @@ body {
 			max-height: 100%;
 		}
 
-		.report-screenshot-upload {
+		.report-screenshot-close {
 			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background-color: rgba(0, 0, 0, 0.7);
-			line-height: 100px;
+			top: -2px;
+			right: -2px;
+			background-color: @cyan50;
+			color: @cyan300;
+			font-size: 16px;
 			text-align: center;
-			color: white;
-			font-size: 24px;
-		}
+			width: 24px;
+			height: 24px;
+			line-height: 22px;
+			border-bottom-left-radius: 2px;
+			box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.2);
+			transition: color .2s, background-color .2s;
 
-		&.uploaded {
-			.report-screenshot-upload {
-				display: none;
+			&:hover {
+				background-color: @cyan300;
+				color: white;
 			}
 		}
 	}
 
 	#report-screenshot-add {
-		border: 2px dotted @bluegrey300;
-		background-color: @bluegrey100;
+		border: 2px dotted @cyan200;
+		background-color: white;
 		font-size: 36px;
 		text-align: center;
-		color: @bluegrey300;
-		transition: color .2s;
+		color: @cyan200;
+		transition: color .2s, border-color .2s, background-color .2s;
 
 		&:hover {
-			border: 2px dotted @bluegrey700;
-			color: @bluegrey700;
+			border: 2px dotted @cyan500;
+			color: @cyan500;
+			background-color: @cyan50;
 		}
 	}
 }
@@ -271,15 +281,15 @@ body {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: @bluegrey50;
+	background-color: white;
 	text-align: center;
 	display: none;
 	z-index: 1;
-	border: 2px dotted @bluegrey500;
+	border: 2px dotted @cyan500;
 	border-radius: 4px;
 
 	.drop-file-message {
-		color: @bluegrey500;
+		color: @cyan500;
 		padding: 0 36px;
 		display: inline-block;
 		font-weight: bold;
