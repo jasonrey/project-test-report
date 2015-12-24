@@ -72,6 +72,8 @@
 	reportButton.addEventListener('click', function() {
 		iframe.className = 'active';
 		reportButton.className = 'hide';
+
+		iframe.contentWindow.checkIdentity();
 	});
 
 	document.body.appendChild(reportButton);

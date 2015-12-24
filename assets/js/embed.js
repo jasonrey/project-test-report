@@ -7,6 +7,52 @@
 		return document.getElementById(name);
 	};
 
+	var $class = function(name) {
+		return document.getElementsByClassName(name);
+	};
+
+	Element.prototype.on = function(name, fx) {
+		return this.addEventListener(name, fx);
+	};
+
+	Element.prototype.parents = function(name) {
+		var type,
+			identifier = name;
+
+		switch(name.slice(0, 1)) {
+			case '#':
+				type = 'id';
+				identifier = name.slice(1);
+			break;
+
+			case '.':
+				type = 'class';
+				identifier = name.slice(1);
+			break;
+
+			default:
+				type = 'tag';
+			break;
+		}
+
+		var element = this;
+		while (
+			element && (
+				(type === 'id' && element.id !== identifier) ||
+				(type === 'class' && !element.classList.contains(identifier)) ||
+				(type === 'tag' && element.tagName !== identifier.toUpperCase())
+			)
+		) {
+			element = element.parentElement;
+		}
+
+		return element;
+	};
+
+	Element.prototype.remove = function() {
+		this.parentElement.removeChild(this);
+	};
+
 	var $ajax = function(method, target, args) {
 		var promise = new Promise(function(resolve, reject) {
 			var request = new XMLHttpRequest();
@@ -78,67 +124,61 @@
 		}
 	};
 
-	Element.prototype.on = function(name, fx) {
-		return this.addEventListener(name, fx);
-	};
-
 	var $template = function(id, data) {
 		var item = $id(id).innerHTML.replace(RegExp('\\{\\{(.+?)\\}\\}', 'g'), function(match, p1) {
 			return data[p1] !== undefined ? data[p1] : '';
 		});
 
 		return item;
-
-		var wrapper = document.createElement('div');
-
-		wrapper.innerHTML = item;
-
-		return wrapper.firstElementChild;
 	};
-
-	var loginButton = $id('report-login-button');
-
-	if (loginButton) {
-		gapi.load('auth2', function() {
-			var auth2 = gapi.auth2.init({
-				scope: 'profile email'
-			});
-
-			var signIn = function() {
-				auth2.signIn().then(function() {
-					$id('report-login-frame').setAttribute('data-state', 'authenticating');
-
-					var googleUser = auth2.currentUser.get();
-
-					$api('user/authenticate').post({
-						gid: googleUser.getId(),
-						token: googleUser.getAuthResponse().id_token
-					}).done(function(response) {
-						if (response.state) {
-							location.reload();
-						} else {
-							if (response.data !== undefined) {
-								$id('report-login-error-text').innerText = document.createTextNode(response.data).textContent;
-							}
-
-							$id('report-login-frame').setAttribute('data-state', 'error');
-						}
-					});
-				});
-			};
-
-			loginButton.on('click', signIn);
-
-			signIn();
-		});
-
-		return;
-	}
 
 	$id('report-close-button').on('click', function() {
 		parent.document.getElementById('project-report-embed').className = '';
 		parent.document.getElementById('project-report-button').className = '';
 	});
+
+	var loginButton = $id('report-login-button');
+
+	var auth2;
+
+	var signIn = function() {
+		auth2.signIn().then(function() {
+			$id('report-login-frame').setAttribute('data-state', 'authenticating');
+
+			var googleUser = auth2.currentUser.get();
+
+			$api('user/authenticate').post({
+				gid: googleUser.getId(),
+				token: googleUser.getAuthResponse().id_token
+			}).done(function(response) {
+				if (response.state) {
+					location.reload();
+				} else {
+					if (response.data !== undefined) {
+						$id('report-login-error-text').innerText = document.createTextNode(response.data).textContent;
+					}
+
+					$id('report-login-frame').setAttribute('data-state', 'error');
+				}
+			});
+		});
+	};
+
+	window.checkIdentity = function() {
+		loginButton && signIn();
+	};
+
+	if (loginButton) {
+		gapi.load('auth2', function() {
+			auth2 = gapi.auth2.init({
+				scope: 'profile email'
+			});
+
+			loginButton.on('click', signIn);
+		});
+
+		return;
+	};
 
 	var dragEventCounter = 0;
 
@@ -176,7 +216,17 @@
 
 		var files = event.dataTransfer.files;
 
-		uploadFiles(files);
+		attachFiles(files);
+	});
+
+	$id('report-screenshots').on('click', function(event) {
+		if (event.target.classList.contains('icon-cancel') || event.target.classList.contains('report-screenshot-close')) {
+			var item = event.target.parents('.report-screenshot');
+
+			delete attachedFiles[item.id];
+
+			item.remove();
+		}
 	});
 
 	$id('report-screenshot-add').on('click', function(event) {
@@ -184,14 +234,31 @@
 	});
 
 	$id('report-screenshot-file').on('change', function(event) {
-		uploadFiles(this.files).then(function() {
-		});
+		attachFiles(this.files);
 	});
 
-	var uploadFiles = function(files) {
+	$id('report-form').on('submit', function(event) {
+		event.preventDefault();
+
+		var report = this['report-text'].value,
+			project = this['project'].value;
+
+		$api('report/save').post({
+			project: project,
+			files: attachedFiles,
+			report: report,
+			location: parent.location.toString()
+		});
+
+		console.log(attachedFiles, this['report-text'].value, this['project'].value, parent.location);
+	});
+
+	var attachedFiles = {};
+
+	var attachFiles = function(files) {
 		var promises = [];
 
-		var uploadFile = function(file) {
+		var attachFile = function(file) {
 			var promise = new Promise(function(resolve, reject) {
 				var reader = new FileReader(),
 					id = 'screenshot-' + Math.random().toString(36).substring(2);
@@ -204,14 +271,12 @@
 
 					$id('report-screenshots').insertAdjacentHTML('beforeend', item);
 
+					attachedFiles[id] = file;
+
 					resolve();
 				};
 
 				reader.readAsDataURL(file);
-
-				var formdata = new FormData();
-
-				formdata.append('file', file);
 			});
 
 			return promise;
@@ -221,10 +286,20 @@
 			var file = files[i];
 
 			if (file.type === 'image/png' || file.type === 'image/jpeg') {
-				promises.push(uploadFile(file));
+				promises.push(attachFile(file));
 			}
 		}
 
 		return Promise.all(promises);
-	}
+	};
+
+	var resetForm = function() {
+		attachedFiles = {};
+
+		var items = $class('report-screenshot-item');
+
+		while (items.length > 0) {
+			items[0].parentNode.removeChild(items[0]);
+		}
+	};
 });
