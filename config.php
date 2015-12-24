@@ -23,7 +23,7 @@ class Config
 	public static $env = 'development';
 	public static $sef = true;
 	public static $base = 'git/project-test-report';
-	public static $pagetitle = '';
+	public static $pagetitle = 'Project Reporting';
 
 	// Unique key to identify admin session
 	// This key will be hashed to use as cookie key
@@ -36,6 +36,8 @@ class Config
 
 	public static $googleClientId = '75424359881-ltlh68uuviheq4tscjqksdl98vmtnqj7';
 	public static $googleAllowedDomain = 'compass-interactive.com';
+
+	public static $iframepath = 'embed';
 
 	public static function getBaseUrl()
 	{
