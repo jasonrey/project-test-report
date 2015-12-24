@@ -22,16 +22,16 @@
 			<textarea name="report-text"></textarea>
 		</div>
 
-		<div class="form-actions">
-			<button>Submit</button>
-		</div>
+		<input type="hidden" name="project" value="<?php echo $project; ?>" />
+
+		<button class="form-submit">Submit</button>
 	</form>
 </div>
 
 <script type="text/html" id="report-screenshot-item">
-<div id="{{id}}" class="report-screenshot">
+<div id="{{id}}" class="report-screenshot report-screenshot-item">
 	<img src="{{img}}" />
-	<div class="report-screenshot-upload"><i class="icon-clock"></i></div>
+	<button type="button" class="report-screenshot-close"><i class="icon-cancel"></i></button>
 </div>
 </script>
 <?php } else { ?>
