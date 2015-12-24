@@ -39,6 +39,8 @@ class Config
 
 	public static $iframepath = 'embed';
 
+	public static $screenshotFolder = 'screenshots';
+
 	public static function getBaseUrl()
 	{
 		return 'http://' . $_SERVER['SERVER_NAME'];
