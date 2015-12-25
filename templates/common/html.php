@@ -43,6 +43,8 @@
 		<script type="text/javascript" src="assets/static/less.min.js"></script>
 	<?php } ?>
 
+	<script type="text/javascript" src="assets/static/jquery.min.js"></script>
+
 	<?php if (!empty($js)) { ?>
 		<?php if (is_array($js)) { ?>
 			<?php foreach ($js as $file) { ?>
