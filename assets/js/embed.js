@@ -80,6 +80,13 @@ $(function() {
 		return;
 	}
 
+	$$('#report-tab-navs').on('click', '.report-tab-nav', function(event) {
+		var button = $(this),
+			name = button.attr('data-name');
+
+		$$('#report-frame').attr('data-tab', name);
+	});
+
 	var dragEventCounter = 0;
 
 	$$('#report-screenshots').on('dragenter', function(event) {

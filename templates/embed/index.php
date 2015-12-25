@@ -11,7 +11,7 @@
 	</div>
 
 	<div id="report-tab-contents">
-		<div class="report-tab-content">
+		<div class="report-tab-content" data-name="report">
 			<form id="report-form">
 				<div class="form-group">
 					<label for="report-screenshots">Screenshots</label>
