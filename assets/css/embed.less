@@ -84,17 +84,91 @@ body {
 #report-frame {
 	position: relative;
 	top: 64px;
-	margin: 0 0 32px 0;
+	margin: 0 auto 32px auto;
+	max-width: 604px;
+	min-width: 164px;
+}
+
+#report-tab-navs {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	overflow: hidden;
+
+	.report-tab-nav {
+		position: relative;
+		flex-grow: 1;
+		padding: 16px 0;
+		font-size: 24px;
+		text-align: center;
+		background-color: @bluegrey100;
+		color: @bluegrey500;
+		border-right: 1px solid @bluegrey200;
+		border-bottom: 1px solid @bluegrey200;
+		transition: color .2s, background-color .2s;
+
+		&:first-child, &:last-child {
+			border-right: 0;
+		}
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 5px;
+			background-color: @cyan300;
+			transform: scaleX(0);
+			transition: transform .2s, background-color .2s;
+		}
+
+		&:hover {
+			background-color: @bluegrey50;
+			color: @cyan500;
+
+			&::before {
+				transform: scaleX(1);
+			}
+		}
+
+		i {
+			text-shadow: none;
+		}
+
+		p {
+			text-transform: uppercase;
+			font-size: 12px;
+			margin: 4px 0 0 0 ;
+		}
+	}
+
+	[data-tab="report"] & [data-name="report"],
+	[data-tab="inbox"] & [data-name="inbox"] {
+		background-color: white;
+		color: @cyan500;
+		box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.2);
+		z-index: 1;
+		border-bottom: 0;
+
+		&::before {
+			background-color: @cyan500;
+			transform: scaleX(1);
+		}
+	}
+}
+
+#report-tab-contents {
+	box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	background-color: white;
 }
 
 #report-form {
-	background-color: white;
-	border-radius: 2px;
-	box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
 	padding: 32px;
-	max-width: 604px;
-	min-width: 164px;
-	margin: 0 auto;
 	position: relative;
 
 	&.submitting {
