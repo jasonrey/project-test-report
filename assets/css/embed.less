@@ -146,11 +146,14 @@ body {
 		color: @cyan700;
 		border-bottom: 2px solid transparent;
 		font-family: 'Roboto', sans-serif;
-		transition: border-color .2s;
+		transition: border-color .2s, box-shadow .2s;
+		box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+		border-radius: 2px;
 
 		&:focus {
 			color: @cyan900;
 			border-bottom-color: @cyan500;
+			box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 		}
 	}
 }
@@ -197,6 +200,7 @@ body {
 		align-items: center;
 		flex-shrink: 0;
 		flex-grow: 0;
+		box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 
 		&:hover {
 			border-color: @cyan300;
