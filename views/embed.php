@@ -24,6 +24,7 @@ class EmbedView extends View
 			array_shift($this->js);
 		}
 
+		$this->set('user', $user);
 		$this->set('project', $project);
 		$this->set('isLoggedIn', $isLoggedIn);
 	}

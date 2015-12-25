@@ -226,4 +226,11 @@ $(function() {
 		document.forms['report-form']['report-text'].value = '';
 	};
 
+	$$('#report-item-list').on('click', '.report-item-comments-link', function(event) {
+		var button = $(this),
+			item = button.parents('li');
+
+		item.toggleClass('active');
+	});
+
 });
