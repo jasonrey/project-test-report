@@ -228,9 +228,27 @@ $(function() {
 
 	$$('#report-item-list').on('click', '.report-item-comments-link', function(event) {
 		var button = $(this),
-			item = button.parents('li');
+			item = button.parents('.report-item'),
+			commentList = item.find('.comment-item-list');
 
 		item.toggleClass('active');
+
+		var scrollinit = item.data('scrollinit');
+
+		if (!scrollinit) {
+			commentList.scrollTop(commentList[0].scrollHeight);
+
+			item.data('scrollinit', true);
+		}
+
+	});
+
+	$$('#report-item-filter').on('click', '.filter-item', function(event) {
+		var button = $(this),
+			siblings = button.siblings();
+
+		button.toggleClass('active');
+		siblings.removeClass('active');
 	});
 
 });

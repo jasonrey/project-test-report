@@ -26,7 +26,8 @@
 						<i class="icon-ok"></i>
 					</div>
 					<div class="filter-item-text">Completed</div>
-				</div><div class="filter-item-option" data-value="cancel">
+				</div>
+				<div class="filter-item-option" data-value="cancel">
 					<div class="filter-item-icon">
 						<i class="icon-cancel"></i>
 					</div>
@@ -40,11 +41,27 @@
 			</div>
 			<div class="filter-item-text">Fixer</div>
 		</div>
-		<div class="filter-item filter-item-sort">
-			<div class="filter-item-icon">
+		<div class="filter-item filter-item-sort" data-state="asc">
+			<div class="filter-item-selected filter-item-icon">
 				<i class="icon-sort-up"></i>
+				<i class="icon-sort-down"></i>
 			</div>
 			<div class="filter-item-text">Sort Date</div>
+
+			<div class="filter-item-options">
+				<div class="filter-item-option" data-value="asc">
+					<div class="filter-item-icon">
+						<i class="icon-sort-up"></i>
+					</div>
+					<div class="filter-item-text">Asc</div>
+				</div>
+				<div class="filter-item-option" data-value="desc">
+					<div class="filter-item-icon">
+						<i class="icon-sort-down"></i>
+					</div>
+					<div class="filter-item-text">Desc</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
