@@ -50,6 +50,7 @@ class View
 	public function loadTemplate($templateName, $vars = array())
 	{
 		$class = new self;
+		$class->viewname = $this->viewname;
 		$class->set($vars);
 
 		return $class->output($templateName);
