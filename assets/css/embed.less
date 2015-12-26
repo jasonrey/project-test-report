@@ -158,10 +158,6 @@ body {
 }
 
 #report-tab-contents {
-	border-bottom-left-radius: 2px;
-	border-bottom-right-radius: 2px;
-	background-color: white;
-
 	.report-tab-content {
 		display: none;
 	}
@@ -175,6 +171,9 @@ body {
 #report-form {
 	padding: 32px;
 	position: relative;
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	background-color: white;
 }
 
 .form-group {
@@ -417,7 +416,8 @@ body {
 
 #report-item-filter {
 	text-align: center;
-	padding: 0 16px;
+	padding: 0 16px 16px 16px;
+	background-color: white;
 
 	.report-item-filter-title {
 		padding: 16px 0;
@@ -445,7 +445,6 @@ body {
 			height: 48px;
 			line-height: 48px;
 			position: relative;
-			background-color: white;
 
 			&:hover {
 				color: @cyan700;
@@ -465,14 +464,13 @@ body {
 }
 
 #report-item-list {
-	padding: 0 16px;
 
 	.report-item {
-		padding: 32px 0;
-		border-bottom: 2px solid @cyan100;
+		padding: 32px 16px;
+		background-color: white;
 
-		&:last-child {
-			border-bottom: 0;
+		&:nth-child(odd) {
+			background-color: @grey100;
 		}
 
 		.report-item-flexrow {
@@ -734,6 +732,7 @@ body {
 			border: 0;
 			border-top: 2px solid @cyan500;
 			color: @cyan700;
+			background-color: transparent;
 		}
 
 		.comment-reply-button {

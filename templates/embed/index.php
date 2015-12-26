@@ -65,7 +65,7 @@
 						</div>
 						<div class="report-item-details">
 							<a href="javascript:void(0);" class="report-item-url icon-globe">http://test/test.test?test=testtest/test.test?test=testtest/test.test?test=testtest/test.test?test=test</a>
-							<div class="report-item-date icon-calendar">2015-02-03</div>
+							<div class="report-item-date icon-calendar">2015-02-03 12:34:56</div>
 						</div>
 					</div>
 					<div class="report-item-flexrow report-item-content">
@@ -127,7 +127,7 @@
 						</div>
 						<div class="report-item-details">
 							<a href="javascript:void(0);" class="report-item-url icon-globe">http://test/test.test?test=testtest/test.test?test=testtest/test.test?test=testtest/test.test?test=test</a>
-							<div class="report-item-date icon-calendar">2015-02-03</div>
+							<div class="report-item-date icon-calendar">2015-02-03 12:34:56</div>
 						</div>
 					</div>
 					<div class="report-item-flexrow report-item-content">
@@ -189,7 +189,7 @@
 						</div>
 						<div class="report-item-details">
 							<a href="javascript:void(0);" class="report-item-url icon-globe">http://test/test.test?test=testtest/test.test?test=testtest/test.test?test=testtest/test.test?test=test</a>
-							<div class="report-item-date icon-calendar">2015-02-03</div>
+							<div class="report-item-date icon-calendar">2015-02-03 12:34:56</div>
 						</div>
 					</div>
 					<div class="report-item-flexrow report-item-content">
