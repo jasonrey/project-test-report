@@ -451,9 +451,13 @@ body {
 					height: 32px;
 					overflow: hidden;
 					border-radius: 50%;
-					border: 2px solid @cyan500;
+					border: 3px solid @cyan500;
 					display: inline-block;
 					margin: 2px 0;
+
+					&.filter-item-assignee-image-all {
+						border-width: 2px;
+					}
 
 					img {
 						line-height: 40px;
@@ -723,7 +727,7 @@ body {
 					height: 32px;
 					line-height: 32px;
 					position: relative;
-					border: 3px solid transparent;
+					border: 2px solid transparent;
 					transition: border-color .2s;
 
 					&::before {
@@ -744,9 +748,9 @@ body {
 						display: block;
 						position: relative;
 						transition: color .2s;
-						width: 26px;
-						height: 26px;
-						line-height: 26px;
+						width: 28px;
+						height: 28px;
+						line-height: 28px;
 					}
 				}
 
