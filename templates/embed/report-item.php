@@ -45,7 +45,7 @@
 		</div>
 		<a href="javascript:void(0);" class="item-state"><i class="icon-feather-clock"></i></a>
 	</div>
-	<div class="item-row item-comments">
+	<div class="item-comments">
 		<ul class="comment-item-list">
 			<li class="comment-item">
 				<div class="comment-user-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
