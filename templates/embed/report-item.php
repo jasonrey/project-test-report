@@ -1,37 +1,51 @@
 <?php
 !defined('SERVER_EXEC') && die('No access.');
 ?>
-<li class="report-item">
-	<div class="report-item-flexrow report-item-header">
-		<div class="report-item-user">
-			<div class="report-item-user-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
+<li class="item">
+	<div class="item-flexrow item-header">
+		<div class="item-user">
+			<div class="item-user-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
 		</div>
-		<div class="report-item-details">
-			<a href="javascript:void(0);" class="report-item-url icon-globe">http://test/test.test?test=testtest/test.test?test=testtest/test.test?test=testtest/test.test?test=test</a>
-			<div class="report-item-date icon-calendar">2015-02-03 12:34:56</div>
-		</div>
-	</div>
-	<div class="report-item-flexrow report-item-content">
-		<p class="report-item-text">Testing text testing text Testing text testing text Testing text testing text Testing text testing text Testing text testing text Testing text testing text Testing text testing text</p>
-		<div class="report-item-screenshots">
-			<a href="javascript:void(0);" class="report-item-screenshot"><img src="screenshots/screenshot-2jyp5p1j46yr2j4i-1451029158-2013-09-01 17.14.14.jpg" /></a>
-			<a href="javascript:void(0);" class="report-item-screenshot"><img src="screenshots/screenshot-67udef6p0bhme7b9-1451029158-1504944_10152199878970039_820838583_n.jpg" /></a>
+		<div class="item-details">
+			<a href="javascript:void(0);" class="item-url icon-feather-link">http://test/test.test?test=testtest/test.test?test=testtest/test.test?test=testtest/test.test?test=test</a>
+			<div class="item-date icon-calendar">2015-02-03 12:34:56</div>
 		</div>
 	</div>
-	<div class="report-item-flexrow report-item-meta">
-		<a href="javascript:void(0);" class="report-item-comments-link icon-chat">Comments <span class="report-item-comment-count">2</span> <i class="icon-right-dir"></i></a>
-		<div class="report-item-assignees icon-feather-head">
-			<a href="javascript:void(0);" class="report-item-assignee">
-				<div class="report-item-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-feather-cross"></i></div>
+	<div class="item-flexrow item-content">
+		<p class="item-text">Testing text testing text Testing text testing text Testing text testing text Testing text testing text Testing text testing text Testing text testing text Testing text testing text</p>
+		<div class="item-screenshots">
+			<a href="javascript:void(0);" class="item-screenshot"><img src="screenshots/screenshot-2jyp5p1j46yr2j4i-1451029158-2013-09-01 17.14.14.jpg" /></a>
+			<a href="javascript:void(0);" class="item-screenshot"><img src="screenshots/screenshot-67udef6p0bhme7b9-1451029158-1504944_10152199878970039_820838583_n.jpg" /></a>
+		</div>
+	</div>
+	<div class="item-flexrow item-meta">
+		<a href="javascript:void(0);" class="item-comments-link icon-chat">Comments <span class="item-comment-count">2</span> <i class="icon-right-dir"></i></a>
+		<div class="item-assignees icon-feather-head">
+			<a href="javascript:void(0);" class="item-assignee">
+				<div class="item-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-feather-cross"></i></div>
 			</a>
-			<a href="javascript:void(0);" class="report-item-assignee">
-				<div class="report-item-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-feather-cross"></i></div>
+			<a href="javascript:void(0);" class="item-assignee">
+				<div class="item-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-feather-cross"></i></div>
 			</a>
-			<a href="javascript:void(0);" class="report-item-assignee-add"><i class="icon-feather-plus"></i></a>
+			<div class="item-assignee-add">
+				<a href="javascript:void(0);" class="item-assignee-add-button"><i class="icon-feather-plus"></i></a>
+
+				<div class="item-available-assignees">
+					<a href="javascript:void(0);" class="item-available-assignee">
+						<div class="item-available-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
+					</a>
+					<a href="javascript:void(0);" class="item-available-assignee">
+						<div class="item-available-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
+					</a>
+					<a href="javascript:void(0);" class="item-available-assignee active">
+						<div class="item-available-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
+					</a>
+				</div>
+			</div>
 		</div>
-		<a href="javascript:void(0);" class="report-item-state"><i class="icon-feather-clock"></i></a>
+		<a href="javascript:void(0);" class="item-state"><i class="icon-feather-clock"></i></a>
 	</div>
-	<div class="report-item-row report-item-comments">
+	<div class="item-row item-comments">
 		<ul class="comment-item-list">
 			<li class="comment-item">
 				<div class="comment-user-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>

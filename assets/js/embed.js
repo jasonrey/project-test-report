@@ -234,7 +234,7 @@ $(function() {
 		document.forms['report-form']['report-text'].value = '';
 	};
 
-	$$('#report-item-list').on('click', '.report-item-screenshot', function(event) {
+	$$('#report-item-list').on('click', '.item-screenshot', function(event) {
 		var screenshot = $(this),
 			source = screenshot.find('img').attr('src');
 
@@ -247,9 +247,9 @@ $(function() {
 		$$('#screenshot-preview').removeClass('active');
 	});
 
-	$$('#report-item-list').on('click', '.report-item-comments-link', function(event) {
+	$$('#report-item-list').on('click', '.item-comments-link', function(event) {
 		var button = $(this),
-			item = button.parents('.report-item'),
+			item = button.parents('.item'),
 			commentList = item.find('.comment-item-list');
 
 		item.toggleClass('active');
@@ -286,6 +286,12 @@ $(function() {
 		selected.html(button.find('.filter-item-icon').html());
 
 		document.forms['filter-form'][name].value = value;
+	});
+
+	$$('#report-item-list').on('click', '.item-assignee-add', function(event) {
+		var button = $(this);
+
+		button.toggleClass('active');
 	});
 
 });
