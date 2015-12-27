@@ -15,7 +15,7 @@
 		<p class="report-item-text">Testing text testing text Testing text testing text Testing text testing text Testing text testing text Testing text testing text Testing text testing text Testing text testing text</p>
 		<div class="report-item-screenshots">
 			<a href="javascript:void(0);" class="report-item-screenshot"><img src="screenshots/screenshot-2jyp5p1j46yr2j4i-1451029158-2013-09-01 17.14.14.jpg" /></a>
-			<a href="javascript:void(0);" class="report-item-screenshot"><img src="screenshots/screenshot-2jyp5p1j46yr2j4i-1451029158-2013-09-01 17.14.14.jpg" /></a>
+			<a href="javascript:void(0);" class="report-item-screenshot"><img src="screenshots/screenshot-67udef6p0bhme7b9-1451029158-1504944_10152199878970039_820838583_n.jpg" /></a>
 		</div>
 	</div>
 	<div class="report-item-flexrow report-item-meta">

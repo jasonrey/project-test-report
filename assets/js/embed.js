@@ -234,6 +234,19 @@ $(function() {
 		document.forms['report-form']['report-text'].value = '';
 	};
 
+	$$('#report-item-list').on('click', '.report-item-screenshot', function(event) {
+		var screenshot = $(this),
+			source = screenshot.find('img').attr('src');
+
+		$$('#screenshot-preview').find('img').attr('src', source);
+
+		$$('#screenshot-preview').addClass('active');
+	});
+
+	$$('#screenshot-preview-close-button').on('click', function(event) {
+		$$('#screenshot-preview').removeClass('active');
+	});
+
 	$$('#report-item-list').on('click', '.report-item-comments-link', function(event) {
 		var button = $(this),
 			item = button.parents('.report-item'),

@@ -19,9 +19,10 @@
 		</div>
 	</div>
 </div>
-<div class="screenshot-preview">
+<div id="screenshot-preview">
+	<a href="javascript:void(0);" id="screenshot-preview-close-button"><i class="icon-feather-cross"></i></a>
 	<div class="screenshot-preview-image">
-		<img />
+		<img src="screenshots/screenshot-2jyp5p1j46yr2j4i-1451029158-2013-09-01 17.14.14.jpg" />
 	</div>
 </div>
 <?php } else { ?>
