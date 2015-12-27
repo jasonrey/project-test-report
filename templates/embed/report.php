@@ -3,18 +3,18 @@
 ?>
 <form id="report-form">
 	<div class="form-group">
-		<label for="report-screenshots" class="icon-picture">Screenshots</label>
+		<label for="report-screenshots" class="icon-feather-image">Screenshots</label>
 		<div id="report-screenshots" name="report-screenshots" class="report-screenshots">
 			<div id="drop-file-mask">
-				<div class="drop-file-message icon-upload">Upload this image</div>
+				<div class="drop-file-message icon-feather-cloud-upload">Upload this image</div>
 			</div>
-			<button type="button" id="report-screenshot-add" class="report-screenshot"><i class="icon-plus"></i></button>
+			<button type="button" id="report-screenshot-add" class="report-screenshot"><i class="icon-feather-plus"></i></button>
 		</div>
 		<input type="file" name="report-screenshot-file" id="report-screenshot-file" />
 	</div>
 
 	<div class="form-group">
-		<label for="report-text" class="icon-pencil">Report</label>
+		<label for="report-text" class="icon-feather-clipboard">Report</label>
 		<textarea name="report-text"></textarea>
 	</div>
 

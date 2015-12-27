@@ -1,7 +1,7 @@
 <?php
 !defined('SERVER_EXEC') && die('No access.');
 ?>
-<a href="javascript:void(0);" id="report-close-button">&times;</a>
+<a href="javascript:void(0);" id="report-close-button"><i class="icon-feather-cross"></i></a>
 
 <?php if ($isLoggedIn) { ?>
 <div id="report-frame" data-tab="<?php echo $user->role == USER_ROLE_ADMIN ? 'inbox' : 'report'; ?>">
@@ -17,6 +17,11 @@
 		<div class="report-tab-content" data-name="inbox">
 			<?php echo $this->includeTemplate('inbox'); ?>
 		</div>
+	</div>
+</div>
+<div class="screenshot-preview">
+	<div class="screenshot-preview-image">
+		<img />
 	</div>
 </div>
 <?php } else { ?>

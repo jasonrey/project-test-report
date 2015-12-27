@@ -20,16 +20,16 @@
 	</div>
 	<div class="report-item-flexrow report-item-meta">
 		<a href="javascript:void(0);" class="report-item-comments-link icon-chat">Comments <span class="report-item-comment-count">2</span> <i class="icon-right-dir"></i></a>
-		<div class="report-item-assignees icon-user-secret">
+		<div class="report-item-assignees icon-feather-head">
 			<a href="javascript:void(0);" class="report-item-assignee">
-				<div class="report-item-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-user-times"></i></div>
+				<div class="report-item-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-feather-cross"></i></div>
 			</a>
 			<a href="javascript:void(0);" class="report-item-assignee">
-				<div class="report-item-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-user-times"></i></div>
+				<div class="report-item-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-feather-cross"></i></div>
 			</a>
-			<a href="javascript:void(0);" class="report-item-assignee-add"><i class="icon-user-plus"></i></a>
+			<a href="javascript:void(0);" class="report-item-assignee-add"><i class="icon-feather-plus"></i></a>
 		</div>
-		<a href="javascript:void(0);" class="report-item-state"><i class="icon-clock"></i></a>
+		<a href="javascript:void(0);" class="report-item-state"><i class="icon-feather-clock"></i></a>
 	</div>
 	<div class="report-item-row report-item-comments">
 		<ul class="comment-item-list">
@@ -59,7 +59,7 @@
 		</ul>
 		<div class="comment-reply">
 			<input type="text" class="comment-reply-input" placeholder="Your comment..." />
-			<a href="javascript:void(0);" class="comment-reply-button icon-reply">Reply</a>
+			<a href="javascript:void(0);" class="comment-reply-button icon-feather-reply">Reply</a>
 		</div>
 	</div>
 </li>
