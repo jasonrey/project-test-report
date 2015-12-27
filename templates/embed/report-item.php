@@ -17,9 +17,11 @@
 			<a href="javascript:void(0);" class="item-screenshot"><img src="screenshots/screenshot-2jyp5p1j46yr2j4i-1451029158-2013-09-01 17.14.14.jpg" /></a>
 			<a href="javascript:void(0);" class="item-screenshot"><img src="screenshots/screenshot-67udef6p0bhme7b9-1451029158-1504944_10152199878970039_820838583_n.jpg" /></a>
 		</div>
+		<div class="item-comments-toggle">
+			<a href="javascript:void(0);" class="item-comments-link"><i class="icon-feather-speech-bubble"></i></a>
+		</div>
 	</div>
 	<div class="item-flexrow item-meta">
-		<a href="javascript:void(0);" class="item-comments-link icon-chat">Comments <span class="item-comment-count">2</span> <i class="icon-right-dir"></i></a>
 		<div class="item-assignees icon-feather-head">
 			<a href="javascript:void(0);" class="item-assignee">
 				<div class="item-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-feather-cross"></i></div>
@@ -46,6 +48,7 @@
 		<a href="javascript:void(0);" class="item-state"><i class="icon-feather-clock"></i></a>
 	</div>
 	<div class="item-comments">
+		<a href="javascript:void(0);" class="comment-back-link"><i class="icon-left-dir"></i> Back</a>
 		<ul class="comment-item-list">
 			<li class="comment-item">
 				<div class="comment-user-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
