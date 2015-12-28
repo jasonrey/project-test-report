@@ -305,4 +305,15 @@ $(function() {
 		button.toggleClass('active');
 	});
 
+	$$('#report-item-list').on('click', '.item-state', function(event) {
+		$(this).toggleClass('active');
+	});
+
+	$$('#report-item-list').on('click', '.item-state-option:not(.item-state-selected)', function(event) {
+		var item = $(this),
+			siblings = item.siblings();
+
+		siblings.removeClass('item-state-selected');
+		item.addClass('item-state-selected');
+	});
 });

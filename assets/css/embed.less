@@ -533,7 +533,6 @@ body {
 	position: relative;
 	padding: 24px 0;
 	background-color: white;
-	min-height: 360px;
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
@@ -543,14 +542,6 @@ body {
 	}
 
 	.item-header {
-		padding: 0 16px;
-	}
-
-	.item-content {
-		padding: 0 0 0 16px;
-	}
-
-	.item-meta {
 		padding: 0 16px;
 	}
 
@@ -588,9 +579,11 @@ body {
 	}
 
 	.item-content {
+		padding: 0 0 0 16px;
 		margin: 16px 0;
-		color: @cyan900;
+		min-height: 200px;
 		flex-grow: 1;
+		color: @cyan900;
 	}
 
 	.item-text {
@@ -649,28 +642,65 @@ body {
 	}
 
 	.item-meta {
-		height: 32px;
-		line-height: 32px;
-	}
-
-	.item-comment-count {
-		&::before {
-			content: '(';
-		}
-
-		&::after {
-			content: ')';
-		}
+		height: 36px;
+		line-height: 36px;
+		padding: 0 0 0 16px;
 	}
 
 	.item-state {
-		font-size: 24px;
+		font-size: 20px;
+		text-align: center;
+		height: 36px;
+		line-height: 36px;
+		border-top-left-radius: 4px;
+		border-bottom-left-radius: 4px;
+		overflow: hidden;
+		position: relative;
+		transition: transform .2s;
+		width: 109px;
+		transform: translateX(73px);
+		border-top: 1px solid @cyan100;
+		border-bottom: 1px solid @cyan100;
+		border-left: 1px solid @cyan100;
+		display: flex;
+
+		.item-state-option {
+			height: 34px;
+			line-height: 34px;
+			width: 36px;
+			order: 1;
+
+			&:hover {
+				background-color: @cyan50;
+			}
+		}
+
+		.item-state-selected {
+			background-color: @cyan100;
+			color: @cyan700;
+			order: 0;
+
+			&:hover {
+				background-color: @cyan500;
+				color: white;
+			}
+		}
+
+		&.active {
+			transform: translateX(0);
+
+			.item-state-selected {
+				background-color: @cyan500;
+				color: white;
+			}
+		}
 	}
 
 	.item-assignees {
 		flex-grow: 1;
 		position: relative;
 		.clearfix;
+		padding: 2px 0;
 
 		&::before {
 			font-size: 18px;
@@ -737,12 +767,12 @@ body {
 				content: '';
 				display: none;
 				position: absolute;
-				top: 30px;
+				top: -8px;
 				left: 10px;
 				border-radius: 2px;
 				border-left: 6px solid transparent;
 				border-right: 6px solid transparent;
-				border-bottom: 10.5px solid @cyan200;
+				border-top: 10.5px solid @cyan200;
 			}
 
 			.item-assignee-add-button {
@@ -782,7 +812,7 @@ body {
 
 			.item-available-assignees {
 				position: absolute;
-				top: 39px;
+				bottom: 39px;
 				right: -16px;
 				width: 64px;
 				background-color: white;
@@ -945,7 +975,7 @@ body {
 		width: 100%;
 		height: 40px;
 		line-height: 40px;
-		padding: 0 48px 0 4px;
+		padding: 0 64px 0 4px;
 		font-family: 'Roboto', sans-serif;
 		font-size: 16px;
 		outline: 0;

@@ -14,8 +14,8 @@
 	<div class="item-flexrow item-content">
 		<p class="item-text">Testing text testing text Testing text testing text Testing text testing text Testing text testing text Testing text testing text Testing text testing text Testing text testing text</p>
 		<div class="item-screenshots">
-			<a href="javascript:void(0);" class="item-screenshot"><img src="screenshots/screenshot-2jyp5p1j46yr2j4i-1451029158-2013-09-01 17.14.14.jpg" /></a>
-			<a href="javascript:void(0);" class="item-screenshot"><img src="screenshots/screenshot-67udef6p0bhme7b9-1451029158-1504944_10152199878970039_820838583_n.jpg" /></a>
+			<a href="javascript:void(0);" class="item-screenshot"><img src="screenshots/login-screen.png" /></a>
+			<a href="javascript:void(0);" class="item-screenshot"><img src="screenshots/login-screen.png" /></a>
 		</div>
 		<div class="item-comments-toggle">
 			<a href="javascript:void(0);" class="item-comments-link"><i class="icon-feather-speech-bubble"></i></a>
@@ -45,7 +45,11 @@
 				</div>
 			</div>
 		</div>
-		<a href="javascript:void(0);" class="item-state"><i class="icon-feather-clock"></i></a>
+		<div class="item-state">
+			<a href="javascript:void(0);" class="item-state-option item-state-pending item-state-selected"><i class="icon-feather-clock"></i></a>
+			<a href="javascript:void(0);" class="item-state-option item-state-completed"><i class="icon-feather-check"></i></a>
+			<a href="javascript:void(0);" class="item-state-option item-state-rejected"><i class="icon-feather-cross"></i></a>
+		</div>
 	</div>
 	<div class="item-comments">
 		<a href="javascript:void(0);" class="comment-back-link"><i class="icon-left-dir"></i> Back</a>
