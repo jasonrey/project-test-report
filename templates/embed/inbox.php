@@ -52,20 +52,28 @@
 		<div class="filter-item" data-name="assignee">
 			<div class="filter-item-selected">
 				<div class="filter-item-icon">
-					<div class="filter-item-assignee-image filter-item-assignee-image-all"><i class="icon-feather-head"></i></div>
+					<div class="filter-item-assignee-image-all">
+						<div class="filter-item-assignee-image"><i class="icon-feather-head"></i></div>
+						<div class="filter-item-assignee-image"><i class="icon-feather-head"></i></div>
+						<div class="filter-item-assignee-image"><i class="icon-feather-head"></i></div>
+					</div>
 				</div>
 				<div class="filter-item-text">Fixer</div>
 			</div>
 			<div class="filter-item-options">
 				<div class="filter-item-option active" data-value="*">
 					<div class="filter-item-icon">
-						<div class="filter-item-assignee-image filter-item-assignee-image-all"><i class="icon-feather-head"></i></div>
+						<div class="filter-item-assignee-image-all">
+							<div class="filter-item-assignee-image"><i class="icon-feather-head"></i></div>
+							<div class="filter-item-assignee-image"><i class="icon-feather-head"></i></div>
+							<div class="filter-item-assignee-image"><i class="icon-feather-head"></i></div>
+						</div>
 					</div>
 					<div class="filter-item-text">All</div>
 				</div>
 				<div class="filter-item-option" data-value="0">
 					<div class="filter-item-icon">
-						<div class="filter-item-assignee-image filter-item-assignee-image-all"><i class="icon-feather-cross"></i></div>
+						<div class="filter-item-assignee-image filter-item-assignee-image-unassigned"><i class="icon-feather-cross"></i></div>
 					</div>
 					<div class="filter-item-text">Unassigned</div>
 				</div>

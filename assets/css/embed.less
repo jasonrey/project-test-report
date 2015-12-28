@@ -465,10 +465,6 @@ body {
 					display: inline-block;
 					margin: 2px 0;
 
-					&.filter-item-assignee-image-all {
-						border-width: 2px;
-					}
-
 					img {
 						line-height: 40px;
 						max-width: 100%;
@@ -482,6 +478,38 @@ body {
 						height: 26px;
 						line-height: 26px;
 						vertical-align: top;
+					}
+				}
+
+				.filter-item-assignee-image-unassigned {
+					border-width: 2px;
+				}
+
+				.filter-item-assignee-image-all {
+					position: relative;
+					z-index: 1;
+					display: inline-block;
+					.clearfix();
+
+					.filter-item-assignee-image {
+						position: relative;
+						border-width: 2px;
+						background-color: white;
+						float: left;
+
+						&:nth-child(1) {
+							z-index: 1;
+							left: 24px;
+						}
+
+						&:nth-child(2) {
+							z-index: 2;
+						}
+
+						&:nth-child(3) {
+							z-index: 3;
+							right: 24px;
+						}
 					}
 				}
 			}
@@ -515,6 +543,7 @@ body {
 
 						.filter-item-assignee-image {
 							border-color: white;
+							background-color: @cyan500;
 						}
 					}
 				}
