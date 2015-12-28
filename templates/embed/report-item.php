@@ -23,7 +23,7 @@
 		</div>
 	</div>
 	<div class="item-flexrow item-meta">
-		<div class="item-assignees icon-feather-head">
+		<div class="item-assignees icon-wrench">
 			<a href="javascript:void(0);" class="item-assignee">
 				<div class="item-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-feather-cross"></i></div>
 			</a>
