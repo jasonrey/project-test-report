@@ -456,6 +456,15 @@ body {
 				line-height: 36px;
 				font-size: 20px;
 
+				.filter-item-state-all {
+					.clearfix();
+					display: inline-block;
+
+					i {
+						float: left;
+					}
+				}
+
 				.filter-item-assignee-image {
 					width: 32px;
 					height: 32px;
@@ -483,6 +492,11 @@ body {
 
 				.filter-item-assignee-image-unassigned {
 					border-width: 2px;
+
+					i {
+						height: 28px;
+						line-height: 28px;
+					}
 				}
 
 				.filter-item-assignee-image-all {
@@ -501,15 +515,18 @@ body {
 						&:nth-child(1) {
 							z-index: 1;
 							left: 24px;
+							top: 4px;
 						}
 
 						&:nth-child(2) {
 							z-index: 2;
+							top: -4px;
 						}
 
 						&:nth-child(3) {
 							z-index: 3;
 							right: 24px;
+							top: 4px;
 						}
 					}
 				}

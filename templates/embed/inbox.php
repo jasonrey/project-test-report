@@ -13,9 +13,11 @@
 		<div class="filter-item" data-name="state">
 			<div class="filter-item-selected">
 				<div class="filter-item-icon">
-					<i class="icon-feather-clock"></i>
-					<i class="icon-feather-check"></i>
-					<i class="icon-feather-cross"></i>
+					<div class="filter-item-state-all">
+						<i class="icon-feather-clock"></i>
+						<i class="icon-feather-check"></i>
+						<i class="icon-feather-cross"></i>
+					</div>
 				</div>
 				<div class="filter-item-text">State</div>
 			</div>
@@ -23,9 +25,11 @@
 			<div class="filter-item-options">
 				<div class="filter-item-option active" data-value="all">
 					<div class="filter-item-icon">
-						<i class="icon-feather-clock"></i>
-						<i class="icon-feather-check"></i>
-						<i class="icon-feather-cross"></i>
+						<div class="filter-item-state-all">
+							<i class="icon-feather-clock"></i>
+							<i class="icon-feather-check"></i>
+							<i class="icon-feather-cross"></i>
+						</div>
 					</div>
 					<div class="filter-item-text">All</div>
 				</div>
@@ -73,7 +77,7 @@
 				</div>
 				<div class="filter-item-option" data-value="0">
 					<div class="filter-item-icon">
-						<div class="filter-item-assignee-image filter-item-assignee-image-unassigned"><i class="icon-feather-cross"></i></div>
+						<div class="filter-item-assignee-image filter-item-assignee-image-unassigned"><i class="icon-">?</i></div>
 					</div>
 					<div class="filter-item-text">Unassigned</div>
 				</div>
