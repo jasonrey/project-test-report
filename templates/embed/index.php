@@ -20,10 +20,9 @@
 	</div>
 </div>
 <div id="screenshot-preview">
+	<div class="overlay"></div>
 	<a href="javascript:void(0);" id="screenshot-preview-close-button"><i class="icon-feather-cross"></i></a>
-	<div class="screenshot-preview-image">
-		<img src="screenshots/screenshot-2jyp5p1j46yr2j4i-1451029158-2013-09-01 17.14.14.jpg" />
-	</div>
+	<img />
 </div>
 <?php } else { ?>
 <?php echo $this->loadTemplate('before-login'); ?>

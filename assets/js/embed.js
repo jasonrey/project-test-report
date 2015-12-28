@@ -247,6 +247,10 @@ $(function() {
 		$$('#screenshot-preview').removeClass('active');
 	});
 
+	$$('#screenshot-preview').on('click', '.overlay', function(event) {
+		$$('#screenshot-preview').removeClass('active');
+	});
+
 	$$('#report-item-list').on('click', '.item-comments-link', function(event) {
 		var button = $(this),
 			item = button.parents('.item'),
