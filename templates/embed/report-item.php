@@ -40,7 +40,7 @@
 					<a href="javascript:void(0);" class="item-available-assignee">
 						<div class="item-available-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
 					</a>
-					<a href="javascript:void(0);" class="item-available-assignee active">
+					<a href="javascript:void(0);" class="item-available-assignee">
 						<div class="item-available-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
 					</a>
 				</div>
