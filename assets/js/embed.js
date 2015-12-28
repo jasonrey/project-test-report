@@ -86,6 +86,22 @@ $(function() {
 		if (target.closest('.filter-item').length === 0) {
 			$('.filter-item').removeClass('active');
 		}
+
+		if (target.closest('.item-assignee-add').length) {
+			$('.item-assignee-add').not(target.closest('.item-assignee-add')).removeClass('active');
+		}
+
+		if (target.closest('.item-assignee-add').length === 0) {
+			$('.item-assignee-add').removeClass('active');
+		}
+
+		if (target.closest('.item-state').length) {
+			$('.item-state').not(target.closest('.item-state')).removeClass('active');
+		}
+
+		if (target.closest('.item-state').length === 0) {
+			$('.item-state').removeClass('active');
+		}
 	});
 
 	$$('#report-tab-navs').on('click', '.report-tab-nav', function(event) {
