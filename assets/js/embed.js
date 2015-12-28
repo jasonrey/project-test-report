@@ -284,13 +284,6 @@ $(function() {
 
 	});
 
-	$$('#report-item-list').on('click', '.comment-back-link', function(event) {
-		var button = $(this),
-			item = button.parents('.item');
-
-		item.removeClass('active');
-	});
-
 	$$('#report-item-filter').on('click', '.filter-item', function(event) {
 		var button = $(this),
 			siblings = button.siblings();
