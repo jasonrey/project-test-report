@@ -53,7 +53,7 @@
 		</div>
 	</div>
 	<div class="item-comments">
-		<a href="javascript:void(0);" class="comment-back-link"><i class="icon-left-dir"></i> Back</a>
+		<a href="javascript:void(0);" class="comment-back-link">Back <i class="icon-right-dir"></i></a>
 		<ul class="comment-item-list">
 			<li class="comment-item">
 				<div class="comment-user-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>

@@ -496,6 +496,7 @@ body {
 						border-width: 2px;
 						background-color: white;
 						float: left;
+						transform: scale(0.8);
 
 						&:nth-child(1) {
 							z-index: 1;
@@ -532,25 +533,29 @@ body {
 					padding: 6px 0;
 					background-color: white;
 					cursor: pointer;
-
-					&:hover {
-						background-color: @cyan50;
-					}
-
-					&.active {
-						background-color: @cyan500;
-						color: white;
-
-						.filter-item-assignee-image {
-							border-color: white;
-							background-color: @cyan500;
-						}
-					}
 				}
 			}
 
 			&:hover {
 				background-color: @cyan50;
+
+				.filter-item-icon {
+					.filter-item-assignee-image-all {
+						.filter-item-assignee-image {
+							background-color: @cyan50;
+						}
+					}
+				}
+
+				.filter-item-options {
+					.filter-item-icon {
+						.filter-item-assignee-image-all {
+							.filter-item-assignee-image {
+								background-color: white;
+							}
+						}
+					}
+				}
 			}
 
 			&.active {
@@ -558,8 +563,44 @@ body {
 					background-color: @cyan50;
 				}
 
+				.filter-item-icon {
+					.filter-item-assignee-image-all {
+						.filter-item-assignee-image {
+							background-color: @cyan50;
+						}
+					}
+				}
+
 				.filter-item-options {
 					display: block;
+
+					.filter-item-option {
+						&:hover {
+							background-color: @cyan50;
+
+							.filter-item-assignee-image-all {
+								.filter-item-assignee-image {
+									background-color: @cyan50;
+								}
+							}
+						}
+
+						&.active {
+							background-color: @cyan500;
+							color: white;
+
+							.filter-item-assignee-image {
+								border-color: white;
+								background-color: @cyan500;
+							}
+
+							.filter-item-assignee-image-all {
+								.filter-item-assignee-image {
+									background-color: @cyan500;
+								}
+							}
+						}
+					}
 				}
 			}
 		}
@@ -935,7 +976,7 @@ body {
 		// overflow: hidden;
 		// transition: max-height .2s;
 		position: absolute;
-		top: 72px;
+		top: 76px;
 		bottom: 0;
 		left: 100%;
 		width: 100%;
@@ -946,19 +987,19 @@ body {
 	.comment-back-link {
 		text-transform: uppercase;
 		position: absolute;
-		top: -32px;
-		left: 0;
+		top: -24px;
+		right: 0;
 		font-size: 14px;
-		height: 32px;
-		line-height: 32px;
-		padding: 0 16px 0 8px;
-		border-top-right-radius: 4px;
+		height: 24px;
+		line-height: 24px;
+		padding: 0 8px 0 16px;
+		border-top-left-radius: 4px;
 		background-color: @cyan500;
 		color: white;
 	}
 
 	.comment-item-list {
-		max-height: 248px;
+		max-height: 244px;
 		overflow-x: hidden;
 		overflow-y: auto;
 		border-top: 2px solid @cyan500;
