@@ -601,14 +601,22 @@ body {
 		flex-shrink: 0;
 	}
 
+	.item-screenshots-title {
+		text-align: center;
+		color: @cyan500;
+		border-bottom: 2px solid @cyan100;
+		padding: 4px 0;
+		margin: 0 8px 4px 8px;
+	}
+
 	.item-screenshot {
 		width: 48px;
 		height: 48px;
 		padding: 4px;
 		margin: 0 4px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		line-height: 48px;
+		vertical-align: middle;
+		border-radius: 2px;
 
 		&:hover {
 			background-color: @cyan100;

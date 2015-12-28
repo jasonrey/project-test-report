@@ -14,6 +14,7 @@
 	<div class="item-flexrow item-content">
 		<p class="item-text">Testing text testing text Testing text testing text Testing text testing text Testing text testing text Testing text testing text Testing text testing text Testing text testing text</p>
 		<div class="item-screenshots">
+			<div class="item-screenshots-title"><i class="icon-feather-paper-clip"></i></div>
 			<a href="javascript:void(0);" class="item-screenshot"><img src="screenshots/login-screen.png" /></a>
 			<a href="javascript:void(0);" class="item-screenshot"><img src="screenshots/login-screen.png" /></a>
 		</div>
