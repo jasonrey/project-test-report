@@ -18,11 +18,9 @@
 			<a href="javascript:void(0);" class="item-screenshot"><img src="screenshots/login-screen.png" /></a>
 			<a href="javascript:void(0);" class="item-screenshot"><img src="screenshots/login-screen.png" /></a>
 		</div>
-		<div class="item-comments-toggle">
-			<a href="javascript:void(0);" class="item-comments-link"><i class="icon-feather-speech-bubble"></i></a>
-		</div>
 	</div>
 	<div class="item-flexrow item-meta">
+		<a href="javascript:void(0);" class="item-comments-link icon-feather-speech-bubble">Comments <span class="item-comments-counter">2</span> <i class="icon-right-dir"></i></a>
 		<div class="item-assignees icon-wrench">
 			<a href="javascript:void(0);" class="item-assignee">
 				<div class="item-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-feather-cross"></i></div>
