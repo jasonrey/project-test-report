@@ -30,6 +30,6 @@
 <script type="text/html" id="report-screenshot-item">
 <div id="{{id}}" class="report-screenshot report-screenshot-item">
 	<img src="{{img}}" />
-	<button type="button" class="report-screenshot-close"><i class="icon-cancel"></i></button>
+	<button type="button" class="report-screenshot-delete"><i class="icon-feather-cross"></i></button>
 </div>
 </script>
