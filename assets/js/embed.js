@@ -289,12 +289,12 @@ $(function() {
 			value = button.attr('data-value'),
 			item = button.parents('.filter-item'),
 			name = item.attr('data-name'),
-			selected = item.find('.filter-item-selected');
+			selectedIcon = item.find('.filter-item-selected .filter-item-icon');
 
 		siblings.removeClass('active');
 		button.addClass('active');
 
-		selected.html(button.find('.filter-item-icon').html());
+		selectedIcon.html(button.find('.filter-item-icon').html());
 
 		document.forms['filter-form'][name].value = value;
 	});

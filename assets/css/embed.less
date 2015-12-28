@@ -429,7 +429,12 @@ body {
 			user-select: none;
 			-webkit-user-select: none;
 			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-			padding: 4px 0 0 0;
+
+			.filter-item-selected {
+				padding: 4px 0 0 0;
+				height: 100%;
+				background-color: white;
+			}
 
 			&::before {
 				content: '';
@@ -487,10 +492,7 @@ body {
 			.filter-item-options {
 				position: absolute;
 				top: 64px;
-				left: 50%;
-				transform: translateX(-50%);
 				border: 1px solid @cyan100;
-				box-sizing: content-box;
 				width: 100%;
 				display: none;
 
@@ -519,7 +521,9 @@ body {
 			}
 
 			&.active {
-				background-color: @cyan50;
+				.filter-item-selected {
+					background-color: @cyan50;
+				}
 
 				.filter-item-options {
 					display: block;

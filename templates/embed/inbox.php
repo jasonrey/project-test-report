@@ -11,10 +11,12 @@
 			<i class="icon-feather-cog"></i>
 		</div>
 		<div class="filter-item" data-name="state">
-			<div class="filter-item-selected filter-item-icon">
-				<i class="icon-feather-clock"></i>
+			<div class="filter-item-selected">
+				<div class="filter-item-icon">
+					<i class="icon-feather-clock"></i>
+				</div>
+				<div class="filter-item-text">State</div>
 			</div>
-			<div class="filter-item-text">State</div>
 
 			<div class="filter-item-options">
 				<div class="filter-item-option active" data-value="pending">
@@ -38,10 +40,12 @@
 			</div>
 		</div>
 		<div class="filter-item" data-name="assignee">
-			<div class="filter-item-selected filter-item-icon">
-				<div class="filter-item-assignee-image filter-item-assignee-image-all"><i class="icon-feather-head"></i></div>
+			<div class="filter-item-selected">
+				<div class="filter-item-icon">
+					<div class="filter-item-assignee-image filter-item-assignee-image-all"><i class="icon-feather-head"></i></div>
+				</div>
+				<div class="filter-item-text">Fixer</div>
 			</div>
-			<div class="filter-item-text">Fixer</div>
 			<div class="filter-item-options">
 				<div class="filter-item-option active" data-value="0">
 					<div class="filter-item-icon">
@@ -64,10 +68,12 @@
 			</div>
 		</div>
 		<div class="filter-item" data-name="sort">
-			<div class="filter-item-selected filter-item-icon">
-				<i class="icon-feather-arrow-up"></i>
+			<div class="filter-item-selected">
+				<div class="filter-item-icon">
+					<i class="icon-feather-arrow-up"></i>
+				</div>
+				<div class="filter-item-text">Sort Date</div>
 			</div>
-			<div class="filter-item-text">Sort Date</div>
 
 			<div class="filter-item-options">
 				<div class="filter-item-option active" data-value="asc">
