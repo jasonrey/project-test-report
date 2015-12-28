@@ -14,12 +14,22 @@
 			<div class="filter-item-selected">
 				<div class="filter-item-icon">
 					<i class="icon-feather-clock"></i>
+					<i class="icon-feather-check"></i>
+					<i class="icon-feather-cross"></i>
 				</div>
 				<div class="filter-item-text">State</div>
 			</div>
 
 			<div class="filter-item-options">
-				<div class="filter-item-option active" data-value="pending">
+				<div class="filter-item-option active" data-value="all">
+					<div class="filter-item-icon">
+						<i class="icon-feather-clock"></i>
+						<i class="icon-feather-check"></i>
+						<i class="icon-feather-cross"></i>
+					</div>
+					<div class="filter-item-text">All</div>
+				</div>
+				<div class="filter-item-option" data-value="pending">
 					<div class="filter-item-icon">
 						<i class="icon-feather-clock"></i>
 					</div>
@@ -47,11 +57,17 @@
 				<div class="filter-item-text">Fixer</div>
 			</div>
 			<div class="filter-item-options">
-				<div class="filter-item-option active" data-value="0">
+				<div class="filter-item-option active" data-value="*">
 					<div class="filter-item-icon">
 						<div class="filter-item-assignee-image filter-item-assignee-image-all"><i class="icon-feather-head"></i></div>
 					</div>
 					<div class="filter-item-text">All</div>
+				</div>
+				<div class="filter-item-option" data-value="0">
+					<div class="filter-item-icon">
+						<div class="filter-item-assignee-image filter-item-assignee-image-all"><i class="icon-feather-cross"></i></div>
+					</div>
+					<div class="filter-item-text">Unassigned</div>
 				</div>
 				<div class="filter-item-option" data-value="1">
 					<div class="filter-item-icon">
