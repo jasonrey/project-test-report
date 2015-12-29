@@ -1,4 +1,4 @@
-CREATE TABLE `report_assign` (
+CREATE TABLE `report_assignee` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `report_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,

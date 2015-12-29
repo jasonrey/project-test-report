@@ -1,7 +1,7 @@
 <?php
 !defined('SERVER_EXEC') && die('No access.');
 
-class Report_assignTable extends Table
+class Report_assigneeTable extends Table
 {
 	public $report_id;
 	public $user_id;
