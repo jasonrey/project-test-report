@@ -803,6 +803,72 @@ body {
 		}
 	}
 
+	.item-available-assignees {
+		height: 0;
+		overflow: hidden;
+		transition: height .2s;
+		position: relative;
+
+		&::before {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			right: 26px;
+			border-radius: 2px;
+			border-left: 6px solid transparent;
+			border-right: 6px solid transparent;
+			border-top: 10.5px solid @cyan200;
+			transform: scale(0);
+			transition: transform .2s;
+			transition-delay: 0s;
+		}
+
+		.item-available-assignees-content {
+			background-color: white;
+			border-top: 2px solid @cyan200;
+			border-bottom: 2px solid @cyan200;
+			height: 52px;
+			text-align: center;
+			overflow-x: auto;
+			overflow-y: hidden;
+			white-space: nowrap;
+		}
+
+		.item-available-assignee {
+			height: 48px;
+			width: 48px;
+			padding: 6px 0;
+			text-align: center;
+
+			.item-available-assignee-image {
+				display: inline-block;
+				width: 36px;
+				height: 36px;
+				border-radius: 50%;
+				border: 3px solid @cyan500;
+				overflow: hidden;
+
+				img {
+					max-width: 100%;
+					max-height: 100%;
+				}
+			}
+
+			&:hover {
+				background-color: @cyan100;
+			}
+		}
+
+		.show-assignees& {
+			height: 60px;
+
+			&::before {
+				transition-delay: .2s;
+				transform: scale(1);
+			}
+		}
+	}
+
 	.item-meta {
 		height: 36px;
 		line-height: 36px;
@@ -897,18 +963,6 @@ body {
 			position: relative;
 			float: left;
 
-			&::before {
-				content: '';
-				display: none;
-				position: absolute;
-				top: -8px;
-				left: 10px;
-				border-radius: 2px;
-				border-left: 6px solid transparent;
-				border-right: 6px solid transparent;
-				border-top: 10.5px solid @cyan200;
-			}
-
 			.item-assignee-add-button {
 				text-align: center;
 				border-radius: 50%;
@@ -944,54 +998,13 @@ body {
 				}
 			}
 
-			.item-available-assignees {
-				position: absolute;
-				bottom: 39px;
-				right: -16px;
-				width: 64px;
-				background-color: white;
-				border: 2px solid @cyan200;
-				border-radius: 4px;
-				overflow: hidden;
-				display: none;
-
-				.item-available-assignee {
-					display: block;
-					padding: 8px 0;
-					text-align: center;
-					height: 56px;
-
-					.item-available-assignee-image {
-						display: inline-block;
-						width: 40px;
-						height: 40px;
-						border-radius: 50%;
-						border: 3px solid @cyan500;
-						overflow: hidden;
-
-						img {
-							max-width: 100%;
-							max-height: 100%;
-						}
-					}
-
-					&:hover {
-						background-color: @cyan50;
-					}
-				}
-			}
-
 			&:hover {
 				.item-assignee-add-button {
 					border-color: @cyan200;
 				}
 			}
 
-			&.active {
-				&::before {
-					display: block;
-				}
-
+			.show-assignees& {
 				.item-assignee-add-button {
 					border-color: @cyan200;
 
@@ -1002,10 +1015,6 @@ body {
 					i {
 						color: white;
 					}
-				}
-
-				.item-available-assignees {
-					display: block;
 				}
 			}
 		}

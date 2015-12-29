@@ -87,12 +87,12 @@ $(function() {
 			$('.filter-item').removeClass('active');
 		}
 
-		if (target.closest('.item-assignee-add').length) {
-			$('.item-assignee-add').not(target.closest('.item-assignee-add')).removeClass('active');
+		if (target.closest('.item-assignee-add').length || target.closest('.item-available-assignees').length) {
+			$('.item').not(target.closest('.item')).removeClass('show-assignees');
 		}
 
-		if (target.closest('.item-assignee-add').length === 0) {
-			$('.item-assignee-add').removeClass('active');
+		if (target.closest('.item-assignee-add').length === 0 && target.closest('.item-available-assignees').length === 0) {
+			$('.item').removeClass('show-assignees');
 		}
 
 		if (target.closest('.item-state').length) {
@@ -309,9 +309,10 @@ $(function() {
 	});
 
 	$$('#report-item-list').on('click', '.item-assignee-add', function(event) {
-		var button = $(this);
+		var button = $(this),
+			item = button.parents('.item');
 
-		button.toggleClass('active');
+		item.toggleClass('show-assignees');
 	});
 
 	$$('#report-item-list').on('click', '.item-state', function(event) {

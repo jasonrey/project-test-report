@@ -24,6 +24,43 @@
 			<a href="javascript:void(0);" class="item-screenshot"><img src="screenshots/login-screen.png" /></a>
 		</div>
 	</div>
+	<div class="item-available-assignees">
+		<div class="item-available-assignees-content">
+			<a href="javascript:void(0);" class="item-available-assignee">
+				<span class="item-available-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-feather-cross"></i></span>
+			</a>
+			<a href="javascript:void(0);" class="item-available-assignee">
+				<span class="item-available-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-feather-cross"></i></span>
+			</a>
+			<a href="javascript:void(0);" class="item-available-assignee">
+				<span class="item-available-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-feather-cross"></i></span>
+			</a>
+			<a href="javascript:void(0);" class="item-available-assignee">
+				<span class="item-available-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-feather-cross"></i></span>
+			</a>
+			<a href="javascript:void(0);" class="item-available-assignee">
+				<span class="item-available-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-feather-cross"></i></span>
+			</a>
+			<a href="javascript:void(0);" class="item-available-assignee">
+				<span class="item-available-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-feather-cross"></i></span>
+			</a>
+			<a href="javascript:void(0);" class="item-available-assignee">
+				<span class="item-available-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-feather-cross"></i></span>
+			</a>
+			<a href="javascript:void(0);" class="item-available-assignee">
+				<span class="item-available-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-feather-cross"></i></span>
+			</a>
+			<a href="javascript:void(0);" class="item-available-assignee">
+				<span class="item-available-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-feather-cross"></i></span>
+			</a>
+			<a href="javascript:void(0);" class="item-available-assignee">
+				<span class="item-available-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-feather-cross"></i></span>
+			</a>
+			<a href="javascript:void(0);" class="item-available-assignee">
+				<span class="item-available-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-feather-cross"></i></span>
+			</a>
+		</div>
+	</div>
 	<div class="item-flexrow item-meta">
 		<a href="javascript:void(0);" class="item-comments-link icon-feather-speech-bubble">Comments <span class="item-comments-counter">2</span> <i class="icon-right-dir"></i></a>
 		<div class="item-assignees icon-wrench">
@@ -35,18 +72,6 @@
 			</a>
 			<div class="item-assignee-add">
 				<a href="javascript:void(0);" class="item-assignee-add-button"><i class="icon-feather-plus"></i></a>
-
-				<div class="item-available-assignees">
-					<a href="javascript:void(0);" class="item-available-assignee">
-						<div class="item-available-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
-					</a>
-					<a href="javascript:void(0);" class="item-available-assignee">
-						<div class="item-available-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
-					</a>
-					<a href="javascript:void(0);" class="item-available-assignee">
-						<div class="item-available-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
-					</a>
-				</div>
 			</div>
 		</div>
 	</div>
