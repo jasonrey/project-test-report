@@ -1,7 +1,7 @@
 <?php
 !defined('SERVER_EXEC') && die('No access.');
 ?>
-<form id="report-form">
+<form id="report-form" class="submitting">
 	<div class="form-group">
 		<label for="report-screenshots" class="icon-feather-image">Screenshots</label>
 		<div id="report-screenshots" name="report-screenshots" class="report-screenshots">
@@ -23,7 +23,13 @@
 	<button class="form-submit">Submit</button>
 
 	<div id="report-submitting">
-		<div class="report-submitting-message report-submitting-message-loading"><i class="icon-loader icon-spin"></i></div>
+		<div class="report-submitting-message report-submitting-message-loading">
+			<div class="icon-loader">
+				<span class="icon-loader-clock"></span>
+				<span class="icon-loader-hour"></span>
+				<span class="icon-loader-minute"></span>
+			</div>
+		</div>
 		<div class="report-submitting-message report-submitting-message-completed"><i class="icon-feather-check"></i></div>
 	</div>
 </form>
