@@ -65,7 +65,7 @@
 		<div class="item-comments-toggle">
 			<a href="javascript:void(0);" class="item-comments-link icon-feather-speech-bubble">Comments <span class="item-comments-counter">2</span> <i class="icon-right-dir"></i></a>
 		</div>
-		<div class="item-assignees icon-wrench">
+		<div class="item-assignees">
 			<a href="javascript:void(0);" class="item-assignee">
 				<span class="item-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-feather-cross"></i></span>
 			</a>
@@ -73,7 +73,7 @@
 				<span class="item-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /><i class="icon-feather-cross"></i></span>
 			</a>
 			<div class="item-assignee-add">
-				<a href="javascript:void(0);" class="item-assignee-add-button"><i class="icon-feather-plus"></i></a>
+				<a href="javascript:void(0);" class="item-assignee-add-button"><i class="icon-wrench"></i></a>
 			</div>
 		</div>
 	</div>
