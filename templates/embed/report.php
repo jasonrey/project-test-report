@@ -24,7 +24,7 @@
 
 	<div id="report-submitting">
 		<div class="report-submitting-message report-submitting-message-loading"><i class="icon-loader icon-spin"></i></div>
-		<div class="report-submitting-message report-submitting-message-completed"><i class="icon-ok"></i></div>
+		<div class="report-submitting-message report-submitting-message-completed"><i class="icon-feather-check"></i></div>
 	</div>
 </form>
 <script type="text/html" id="report-screenshot-item">
