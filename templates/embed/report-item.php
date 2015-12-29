@@ -1,7 +1,7 @@
 <?php
 !defined('SERVER_EXEC') && die('No access.');
 ?>
-<li class="item">
+<li class="item" data-state="0">
 	<div class="item-flexrow item-header">
 		<div class="item-user">
 			<div class="item-user-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
@@ -9,6 +9,11 @@
 		<div class="item-details">
 			<a href="javascript:void(0);" class="item-url icon-feather-link">http://test/test.test?test=testtest/test.test?test=testtest/test.test?test=testtest/test.test?test=test</a>
 			<div class="item-date icon-calendar">2015-02-03 12:34:56</div>
+		</div>
+		<div class="item-state">
+			<a href="javascript:void(0);" class="item-state-option item-state-pending item-state-selected" data-value="0"><i class="icon-feather-clock"></i></a>
+			<a href="javascript:void(0);" class="item-state-option item-state-completed" data-value="1"><i class="icon-feather-check"></i></a>
+			<a href="javascript:void(0);" class="item-state-option item-state-rejected" data-value="2"><i class="icon-feather-cross"></i></a>
 		</div>
 	</div>
 	<div class="item-flexrow item-content">
@@ -44,41 +49,39 @@
 				</div>
 			</div>
 		</div>
-		<div class="item-state">
-			<a href="javascript:void(0);" class="item-state-option item-state-pending item-state-selected"><i class="icon-feather-clock"></i></a>
-			<a href="javascript:void(0);" class="item-state-option item-state-completed"><i class="icon-feather-check"></i></a>
-			<a href="javascript:void(0);" class="item-state-option item-state-rejected"><i class="icon-feather-cross"></i></a>
-		</div>
 	</div>
 	<div class="item-comments">
-		<ul class="comment-item-list">
-			<li class="comment-item">
-				<div class="comment-user-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
-				<div class="comment-user-text"><p>Hello world</p></div>
-			</li>
-			<li class="comment-item comment-owner">
-				<div class="comment-user-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
-				<div class="comment-user-text"><p>Hello world to you too!</p></div>
-			</li>
-			<li class="comment-item">
-				<div class="comment-user-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
-				<div class="comment-user-text"><p>Blablabl abl abl bla blabl balb labl balb la Blablabl abl abl bla blabl balb labl balb la Blablabl abl abl bla blabl balb labl balb la Blablabl abl abl bla blabl balb labl balb la</p></div>
-			<li class="comment-item">
-				<div class="comment-user-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
-				<div class="comment-user-text"><p>Hello world</p></div>
-			</li>
-			<li class="comment-item comment-owner">
-				<div class="comment-user-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
-				<div class="comment-user-text"><p>Hello world to you too!</p></div>
-			</li>
-			<li class="comment-item">
-				<div class="comment-user-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
-				<div class="comment-user-text"><p>Blablabl abl abl bla blabl balb labl balb la Blablabl abl abl bla blabl balb labl balb la Blablabl abl abl bla blabl balb labl balb la Blablabl abl abl bla blabl balb labl balb la</p></div>
-			</li>
-		</ul>
-		<div class="comment-reply">
-			<input type="text" class="comment-reply-input" placeholder="Your comment..." />
-			<a href="javascript:void(0);" class="comment-reply-button icon-feather-reply">Reply</a>
+		<div class="item-comments-content">
+			<ul class="comment-item-list">
+				<li class="comment-item">
+					<div class="comment-user-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
+					<div class="comment-user-text"><p>Hello world</p></div>
+				</li>
+				<li class="comment-item comment-owner">
+					<div class="comment-user-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
+					<div class="comment-user-text"><p>Hello world to you too!</p></div>
+				</li>
+				<li class="comment-item">
+					<div class="comment-user-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
+					<div class="comment-user-text"><p>Blablabl abl abl bla blabl balb labl balb la Blablabl abl abl bla blabl balb labl balb la Blablabl abl abl bla blabl balb labl balb la Blablabl abl abl bla blabl balb labl balb la</p></div>
+				</li>
+				<li class="comment-item">
+					<div class="comment-user-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
+					<div class="comment-user-text"><p>Hello world</p></div>
+				</li>
+				<li class="comment-item comment-owner">
+					<div class="comment-user-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
+					<div class="comment-user-text"><p>Hello world to you too!</p></div>
+				</li>
+				<li class="comment-item">
+					<div class="comment-user-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
+					<div class="comment-user-text"><p>Blablabl abl abl bla blabl balb labl balb la Blablabl abl abl bla blabl balb labl balb la Blablabl abl abl bla blabl balb labl balb la Blablabl abl abl bla blabl balb labl balb la</p></div>
+				</li>
+			</ul>
+			<div class="comment-reply">
+				<input type="text" class="comment-reply-input" placeholder="Your comment..." />
+				<a href="javascript:void(0);" class="comment-reply-button icon-feather-reply">Reply</a>
+			</div>
 		</div>
 	</div>
 </li>
