@@ -1,7 +1,7 @@
 <?php
 !defined('SERVER_EXEC') && die('No access.');
 ?>
-<form id="report-form" class="submitting">
+<form id="report-form">
 	<div class="form-group">
 		<label for="report-screenshots" class="icon-feather-image">Screenshots</label>
 		<div id="report-screenshots" name="report-screenshots" class="report-screenshots">
