@@ -813,7 +813,7 @@ body {
 			content: '';
 			position: absolute;
 			bottom: 0;
-			left: 26px;
+			right: 26px;
 			border-radius: 2px;
 			border-left: 6px solid transparent;
 			border-right: 6px solid transparent;
@@ -875,7 +875,7 @@ body {
 	}
 
 	.item-comments-toggle {
-		flex-shrink: 0;
+		flex-grow: 1;
 		font-size: 14px;
 		height: 36px;
 		line-height: 36px;
@@ -903,7 +903,6 @@ body {
 		position: relative;
 		.clearfix;
 		padding: 2px 0;
-		flex-grow: 1;
 
 		&::before {
 			font-size: 18px;
@@ -913,7 +912,7 @@ body {
 		}
 
 		.item-assignee {
-			margin: 0 0 0 4px;
+			margin: 0 4px 0 0;
 			width: 32px;
 			height: 32px;
 			float: left;
