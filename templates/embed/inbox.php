@@ -150,3 +150,9 @@
 <script type="text/html" id="report-no-result">
 <li class="item-empty">No report found.</li>
 </script>
+
+<script type="text/html" id="report-item-assignee">
+<a href="javascript:void(0);" class="item-assignee" data-value="{{id}}">
+	<span class="item-assignee-image"><img src="{{image}}" /><i class="icon-feather-cross"></i></span>
+</a>
+</script>

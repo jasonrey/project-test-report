@@ -152,4 +152,36 @@ class ReportApi extends Api
 
 		return $this->success();
 	}
+
+	public function assign()
+	{
+		$keys = array('id', 'assigneeid');
+
+		if (!Req::haspost($keys)) {
+			return $this->fail('Insufficient data.');
+		}
+
+		$identifier = Lib::cookie(Lib::hash(Config::$userkey));
+
+		$user = Lib::table('user');
+
+		$isLoggedIn = !empty($identifier) && $user->load(array('identifier' => $identifier));
+
+		if (!$isLoggedIn) {
+			return $this->fail('You are not authorized.');
+		}
+
+		$post = Req::post($keys);
+
+		$reportTable = Lib::table('report');
+
+		if (!$reportTable->load($post['id'])) {
+			return $this->fail('No such report.');
+		}
+
+		$reportTable->assignee_id = $post['assigneeid'];
+		$reportTable->store();
+
+		return $this->success();
+	}
 }

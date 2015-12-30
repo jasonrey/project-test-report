@@ -328,6 +328,50 @@ $(function() {
 		item.toggleClass('show-assignees');
 	});
 
+	$$('#report-item-list').on('click', '.item-available-assignee', function(event) {
+		var assignee = $(this),
+			siblings = assignee.siblings(),
+			assigneeid = assignee.attr('data-value'),
+			item = assignee.parents('.item'),
+			id = item.attr('data-id'),
+			addButton = item.find('.item-assignee-add');
+
+		item.removeClass('show-assignees');
+
+		if (assignee.hasClass('active')) {
+			return;
+		}
+
+		assignee.addClass('active');
+		siblings.removeClass('active');
+
+		item.find('.item-assignee').remove();
+
+		addButton.before($template('report-item-assignee', {
+			id: assigneeid,
+			image: assignee.find('img').attr('src')
+		}));
+
+		$api('report/assign', {
+			id: id,
+			assigneeid: assigneeid
+		});
+	});
+
+	$$('#report-item-list').on('click', '.item-assignee', function(event) {
+		var button = $(this),
+			item = button.parents('.item'),
+			id = item.attr('data-id');
+
+		$api('report/assign', {
+			id: id,
+			assigneeid: '0'
+		});
+
+		button.remove();
+		item.find('.item-available-assignee').removeClass('active');
+	});
+
 	$$('#report-item-list').on('click', '.item-state', function(event) {
 		$(this).toggleClass('active');
 	});
