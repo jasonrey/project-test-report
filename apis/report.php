@@ -142,6 +142,14 @@ class ReportApi extends Api
 		$reportTable->state = $post['state'];
 		$reportTable->store();
 
+		$reportStateHistoryTable = Lib::table('report_state_history');
+
+		$reportStateHistoryTable->link($reportTable);
+		$reportStateHistoryTable->link($user);
+		$reportStateHistoryTable->state = $post['state'];
+
+		$reportStateHistoryTable->store();
+
 		return $this->success();
 	}
 }
