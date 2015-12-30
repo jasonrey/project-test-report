@@ -332,18 +332,21 @@ $(function() {
 		$(this).toggleClass('active');
 	});
 
-	$$('#report-item-list').on('click', '.item-state-option', function(event) {
-		var button = $(this),
-			item = button.parents('.item');
-
-		item.attr('data-state', button.attr('data-value'));
-	});
-
 	$$('#report-item-list').on('click', '.item-state-option:not(.item-state-selected)', function(event) {
-		var item = $(this),
-			siblings = item.siblings();
+		var button = $(this),
+			siblings = button.siblings(),
+			item = button.parents('.item'),
+			id = item.attr('data-id'),
+			value = button.attr('data-value');
 
 		siblings.removeClass('item-state-selected');
-		item.addClass('item-state-selected');
+		button.addClass('item-state-selected');
+
+		item.attr('data-state', value);
+
+		$api('report/mark', {
+			id: id,
+			state: value
+		});
 	});
 });

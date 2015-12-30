@@ -1,7 +1,7 @@
 <?php
 !defined('SERVER_EXEC') && die('No access.');
 ?>
-<li class="item" data-state="<?php echo $report->state; ?>">
+<li class="item" data-id="<?php echo $report->id; ?>" data-state="<?php echo $report->state; ?>">
 	<div class="item-flexrow item-header">
 		<div class="item-user">
 			<div class="item-user-image"><img src="<?php echo $report->picture; ?>" /></div>
