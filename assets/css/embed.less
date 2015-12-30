@@ -715,7 +715,7 @@ body {
 				border-color: @red500;
 			}
 
-			&:hover {
+			.is-assignee&:hover {
 				background-color: @cyan50;
 			}
 		}
@@ -727,6 +727,7 @@ body {
 			border: 0;
 			border-top-left-radius: 4px;
 			border-bottom-left-radius: 4px;
+			cursor: default;
 
 			[data-state="1"]& {
 				background-color: @green100;
@@ -738,21 +739,25 @@ body {
 				color: @red500;
 			}
 
-			&:hover {
-				background-color: @cyan500;
-				color: white;
+			.is-assignee& {
+				cursor: pointer;
 
-				[data-state="1"]& {
-					background-color: @green500;
-				}
+				&:hover {
+					background-color: @cyan500;
+					color: white;
 
-				[data-state="2"]& {
-					background-color: @red500;
+					[data-state="1"]& {
+						background-color: @green500;
+					}
+
+					[data-state="2"]& {
+						background-color: @red500;
+					}
 				}
 			}
 		}
 
-		&.active {
+		.is-assignee&.active {
 			transform: translateX(-112px);
 
 			.item-state-selected {

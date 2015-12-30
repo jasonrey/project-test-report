@@ -74,6 +74,16 @@ class ReportApi extends Api
 			return $this->fail('Insufficient data.');
 		}
 
+		$identifier = Lib::cookie(Lib::hash(Config::$userkey));
+
+		$user = Lib::table('user');
+
+		$isLoggedIn = !empty($identifier) && $user->load(array('identifier' => $identifier));
+
+		if (!$isLoggedIn) {
+			return $this->fail('You are not authorized.');
+		}
+
 		$post = Req::post($keys);
 
 		$projectTable = Lib::table('project');
@@ -107,7 +117,7 @@ class ReportApi extends Api
 		$view = Lib::view('embed');
 
 		foreach ($reports as $report) {
-			$html .= $view->loadTemplate('report-item', array('report' => $report, 'assignees' => $assignees));
+			$html .= $view->loadTemplate('report-item', array('report' => $report, 'assignees' => $assignees, 'user' => $user));
 		}
 
 		return $this->success($html);

@@ -140,7 +140,7 @@
 <ul id="report-item-list">
 	<?php if (!empty($reports)) { ?>
 		<?php foreach ($reports as $report) { ?>
-			<?php echo $this->loadTemplate('report-item', array('report' => $report, 'assignees' => $assignees)); ?>
+			<?php echo $this->loadTemplate('report-item', array('report' => $report, 'assignees' => $assignees, 'user'=> $user)); ?>
 		<?php } ?>
 	<?php } else { ?>
 	<li class="item-empty">No report found.</li>

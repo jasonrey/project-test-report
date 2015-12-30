@@ -352,6 +352,10 @@ $(function() {
 			image: assignee.find('img').attr('src')
 		}));
 
+		if (assignee.hasClass('is-self')) {
+			item.addClass('is-assignee');
+		}
+
 		$api('report/assign', {
 			id: id,
 			assigneeid: assigneeid
@@ -363,13 +367,14 @@ $(function() {
 			item = button.parents('.item'),
 			id = item.attr('data-id');
 
+		button.remove();
+		item.find('.item-available-assignee').removeClass('active');
+		item.removeClass('is-assignee');
+
 		$api('report/assign', {
 			id: id,
 			assigneeid: '0'
 		});
-
-		button.remove();
-		item.find('.item-available-assignee').removeClass('active');
 	});
 
 	$$('#report-item-list').on('click', '.item-state', function(event) {
