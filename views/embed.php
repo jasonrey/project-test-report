@@ -10,7 +10,19 @@ class EmbedView extends View
 
 	public function main()
 	{
-		$project = Req::get('project', 'project-name');
+		$project = Req::get('project');
+
+		if (empty($project)) {
+			$this->template = 'empty-project';
+			return;
+		}
+
+		$projectTable = Lib::table('project');
+
+		if (!$projectTable->load(array('name' => $project))) {
+			$this->template = 'empty-project';
+			return;
+		}
 
 		$this->meta[] = array('name' => 'google-signin-client_id', 'content' => Config::$googleClientId . '.apps.googleusercontent.com');
 
@@ -30,21 +42,26 @@ class EmbedView extends View
 			array_shift($this->js);
 
 			$filterState = $cookie->get('filter-state', 'pending');
-			$filterFixer = $cookie->get('filter-fixer', $user->id);
-			$filterDate = $cookie->get('filter-date', 'asc');
+			$filterAssignee = $cookie->get('filter-assignee', $user->id);
+			$filterSort = $cookie->get('filter-sort', 'asc');
 
-			$model = Lib::model('report');
+			$reportModel = Lib::model('report');
 
-			$reports = $model->getItems(array(
+			$reports = $reportModel->getItems(array(
 				'state' => constant('STATE_' . strtoupper($filterState)),
-				'direction' => $filterDate,
-				'assignee_id' => $filterFixer
+				'assignee_id' => $filterAssignee,
+				'direction' => $filterSort
 			));
 
-			$this->set('reports', $reports);
+			$userModel = Lib::model('user');
+
+			$assignees = $userModel->getProjectAssignees($projectTable->id);
+
 			$this->set('filterState', $filterState);
-			$this->set('filterFixer', $filterFixer);
-			$this->set('filterDate', $filterDate);
+			$this->set('filterAssignee', $filterAssignee);
+			$this->set('filterSort', $filterSort);
+			$this->set('reports', $reports);
+			$this->set('assignees', $assignees);
 		}
 	}
 }

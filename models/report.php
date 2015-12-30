@@ -19,13 +19,15 @@ class ReportModel extends Model
 		);
 		*/
 
-		$query = 'SELECT `a`.*, `c`.`filename` FROM ' . $this->db->qn($this->tablename) . ' AS `a`';
+		$query = 'SELECT `a`.*, `c`.`filename`, `d`.`picture`, `d`.`nick` FROM ' . $this->db->qn($this->tablename) . ' AS `a`';
 
 		if (!empty($options['project'])) {
 			$query = ' LEFT JOIN `project` AS `b` ON `a`.`project_id` = `b`.`id`';
 		}
 
 		$query .= ' LEFT JOIN `screenshot` AS `c` ON `a`.`id` = `c`.`report_id`';
+
+		$query .= ' LEFT JOIN `user` AS `d` ON `a`.`user_id` = `d`.`id`';
 
 		$conditions = array();
 
@@ -76,6 +78,8 @@ class ReportModel extends Model
 				$reports[$row->id]->bind($row, true);
 
 				$reports[$row->id]->screenshots = array();
+				$reports[$row->id]->picture = $row->picture;
+				$reports[$row->id]->nick = $row->nick;
 			}
 
 			$reports[$row->id]->screenshots[] = $row->filename;

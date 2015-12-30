@@ -312,6 +312,14 @@ $(function() {
 
 	$$('#filter-form').on('submit', function(event) {
 		event.preventDefault();
+
+		$api('report/filter', {
+			state: document.forms['filter-form'].state.value,
+			assignee: document.forms['filter-form'].assignee.value,
+			sort: document.forms['filter-form'].sort.value
+		}).done(function(response) {
+
+		});
 	});
 
 	$$('#report-item-list').on('click', '.item-assignee-add', function(event) {

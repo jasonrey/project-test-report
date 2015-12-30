@@ -4,6 +4,7 @@
 define('USER_ROLE_REPORTER', 1);
 define('USER_ROLE_ADMIN', 2);
 
+define('STATE_ALL', 'all');
 define('STATE_PENDING', 0);
 define('STATE_COMPLETED', 1);
 define('STATE_REJECTED', 2);

@@ -68,6 +68,18 @@ class ReportApi extends Api
 
 	public function filter()
 	{
+		$keys = array('state', 'assignee', 'sort');
 
+		if (!Req::haspost($keys)) {
+			return $this->fail();
+		}
+
+		$post = Req::post($keys);
+
+		$cookie = Lib::cookie();
+
+		foreach ($keys as $key) {
+			$cookie->set('filter-' . $key, $post[$key]);
+		}
 	}
 }

@@ -4,8 +4,8 @@
 <div id="report-item-filter">
 	<form name="filter-form" id="filter-form">
 		<input type="hidden" name="state" value="<?php echo $filterState; ?>" />
-		<input type="hidden" name="assignee" value="<?php echo $filterFixer; ?>" />
-		<input type="hidden" name="sort" value="<?php echo $filterDate; ?>" />
+		<input type="hidden" name="assignee" value="<?php echo $filterAssignee; ?>" />
+		<input type="hidden" name="sort" value="<?php echo $filterSort; ?>" />
 
 		<div class="filter-title">
 			<i class="icon-feather-cog"></i>
@@ -64,16 +64,22 @@
 		<div class="filter-item" data-name="assignee">
 			<div class="filter-item-selected">
 				<div class="filter-item-icon">
+					<?php if ($filterAssignee === 'all') { ?>
 					<div class="filter-item-assignee-image-all">
 						<div class="filter-item-assignee-image"><i class="icon-feather-head"></i></div>
 						<div class="filter-item-assignee-image"><i class="icon-feather-head"></i></div>
 						<div class="filter-item-assignee-image"><i class="icon-feather-head"></i></div>
 					</div>
+					<?php } elseif ($filterAssignee === 'unassigned') { ?>
+					<div class="filter-item-assignee-image filter-item-assignee-image-unassigned"><i class="icon-">?</i></div>
+					<?php } else { ?>
+					<div class="filter-item-assignee-image"><img src="<?php echo $assignees[$filterAssignee]->picture; ?>" /></div>
+					<?php } ?>
 				</div>
 				<div class="filter-item-text">Fixer</div>
 			</div>
 			<div class="filter-item-options">
-				<div class="filter-item-option active" data-value="all">
+				<div class="filter-item-option <?php if ($filterAssignee === 'all') { ?>active<?php } ?>" data-value="all">
 					<div class="filter-item-icon">
 						<div class="filter-item-assignee-image-all">
 							<div class="filter-item-assignee-image"><i class="icon-feather-head"></i></div>
@@ -83,30 +89,28 @@
 					</div>
 					<div class="filter-item-text">All</div>
 				</div>
-				<div class="filter-item-option" data-value="unassigned">
+				<div class="filter-item-option <?php if ($filterAssignee === 'unassigned') { ?>active<?php } ?>" data-value="unassigned">
 					<div class="filter-item-icon">
 						<div class="filter-item-assignee-image filter-item-assignee-image-unassigned"><i class="icon-">?</i></div>
 					</div>
 					<div class="filter-item-text">Unassigned</div>
 				</div>
-				<div class="filter-item-option" data-value="1">
+				<?php if (!empty($assignees)) { ?>
+				<?php foreach ($assignees as $user) { ?>
+				<div class="filter-item-option <?php if ($filterAssignee == $user->id) { ?>active<?php } ?>" data-value="<?php echo $user->id; ?>">
 					<div class="filter-item-icon">
-						<div class="filter-item-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
+						<div class="filter-item-assignee-image"><img src="<?php echo $user->picture; ?>" /></div>
 					</div>
-					<div class="filter-item-text">Jason</div>
+					<div class="filter-item-text"><?php echo $user->nick; ?></div>
 				</div>
-				<div class="filter-item-option" data-value="2">
-					<div class="filter-item-icon">
-						<div class="filter-item-assignee-image"><img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg" /></div>
-					</div>
-					<div class="filter-item-text">Jason</div>
-				</div>
+				<?php } ?>
+				<?php } ?>
 			</div>
 		</div>
 		<div class="filter-item" data-name="sort">
 			<div class="filter-item-selected">
 				<div class="filter-item-icon">
-					<?php if (empty($filterDate) || $filterDate === 'asc') { ?>
+					<?php if (empty($filterSort) || $filterSort === 'asc') { ?>
 					<i class="icon-feather-arrow-up"></i>
 					<?php } else { ?>
 					<i class="icon-feather-arrow-down"></i>
@@ -116,13 +120,13 @@
 			</div>
 
 			<div class="filter-item-options">
-				<div class="filter-item-option <?php if (empty($filterDate) || $filterDate === 'asc') { ?>active<?php } ?>" data-value="asc">
+				<div class="filter-item-option <?php if (empty($filterSort) || $filterSort === 'asc') { ?>active<?php } ?>" data-value="asc">
 					<div class="filter-item-icon">
 						<i class="icon-feather-arrow-up"></i>
 					</div>
 					<div class="filter-item-text">Asc</div>
 				</div>
-				<div class="filter-item-option <?php if (!empty($filterDate) && $filterDate === 'desc') { ?>active<?php } ?>" data-value="desc">
+				<div class="filter-item-option <?php if (!empty($filterSort) && $filterSort === 'desc') { ?>active<?php } ?>" data-value="desc">
 					<div class="filter-item-icon">
 						<i class="icon-feather-arrow-down"></i>
 					</div>
@@ -135,7 +139,7 @@
 <ul id="report-item-list">
 	<?php if (!empty($reports)) { ?>
 		<?php foreach ($reports as $report) { ?>
-			<?php echo $this->loadTemplate('report-item', array('report' => $report)); ?>
+			<?php echo $this->loadTemplate('report-item', array('report' => $report, 'assignees' => $assignees)); ?>
 		<?php } ?>
 	<?php } else { ?>
 	<li class="item-empty">No report found.</li>
