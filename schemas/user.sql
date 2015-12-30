@@ -3,6 +3,7 @@ CREATE TABLE `user` (
   `identifier` varchar(64) NOT NULL DEFAULT '',
   `gid` varchar(64) NOT NULL DEFAULT '',
   `name` varchar(255) NOT NULL,
+  `nick` varchar(10) NOT NULL,
   `email` varchar(255) NOT NULL DEFAULT '',
   `picture` text NOT NULL,
   `role` tinyint(1) NOT NULL,
