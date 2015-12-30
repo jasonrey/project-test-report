@@ -284,7 +284,7 @@ $(function() {
 
 	});
 
-	$$('#report-item-filter').on('click', '.filter-item', function(event) {
+	$$('#filter-form').on('click', '.filter-item', function(event) {
 		var button = $(this),
 			siblings = button.siblings();
 
@@ -292,7 +292,7 @@ $(function() {
 		siblings.removeClass('active');
 	});
 
-	$$('#report-item-filter').on('click', '.filter-item-option', function(event) {
+	$$('#filter-form').on('click', '.filter-item-option', function(event) {
 		var button = $(this),
 			siblings = button.siblings(),
 			value = button.attr('data-value'),
@@ -306,6 +306,12 @@ $(function() {
 		selectedIcon.html(button.find('.filter-item-icon').html());
 
 		document.forms['filter-form'][name].value = value;
+
+		$$('#filter-form').trigger('submit');
+	});
+
+	$$('#filter-form').on('submit', function(event) {
+		event.preventDefault();
 	});
 
 	$$('#report-item-list').on('click', '.item-assignee-add', function(event) {

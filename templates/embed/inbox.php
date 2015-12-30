@@ -3,9 +3,9 @@
 ?>
 <div id="report-item-filter">
 	<form name="filter-form" id="filter-form">
-		<input type="hidden" name="state" value="pending" />
-		<input type="hidden" name="assignee" value="0" />
-		<input type="hidden" name="sort" value="asc" />
+		<input type="hidden" name="state" value="<?php echo $filterState; ?>" />
+		<input type="hidden" name="assignee" value="<?php echo $filterFixer; ?>" />
+		<input type="hidden" name="sort" value="<?php echo $filterDate; ?>" />
 
 		<div class="filter-title">
 			<i class="icon-feather-cog"></i>
@@ -13,17 +13,25 @@
 		<div class="filter-item" data-name="state">
 			<div class="filter-item-selected">
 				<div class="filter-item-icon">
+					<?php if ($filterState === 'all') { ?>
 					<div class="filter-item-state-all">
 						<i class="icon-feather-clock"></i>
 						<i class="icon-feather-check"></i>
 						<i class="icon-feather-cross"></i>
 					</div>
+					<?php } elseif ($filterState === 'pending') { ?>
+					<i class="icon-feather-clock"></i>
+					<?php } elseif ($filterState === 'completed') { ?>
+					<i class="icon-feather-check"></i>
+					<?php } elseif ($filterState === 'rejected') { ?>
+					<i class="icon-feather-cross"></i>
+					<?php } ?>
 				</div>
 				<div class="filter-item-text">State</div>
 			</div>
 
 			<div class="filter-item-options">
-				<div class="filter-item-option active" data-value="all">
+				<div class="filter-item-option <?php if ($filterState === 'all') { ?>active<?php } ?>" data-value="all">
 					<div class="filter-item-icon">
 						<div class="filter-item-state-all">
 							<i class="icon-feather-clock"></i>
@@ -33,19 +41,19 @@
 					</div>
 					<div class="filter-item-text">All</div>
 				</div>
-				<div class="filter-item-option" data-value="pending">
+				<div class="filter-item-option <?php if ($filterState === 'pending') { ?>active<?php } ?>" data-value="pending">
 					<div class="filter-item-icon">
 						<i class="icon-feather-clock"></i>
 					</div>
 					<div class="filter-item-text">Pending</div>
 				</div>
-				<div class="filter-item-option" data-value="completed">
+				<div class="filter-item-option <?php if ($filterState === 'completed') { ?>active<?php } ?>" data-value="completed">
 					<div class="filter-item-icon">
 						<i class="icon-feather-check"></i>
 					</div>
 					<div class="filter-item-text">Completed</div>
 				</div>
-				<div class="filter-item-option" data-value="rejected">
+				<div class="filter-item-option <?php if ($filterState === 'rejected') { ?>active<?php } ?>" data-value="rejected">
 					<div class="filter-item-icon">
 						<i class="icon-feather-cross"></i>
 					</div>
@@ -65,7 +73,7 @@
 				<div class="filter-item-text">Fixer</div>
 			</div>
 			<div class="filter-item-options">
-				<div class="filter-item-option active" data-value="*">
+				<div class="filter-item-option active" data-value="all">
 					<div class="filter-item-icon">
 						<div class="filter-item-assignee-image-all">
 							<div class="filter-item-assignee-image"><i class="icon-feather-head"></i></div>
@@ -75,7 +83,7 @@
 					</div>
 					<div class="filter-item-text">All</div>
 				</div>
-				<div class="filter-item-option" data-value="0">
+				<div class="filter-item-option" data-value="unassigned">
 					<div class="filter-item-icon">
 						<div class="filter-item-assignee-image filter-item-assignee-image-unassigned"><i class="icon-">?</i></div>
 					</div>
@@ -98,19 +106,23 @@
 		<div class="filter-item" data-name="sort">
 			<div class="filter-item-selected">
 				<div class="filter-item-icon">
+					<?php if (empty($filterDate) || $filterDate === 'asc') { ?>
 					<i class="icon-feather-arrow-up"></i>
+					<?php } else { ?>
+					<i class="icon-feather-arrow-down"></i>
+					<?php } ?>
 				</div>
 				<div class="filter-item-text">Sort Date</div>
 			</div>
 
 			<div class="filter-item-options">
-				<div class="filter-item-option active" data-value="asc">
+				<div class="filter-item-option <?php if (empty($filterDate) || $filterDate === 'asc') { ?>active<?php } ?>" data-value="asc">
 					<div class="filter-item-icon">
 						<i class="icon-feather-arrow-up"></i>
 					</div>
 					<div class="filter-item-text">Asc</div>
 				</div>
-				<div class="filter-item-option" data-value="desc">
+				<div class="filter-item-option <?php if (!empty($filterDate) && $filterDate === 'desc') { ?>active<?php } ?>" data-value="desc">
 					<div class="filter-item-icon">
 						<i class="icon-feather-arrow-down"></i>
 					</div>
@@ -121,7 +133,15 @@
 	</form>
 </div>
 <ul id="report-item-list">
-	<?php echo $this->loadTemplate('report-item'); ?>
-	<?php echo $this->loadTemplate('report-item'); ?>
-	<?php echo $this->loadTemplate('report-item'); ?>
+	<?php if (!empty($reports)) { ?>
+		<?php foreach ($reports as $report) { ?>
+			<?php echo $this->loadTemplate('report-item', array('report' => $report)); ?>
+		<?php } ?>
+	<?php } else { ?>
+	<li class="item-empty">No report found.</li>
+	<?php } ?>
 </ul>
+
+<script type="text/html" id="report-no-result">
+<li class="item-empty">No report found.</li>
+</script>

@@ -65,4 +65,9 @@ class ReportApi extends Api
 
 		return $this->success();
 	}
+
+	public function filter()
+	{
+
+	}
 }
