@@ -57,6 +57,7 @@ class UserApi extends Api
 		$user->name = $data->name;
 		$user->email = $data->email;
 		$user->identifier = Lib::generateHash();
+		$user->nick = explode('@', $data->email)[0];
 
 		$user->store();
 
