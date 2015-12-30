@@ -362,7 +362,7 @@ $(function() {
 		});
 	});
 
-	$$('#report-item-list').on('click', '.item-assignee', function(event) {
+	$$('#report-item-list').on('click', '.item-assignee-deletable', function(event) {
 		var button = $(this),
 			item = button.parents('.item'),
 			id = item.attr('data-id');

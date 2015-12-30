@@ -938,11 +938,26 @@ body {
 			float: left;
 		}
 
+		.item-assignee-icon {
+			font-size: 16px;
+			width: 32px;
+			height: 32px;
+			line-height: 32px;
+			position: relative;
+			float: left;
+			text-align: center;
+		}
+
 		.item-assignee {
 			margin: 0 4px 0 0;
 			width: 32px;
 			height: 32px;
 			float: left;
+			cursor: default;
+
+			&.item-assignee-deletable {
+				cursor: pointer;
+			}
 
 			.item-assignee-image {
 				position: relative;
@@ -987,12 +1002,6 @@ body {
 		}
 
 		.item-assignee-add {
-			font-size: 16px;
-			width: 32px;
-			height: 32px;
-			position: relative;
-			float: left;
-
 			.item-assignee-add-button {
 				text-align: center;
 				border-radius: 50%;
