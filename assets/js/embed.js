@@ -269,19 +269,9 @@ $(function() {
 
 	$$('#report-item-list').on('click', '.item-comments-link', function(event) {
 		var button = $(this),
-			item = button.parents('.item'),
-			commentList = item.find('.comment-item-list');
+			item = button.parents('.item');
 
 		item.toggleClass('active');
-
-		// var scrollinit = item.data('scrollinit');
-
-		// if (!scrollinit) {
-		// 	commentList.scrollTop(commentList[0].scrollHeight);
-
-		// 	item.data('scrollinit', true);
-		// }
-
 	});
 
 	$$('#filter-form').on('click', '.filter-item', function(event) {
@@ -313,12 +303,21 @@ $(function() {
 	$$('#filter-form').on('submit', function(event) {
 		event.preventDefault();
 
-		$api('report/filter', {
-			state: document.forms['filter-form'].state.value,
-			assignee: document.forms['filter-form'].assignee.value,
-			sort: document.forms['filter-form'].sort.value
-		}).done(function(response) {
+		var form = document.forms['filter-form'];
 
+		$api('report/filter', {
+			state: form.state.value,
+			assignee: form.assignee.value,
+			sort: form.sort.value,
+			project: form.project.value
+		}).done(function(response) {
+			if (response.state) {
+				if (response.data.length === 0) {
+					$$('#report-item-list').html($template('report-no-result'));
+				} else {
+					$$('#report-item-list').html(response.data);
+				}
+			}
 		});
 	});
 

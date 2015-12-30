@@ -28,7 +28,7 @@ class ReportApi extends Api
 		$projectTable = Lib::table('project');
 
 		if (!$projectTable->load(array('name' => $project))) {
-			$projectTable->store();
+			return $this->fail('No such project.');
 		}
 
 		$reportTable = Lib::table('report');
@@ -68,18 +68,48 @@ class ReportApi extends Api
 
 	public function filter()
 	{
-		$keys = array('state', 'assignee', 'sort');
+		$keys = array('state', 'assignee', 'sort', 'project');
 
 		if (!Req::haspost($keys)) {
-			return $this->fail();
+			return $this->fail('Insufficient data.');
 		}
 
 		$post = Req::post($keys);
+
+		$projectTable = Lib::table('project');
+
+		if (!$projectTable->load(array('name' => $post['project']))) {
+			return $this->fail('No such project.');
+		}
 
 		$cookie = Lib::cookie();
 
 		foreach ($keys as $key) {
 			$cookie->set('filter-' . $key, $post[$key]);
 		}
+
+		$reportModel = Lib::model('report');
+
+		$reports = $reportModel->getItems(array(
+			'state' => constant('STATE_' . strtoupper($post['state'])),
+			'assignee_id' => $post['assignee'],
+			'order' => 'date',
+			'direction' => $post['sort'],
+			'project_id' => $projectTable->id
+		));
+
+		$userModel = Lib::model('user');
+
+		$assignees = $userModel->getProjectAssignees($projectTable->id);
+
+		$html = '';
+
+		$view = Lib::view('embed');
+
+		foreach ($reports as $report) {
+			$html .= $view->loadTemplate('report-item', array('report' => $report, 'assignees' => $assignees));
+		}
+
+		return $this->success($html);
 	}
 }

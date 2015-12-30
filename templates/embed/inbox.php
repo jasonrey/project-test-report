@@ -6,6 +6,7 @@
 		<input type="hidden" name="state" value="<?php echo $filterState; ?>" />
 		<input type="hidden" name="assignee" value="<?php echo $filterAssignee; ?>" />
 		<input type="hidden" name="sort" value="<?php echo $filterSort; ?>" />
+		<input type="hidden" name="project" value="<?php echo $project; ?>" />
 
 		<div class="filter-title">
 			<i class="icon-feather-cog"></i>

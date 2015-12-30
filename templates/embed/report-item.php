@@ -1,7 +1,7 @@
 <?php
 !defined('SERVER_EXEC') && die('No access.');
 ?>
-<li class="item" data-state="0">
+<li class="item" data-state="<?php echo $report->state; ?>">
 	<div class="item-flexrow item-header">
 		<div class="item-user">
 			<div class="item-user-image"><img src="<?php echo $report->picture; ?>" /></div>
@@ -31,7 +31,7 @@
 	<div class="item-available-assignees">
 		<div class="item-available-assignees-content">
 			<?php foreach ($assignees as $assignee) { ?>
-				<a href="javascript:void(0);" class="item-available-assignee" data-value="<?php echo $assignee->id; ?>">
+				<a href="javascript:void(0);" class="item-available-assignee <?php if (!empty($report->assignee_id) && $report->assignee_id == $assignee->id) { ?>active<?php } ?>" data-value="<?php echo $assignee->id; ?>">
 					<span class="item-available-assignee-image"><img src="<?php echo $assignee->picture; ?>" /></span>
 				</a>
 			<?php } ?>

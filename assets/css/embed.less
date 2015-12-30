@@ -869,6 +869,14 @@ body {
 			&:hover {
 				background-color: @cyan100;
 			}
+
+			&.active {
+				background-color: @cyan500;
+
+				.item-available-assignee-image {
+					border-color: white;
+				}
+			}
 		}
 
 		.show-assignees& {

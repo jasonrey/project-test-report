@@ -50,7 +50,9 @@ class EmbedView extends View
 			$reports = $reportModel->getItems(array(
 				'state' => constant('STATE_' . strtoupper($filterState)),
 				'assignee_id' => $filterAssignee,
-				'direction' => $filterSort
+				'order' => 'date',
+				'direction' => $filterSort,
+				'project_id' => $projectTable->id
 			));
 
 			$userModel = Lib::model('user');

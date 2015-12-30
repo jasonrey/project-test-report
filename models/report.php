@@ -59,13 +59,13 @@ class ReportModel extends Model
 			}
 		}
 
-		if (!empty($options['state']) && $options['state'] !== 'all') {
+		if (isset($options['state']) && $options['state'] !== 'all') {
 			$conditions[] = '`a`.`state` = ' . $this->db->q($options['state']);
 		}
 
 		$query .= $this->buildWhere($conditions);
 
-		$query .= $this->buildOrder($conditions, 'date', 'asc');
+		$query .= $this->buildOrder($options, 'date', 'asc');
 
 		$result = $this->getResult($query, false);
 
@@ -82,7 +82,9 @@ class ReportModel extends Model
 				$reports[$row->id]->nick = $row->nick;
 			}
 
-			$reports[$row->id]->screenshots[] = $row->filename;
+			if (!empty($row->filename)) {
+				$reports[$row->id]->screenshots[] = $row->filename;
+			}
 		}
 
 		return $reports;
