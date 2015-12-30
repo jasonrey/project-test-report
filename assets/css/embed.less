@@ -681,14 +681,14 @@ body {
 		line-height: 48px;
 		position: relative;
 		transition: transform .2s;
-		width: 36px;
+		width: 56px;
 		display: flex;
 		flex-shrink: 0;
 
 		.item-state-option {
 			height: 48px;
 			line-height: 48px;
-			width: 36px;
+			width: 56px;
 			order: 1;
 			background-color: white;
 			flex-shrink: 0;
@@ -741,7 +741,7 @@ body {
 		}
 
 		&.active {
-			transform: translateX(-72px);
+			transform: translateX(-112px);
 
 			.item-state-selected {
 				background-color: @cyan500;
@@ -1042,11 +1042,12 @@ body {
 	}
 
 	.comment-item {
-		display: flex;
 		margin: 16px 0;
 		padding: 0 8px;
+		.clearfix();
 
 		.comment-user-image {
+			float: left;
 			width: 48px;
 			height: 48px;
 			border-radius: 50%;
@@ -1061,6 +1062,7 @@ body {
 		}
 
 		.comment-user-text {
+			float: left;
 			margin: 0 8px;
 			max-width: 70%;
 
@@ -1073,13 +1075,15 @@ body {
 		}
 
 		&.comment-owner {
-			flex-direction: row-reverse;
+			// flex-direction: row-reverse;
 
 			.comment-user-image {
+				float: right;
 				border-color: @cyan500;
 			}
 
 			.comment-user-text {
+				float: right;
 
 				p {
 					background-color: @cyan50;
