@@ -53,7 +53,7 @@ class UserApi extends Api
 		$user->load(array('gid' => $data->sub));
 
 		$user->gid = $data->sub;
-		$user->picture = $data->picture;
+		$user->picture = !empty($data->picture) ? $data->picture : '';
 		$user->name = $data->name;
 		$user->email = $data->email;
 		$user->identifier = Lib::generateHash();
