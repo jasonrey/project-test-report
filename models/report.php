@@ -19,7 +19,7 @@ class ReportModel extends Model
 		);
 		*/
 
-		$query = 'SELECT `a`.*, `c`.`filename`, `d`.`picture`, `d`.`nick` FROM ' . $this->db->qn($this->tablename) . ' AS `a`';
+		$query = 'SELECT `a`.*, `c`.`filename`, `d`.`picture`, `d`.`nick`, COUNT(`e`.`id`) AS `totalcomments` FROM ' . $this->db->qn($this->tablename) . ' AS `a`';
 
 		if (!empty($options['project'])) {
 			$query = ' LEFT JOIN `project` AS `b` ON `a`.`project_id` = `b`.`id`';
@@ -28,6 +28,8 @@ class ReportModel extends Model
 		$query .= ' LEFT JOIN `screenshot` AS `c` ON `a`.`id` = `c`.`report_id`';
 
 		$query .= ' LEFT JOIN `user` AS `d` ON `a`.`user_id` = `d`.`id`';
+
+		$query .= ' LEFT JOIN `comment` AS `e` ON `a`.`id` = `e`.`report_id`';
 
 		$conditions = array();
 
@@ -65,6 +67,8 @@ class ReportModel extends Model
 
 		$query .= $this->buildWhere($conditions);
 
+		$query .= ' GROUP BY `c`.`id`';
+
 		$query .= $this->buildOrder($options, 'date', 'asc');
 
 		$result = $this->getResult($query, false);
@@ -80,6 +84,7 @@ class ReportModel extends Model
 				$reports[$row->id]->screenshots = array();
 				$reports[$row->id]->picture = $row->picture;
 				$reports[$row->id]->nick = $row->nick;
+				$reports[$row->id]->totalcomments = $row->totalcomments;
 			}
 
 			if (!empty($row->filename)) {

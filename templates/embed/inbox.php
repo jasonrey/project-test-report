@@ -156,3 +156,16 @@
 	<span class="item-assignee-image"><img src="{{image}}" /><?php if ($user->role == USER_ROLE_FIXER || $user->role == USER_ROLE_ADMIN) { ?><i class="icon-feather-cross"></i><?php } ?></span>
 </a>
 </script>
+
+<script type="text/html" id="comment-item">
+<li class="comment-item" data-id="{{id}}">
+	<div class="comment-user-image"><img src="{{image}}" /></div>
+	<div class="comment-user-text"><p>{{content}}</p></div>
+</li>
+</script>
+<script type="text/html" id="comment-item-self">
+<li class="comment-item comment-owner" data-id="{{id}}">
+	<div class="comment-user-image"><img src="<?php echo $user->picture; ?>" /></div>
+	<div class="comment-user-text"><p>{{content}}</p></div>
+</li>
+</script>
