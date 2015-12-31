@@ -65,7 +65,7 @@
 		<div class="filter-item" data-name="assignee">
 			<div class="filter-item-selected">
 				<div class="filter-item-icon">
-					<?php if ($filterAssignee === 'all') { ?>
+					<?php if ($filterAssignee === 'all' || empty($assignees[$filterAssignee])) { ?>
 					<div class="filter-item-assignee-image-all">
 						<div class="filter-item-assignee-image"><i class="icon-feather-head"></i></div>
 						<div class="filter-item-assignee-image"><i class="icon-feather-head"></i></div>

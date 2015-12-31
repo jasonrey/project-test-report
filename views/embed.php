@@ -41,8 +41,12 @@ class EmbedView extends View
 		if ($isLoggedIn) {
 			array_shift($this->js);
 
+			$userModel = Lib::model('user');
+
+			$assignees = $userModel->getProjectAssignees($projectTable->id);
+
 			$filterState = $cookie->get('filter-state', 'pending');
-			$filterAssignee = $cookie->get('filter-assignee', $user->id);
+			$filterAssignee = $cookie->get('filter-assignee', empty($assignees[$user->id]) ? 'all' : $user->id);
 			$filterSort = $cookie->get('filter-sort', 'asc');
 
 			$reportModel = Lib::model('report');
@@ -55,9 +59,6 @@ class EmbedView extends View
 				'project_id' => $projectTable->id
 			));
 
-			$userModel = Lib::model('user');
-
-			$assignees = $userModel->getProjectAssignees($projectTable->id);
 
 			$this->set('filterState', $filterState);
 			$this->set('filterAssignee', $filterAssignee);
