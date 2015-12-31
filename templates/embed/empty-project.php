@@ -1,4 +1,10 @@
 <?php
 !defined('SERVER_EXEC') && die('No access.');
 ?>
-<p>No project definition found. Please specify project name by passing it as GET parameter in the script link with "project" as the GET key.</p>
+<div class="no-project">
+	<div class="no-project-content">
+		<div><i class="icon-attention"></i></div>
+		<p>No project key found.</p>
+		<p>Specify project name with "project" as GET key in the script link.</p>
+	</div>
+</div>
