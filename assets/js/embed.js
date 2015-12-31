@@ -80,6 +80,8 @@ $(function() {
 		return;
 	}
 
+	// Post-login
+
 	$$('body').on('click', function(event) {
 		var target = $(event.target);
 
@@ -451,4 +453,79 @@ $(function() {
 			state: value
 		});
 	});
+
+	var commentsSyncHandler = function() {
+		var reports = {},
+			ids = [];
+
+		var items = $('.item');
+
+		items.each(function() {
+			var item = $(this),
+				id = item.attr('data-id');
+
+			ids.push(id);
+
+			reports[id] = {
+				totalComments: parseInt(item.find('.item-comments-counter').text()),
+				commentsLoaded: false,
+				comments: []
+			};
+
+			if (item.hasClass('loaded-comments')) {
+				reports[id].commentsLoaded = true;
+
+				item.find('.comment-item').each(function() {
+					var comment = $(this),
+						commentid = comment.attr('data-id');
+
+					reports[id].comments.push(commentid);
+				});
+			}
+		});
+
+		$api('comment/sync', {
+			reports: JSON.stringify(reports),
+			ids: ids
+		}).done(function(response) {
+			console.log(response);
+
+			if (response.state) {
+				$.each(response.data, function(id, data) {
+					var item = items.filter('[data-id="' + id + '"]');
+
+					item.find('.item-comments-counter').text(data.totalComments);
+
+					if (!item.hasClass('loaded-comments')) {
+						return true;
+					}
+
+					var list = item.find('.comment-item-list'),
+						lastCommentId = false;
+
+					$.each(data.comments, function(commentId, commentHtml) {
+						if (!commentHtml) {
+							lastCommentId = commentId;
+							return true;
+						}
+
+						if (!lastCommentId) {
+							list.prepend(commentHtml);
+						} else {
+							list.find('.comment-item[data-id="' + lastCommentId + '"]').after(commentHtml);
+						}
+
+						lastCommentId = commentId;
+					});
+
+					list.scrollTop(list[0].scrollHeight);
+				});
+
+				setTimeout(commentsSyncHandler, 10000);
+			}
+
+		});
+	};
+
+	setTimeout(commentsSyncHandler, 10000);
 });

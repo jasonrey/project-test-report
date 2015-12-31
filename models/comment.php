@@ -9,7 +9,7 @@ class CommentModel extends Model
 	{
 		/*
 		$options = array(
-			'report_id' => '',
+			'report_id' => '', // or array()
 			'user_id' => ''
 		);
 		*/
@@ -21,7 +21,11 @@ class CommentModel extends Model
 		$conditions = array();
 
 		if (!empty($options['report_id']) && $options['report_id'] !== 'all') {
-			$conditions[] = $this->db->qn('report_id') . ' = ' . $this->db->q($options['report_id']);
+			if (is_array($options['report_id'])) {
+				$conditions[] = $this->db->qn('report_id') . ' IN (' . implode(',', $this->db->q($options['report_id'])) . ')';
+			} else {
+				$conditions[] = $this->db->qn('report_id') . ' = ' . $this->db->q($options['report_id']);
+			}
 		}
 
 		if (!empty($options['user_id']) && $options['user_id'] !== 'all') {

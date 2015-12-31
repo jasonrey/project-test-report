@@ -59,7 +59,6 @@ class EmbedView extends View
 				'project_id' => $projectTable->id
 			));
 
-
 			$this->set('filterState', $filterState);
 			$this->set('filterAssignee', $filterAssignee);
 			$this->set('filterSort', $filterSort);

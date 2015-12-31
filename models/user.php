@@ -14,11 +14,7 @@ class UserModel extends Model
 
 		$result = $this->getResult($query);
 
-		$assignees = array();
-
-		foreach ($result as $row) {
-			$assignees[$row->id] = $row;
-		}
+		$assignees = $this->assignByKey($result);
 
 		return $assignees;
 	}

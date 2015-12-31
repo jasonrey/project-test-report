@@ -97,12 +97,12 @@
 					<div class="filter-item-text">Unassigned</div>
 				</div>
 				<?php if (!empty($assignees)) { ?>
-				<?php foreach ($assignees as $user) { ?>
-				<div class="filter-item-option <?php if ($filterAssignee == $user->id) { ?>active<?php } ?>" data-value="<?php echo $user->id; ?>">
+				<?php foreach ($assignees as $assignee) { ?>
+				<div class="filter-item-option <?php if ($filterAssignee == $assignee->id) { ?>active<?php } ?>" data-value="<?php echo $assignee->id; ?>">
 					<div class="filter-item-icon">
-						<div class="filter-item-assignee-image"><img src="<?php echo $user->picture; ?>" /></div>
+						<div class="filter-item-assignee-image"><img src="<?php echo $assignee->picture; ?>" /></div>
 					</div>
-					<div class="filter-item-text"><?php echo $user->nick; ?></div>
+					<div class="filter-item-text"><?php echo $assignee->nick; ?></div>
 				</div>
 				<?php } ?>
 				<?php } ?>
@@ -164,7 +164,7 @@
 </li>
 </script>
 <script type="text/html" id="comment-item-self">
-<li class="comment-item comment-owner" data-id="{{id}}">
+<li class="comment-item comment-owner" data-id="{{id}}" title="<?php echo $user->nick; ?>">
 	<div class="comment-user-image"><img src="<?php echo $user->picture; ?>" /></div>
 	<div class="comment-user-text"><p>{{content}}</p></div>
 </li>

@@ -66,4 +66,68 @@ class CommentApi extends Api
 
 		return $this->success($commentTable->id);
 	}
+
+	public function sync()
+	{
+		if (!Req::haspost('reports', 'ids')) {
+			return $this->fail('Insufficient data.');
+		}
+
+		$identifier = Lib::cookie(Lib::hash(Config::$userkey));
+
+		$user = Lib::table('user');
+
+		$isLoggedIn = !empty($identifier) && $user->load(array('identifier' => $identifier));
+
+		if (!$isLoggedIn) {
+			return $this->fail('You are not authorized.');
+		}
+
+		$reports = json_decode(Req::post('reports'));
+		$ids = Req::post('ids');
+
+		$updated = array();
+
+		$commentModel = Lib::model('comment');
+
+		$comments = $commentModel->getComments(array(
+			'report_id' => $ids
+		));
+
+		$commentsByReportId = array();
+
+		foreach ($comments as $comment) {
+			$commentsByReportId[$comment->report_id][$comment->id] = $comment;
+		}
+
+		foreach ($reports as $id => $report) {
+			$newTotalComments = empty($commentsByReportId[$id]) ? 0 : count($commentsByReportId[$id]);
+
+			if ($report->totalComments == $newTotalComments) {
+				continue;
+			}
+
+			$updated[$id] = array(
+				'totalComments' => $newTotalComments,
+				'comments' => array()
+			);
+
+			if (!$report->commentsLoaded) {
+				continue;
+			}
+
+			$view = Lib::view('embed');
+
+			foreach ($commentsByReportId[$id] as $commentid => $newComment) {
+				if (in_array($commentid, $report->comments)) {
+					$updated[$id]['comments'][$commentid] = false;
+					continue;
+				}
+
+				$updated[$id]['comments'][$commentid] = $view->loadTemplate('comment-item', array('comment' => $comment, 'user' => $user));
+			}
+		}
+
+		return $this->success($updated);
+	}
 }
