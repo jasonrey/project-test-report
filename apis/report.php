@@ -192,6 +192,23 @@ class ReportApi extends Api
 		$reportTable->assignee_id = $post['assigneeid'];
 		$reportTable->store();
 
+		if (!empty($post['assigneeid'])) {
+			$slackMessage = Lib::helper('slack')->newMessage();
+
+			$slackMessage->to($post['assigneeid']);
+			$slackMessage->message('You\'ve been assigned a report ticket.');
+			$slackMessage->icon_emoji = ':gift:';
+
+			$attachment = $slackMessage->newAttachment();
+
+			$attachment->fallback = 'You\'ve been assigned a report ticket.';
+			$attachment->color = '#00bcd4';
+			$attachment->title = 'Project title';
+			$attachment->text = 'Testing report text content here it goes!';
+
+			$slackMessage->send();
+		}
+
 		return $this->success();
 	}
 }
