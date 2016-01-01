@@ -488,8 +488,6 @@ $(function() {
 			reports: JSON.stringify(reports),
 			ids: ids
 		}).done(function(response) {
-			console.log(response);
-
 			if (response.state) {
 				$.each(response.data, function(id, data) {
 					var item = items.filter('[data-id="' + id + '"]');
