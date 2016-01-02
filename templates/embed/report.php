@@ -18,7 +18,7 @@
 		<textarea name="report-text"></textarea>
 	</div>
 
-	<input type="hidden" name="project" value="<?php echo $project; ?>" />
+	<input type="hidden" name="project" value="<?php echo $filterProject; ?>" />
 
 	<button class="form-submit">Submit</button>
 
