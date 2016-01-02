@@ -172,8 +172,8 @@
 </script>
 
 <script type="text/html" id="report-item-assignee">
-<a href="javascript:void(0);" class="item-assignee <?php if ($user->role == USER_ROLE_FIXER || $user->role == USER_ROLE_ADMIN) { ?>item-assignee-deletable<?php } ?>" data-value="{{id}}">
-	<span class="item-assignee-image"><img src="{{image}}" /><?php if ($user->role == USER_ROLE_FIXER || $user->role == USER_ROLE_ADMIN) { ?><i class="icon-feather-cross"></i><?php } ?></span>
+<a href="javascript:void(0);" class="item-assignee <?php if ($user->role == USER_ROLE_ADMIN) { ?>item-assignee-deletable<?php } ?>" data-value="{{id}}">
+	<span class="item-assignee-image"><img src="{{image}}" /><?php if ($user->role == USER_ROLE_ADMIN) { ?><i class="icon-feather-cross"></i><?php } ?></span>
 </a>
 </script>
 

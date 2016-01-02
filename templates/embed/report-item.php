@@ -43,14 +43,14 @@
 		</div>
 		<div class="item-assignees">
 			<?php if (!empty($report->assignee_id)) { ?>
-				<?php if ($user->role != USER_ROLE_FIXER && $user->role != USER_ROLE_ADMIN) { ?>
+				<?php if ($user->role != USER_ROLE_ADMIN) { ?>
 				<div class="item-assignee-icon"><i class="icon-wrench"></i></div>
 				<?php } ?>
-				<a href="javascript:void(0);" class="item-assignee <?php if ($user->role == USER_ROLE_FIXER || $user->role == USER_ROLE_ADMIN) { ?>item-assignee-deletable<?php } ?>" data-value="<?php echo $report->assignee_id ?>">
-					<span class="item-assignee-image"><img src="<?php echo $assignees[$report->assignee_id]->picture; ?>" /><?php if ($user->role == USER_ROLE_FIXER || $user->role == USER_ROLE_ADMIN) { ?><i class="icon-feather-cross"></i><?php } ?></span>
+				<a href="javascript:void(0);" class="item-assignee <?php if ($user->role == USER_ROLE_ADMIN) { ?>item-assignee-deletable<?php } ?>" data-value="<?php echo $report->assignee_id ?>">
+					<span class="item-assignee-image"><img src="<?php echo $assignees[$report->assignee_id]->picture; ?>" /><?php if ($user->role == USER_ROLE_ADMIN) { ?><i class="icon-feather-cross"></i><?php } ?></span>
 				</a>
 			<?php } ?>
-			<?php if ($user->role == USER_ROLE_FIXER || $user->role == USER_ROLE_ADMIN) { ?>
+			<?php if ($user->role == USER_ROLE_ADMIN) { ?>
 				<div class="item-assignee-add item-assignee-icon">
 					<a href="javascript:void(0);" class="item-assignee-add-button"><i class="icon-wrench"></i></a>
 				</div>
