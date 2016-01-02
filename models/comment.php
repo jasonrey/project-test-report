@@ -14,7 +14,7 @@ class CommentModel extends Model
 		);
 		*/
 
-		$query = 'SELECT `a`.*, `b`.picture, `b`.`nick` FROM ' . $this->db->qn($this->tablename) . ' AS `a`';
+		$query = 'SELECT `a`.*, `b`.picture, `b`.`nick`, `b`.`initial` FROM ' . $this->db->qn($this->tablename) . ' AS `a`';
 		$query .= ' LEFT JOIN `user` AS `b`';
 		$query .= ' ON `a`.`user_id` = `b`.`id`';
 

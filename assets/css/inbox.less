@@ -811,13 +811,20 @@
 			width: 36px;
 			height: 36px;
 			border-radius: 50%;
-			border: 4px solid @green500;
+			border: 3px solid @green500;
 			overflow: hidden;
 			flex-shrink: 0;
 
 			img {
 				max-width: 100%;
 				max-height: 100%;
+			}
+
+			.user-avatar-initial {
+				width: 30px;
+				height: 30px;
+				line-height: 30px;
+				color: @green500;
 			}
 		}
 
@@ -860,6 +867,10 @@
 			.comment-user-image {
 				float: right;
 				border-color: @cyan500;
+
+				.user-avatar-initial {
+					color: @cyan500;
+				}
 			}
 
 			.comment-user-text {
