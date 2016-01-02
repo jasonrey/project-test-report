@@ -7,6 +7,7 @@ class UserTable extends Table
 	public $gid;
 	public $name;
 	public $nick;
+	public $initial;
 	public $email;
 	public $picture;
 	public $role;
