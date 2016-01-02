@@ -38,6 +38,8 @@ class EmbedView extends View
 		$this->set('filterProject', $filterProject);
 		$this->set('isLoggedIn', $isLoggedIn);
 
+		$this->js[] = $isLoggedIn ? 'report-list' : 'login';
+
 		if ($isLoggedIn) {
 			array_shift($this->js);
 

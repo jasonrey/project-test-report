@@ -5,7 +5,7 @@ class IndexView extends View
 {
 	public $googlefont = 'Roboto:300,400,500,600';
 	public $css = 'index';
-	public $js = array('https://apis.google.com/js/platform.js', 'library', 'index', 'embed');
+	public $js = array('https://apis.google.com/js/platform.js', 'library', 'index');
 	public $meta = array();
 
 	public function main()
@@ -22,6 +22,8 @@ class IndexView extends View
 
 		$this->set('user', $user);
 		$this->set('isLoggedIn', $isLoggedIn);
+
+		$this->js[] = $isLoggedIn ? 'report-list' : 'login';
 
 		if ($isLoggedIn) {
 			array_shift($this->js);
