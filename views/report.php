@@ -43,11 +43,7 @@ class ReportView extends View
 
 			$report->init();
 
-			$assignees = array();
-
-			if (!empty($report->assignee_id)) {
-				$assignees[$report->assignee_id] = $report->assignee;
-			}
+			$assignees = Lib::model('user')->getProjectAssignees($report->project_id);
 
 			$this->set('report', $report);
 			$this->set('assignees', $assignees);
