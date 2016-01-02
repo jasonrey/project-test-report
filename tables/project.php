@@ -4,5 +4,6 @@
 class ProjectTable extends Table
 {
 	public $name;
+	public $state;
 	public $date;
 }
