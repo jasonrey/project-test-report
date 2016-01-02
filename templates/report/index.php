@@ -4,6 +4,10 @@
 <?php if ($isLoggedIn) { ?>
 <div id="report-frame">
 	<a class="report-item-back icon-feather-rewind" href="<?php echo Lib::url('index'); ?>">Back</a>
+	<div class="report-project">
+		<div class="project-name-title">Project</div>
+		<div class="project-name"><?php echo $project->name; ?></div>
+	</div>
 	<ul id="report-item-list">
 		<?php echo Lib::output('embed/report-item', array('report' => $report, 'user' => $user, 'assignees' => $assignees, 'commentsLoaded' => true)); ?>
 	</ul>

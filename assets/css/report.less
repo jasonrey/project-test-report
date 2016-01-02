@@ -8,9 +8,12 @@
 @import 'tab';
 @import 'inbox';
 
+.item {
+	padding: 8px 0;
+}
+
 .item:nth-child(odd) {
 	background-color: white;
-	border-top-right-radius: 2px;
 }
 
 .report-item-back {
@@ -27,5 +30,39 @@
 	&:hover {
 		background-color: @cyan500;
 		color: white;
+	}
+}
+
+.report-project {
+	height: 48px;
+	line-height: 48px;
+	background-color: white;
+	font-size: 14px;
+	border-top-right-radius: 2px;
+	border-bottom: 1px solid @cyan100;
+	.clearfix();
+
+	.project-name-title {
+		width: 25%;
+		float: left;
+		text-transform: uppercase;
+		text-align: center;
+	}
+
+	.project-name {
+		width: 75%;
+		float: left;
+		padding: 0 8px;
+		position: relative;
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: 12px;
+			left: -0.5px;
+			width: 1px;
+			height: 24px;
+			background-color: @cyan100;
+		}
 	}
 }

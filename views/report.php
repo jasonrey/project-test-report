@@ -45,8 +45,12 @@ class ReportView extends View
 
 			$assignees = Lib::model('user')->getProjectAssignees($report->project_id);
 
+			$projectTable = Lib::table('project');
+			$projectTable->load($report->project_id);
+
 			$this->set('report', $report);
 			$this->set('assignees', $assignees);
+			$this->set('project', $projectTable);
 		}
 	}
 }
