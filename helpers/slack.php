@@ -195,18 +195,18 @@ class SlackAttachmentField
 	public $value;
 	public $short;
 
-	public function __construct($options = array())
+	public function __construct($title = null, $value = null, $short = false)
 	{
-		if (isset($options['title'])) {
-			$this->title = $options['title'];
+		if (isset($title)) {
+			$this->title = $title;
 		}
 
-		if (isset($options['value'])) {
-			$this->value = $options['value'];
+		if (isset($value)) {
+			$this->value = $value;
 		}
 
-		if (isset($options['short'])) {
-			$this->short = $options['short'];
+		if (isset($short)) {
+			$this->short = $short;
 		}
 	}
 }
