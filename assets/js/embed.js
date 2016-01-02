@@ -1,39 +1,6 @@
 'use strict';
 
 $(function() {
-	// Cached selector
-	var $$cached = {};
-	var $$ = function(selector, refresh) {
-		if (refresh !== undefined && refresh && $$cached[selector] !== undefined) {
-			delete $$cached[selector];
-		}
-
-		if ($$cached[selector] === undefined) {
-			$$cached[selector] = $(selector);
-		}
-
-		return $$cached[selector];
-	};
-
-	var $template = function(id, data) {
-		var item = $$('#' + id).html().replace(RegExp('\\{\\{(.+?)\\}\\}', 'g'), function(match, p1) {
-			return data[p1] !== undefined ? data[p1] : '';
-		});
-
-		return item;
-	};
-
-	var $api = function(namespace, data, userOptions) {
-		var options = $.extend({
-			dataType: 'json',
-			method: 'post'
-		}, userOptions);
-
-		options.data = data;
-
-		return $.ajax('api/' + namespace, options);
-	};
-
 	$$('#report-close-button').on('click', function() {
 		parent.document.getElementById('project-report-embed').className = '';
 		parent.document.getElementById('project-report-button').className = '';

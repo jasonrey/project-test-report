@@ -88,7 +88,7 @@ class ReportApi extends Api
 
 		$projectTable = Lib::table('project');
 
-		if (!$projectTable->load(array('name' => $post['project']))) {
+		if ($post['project'] !== 'all' && !$projectTable->load(array('name' => $post['project']))) {
 			return $this->fail('No such project.');
 		}
 

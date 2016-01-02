@@ -5,21 +5,21 @@ class EmbedView extends View
 {
 	public $googlefont = 'Roboto:300,400,500,600';
 	public $css = 'embed';
-	public $js = array('https://apis.google.com/js/platform.js', 'embed');
+	public $js = array('https://apis.google.com/js/platform.js', 'library', 'embed');
 	public $meta = array();
 
 	public function main()
 	{
-		$project = Req::get('project');
+		$filterProject = Req::get('project');
 
-		if (empty($project)) {
+		if (empty($filterProject)) {
 			$this->template = 'empty-project';
 			return;
 		}
 
 		$projectTable = Lib::table('project');
 
-		if (!$projectTable->load(array('name' => $project))) {
+		if (!$projectTable->load(array('name' => $filterProject))) {
 			$this->template = 'empty-project';
 			return;
 		}
@@ -35,7 +35,7 @@ class EmbedView extends View
 		$isLoggedIn = !empty($identifier) && $user->load(array('identifier' => $identifier));
 
 		$this->set('user', $user);
-		$this->set('project', $project);
+		$this->set('filterProject', $filterProject);
 		$this->set('isLoggedIn', $isLoggedIn);
 
 		if ($isLoggedIn) {
