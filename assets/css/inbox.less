@@ -117,7 +117,8 @@
 
 						&:nth-child(1) {
 							z-index: 1;
-							left: 24px;
+							position: absolute;
+							left: -8px;
 							top: 4px;
 						}
 
@@ -128,7 +129,8 @@
 
 						&:nth-child(3) {
 							z-index: 3;
-							right: 24px;
+							position: absolute;
+							right: -8px;
 							top: 4px;
 						}
 					}
@@ -351,24 +353,22 @@
 	}
 
 	.item-details {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-around;
 		margin: 0 16px;
 		overflow: hidden;
 		flex-grow: 1;
 	}
 
 	.item-url {
-		white-space: pre;
-		text-overflow: ellipsis;
-		overflow: hidden;
 		font-size: 14px;
 		height: 24px;
 		line-height: 24px;
+		white-space: nowrap;
 
 		a:hover {
 			text-decoration: underline;
+			white-space: pre;
+			text-overflow: ellipsis;
+			overflow: hidden;
 		}
 	}
 
@@ -377,9 +377,13 @@
 		font-size: 14px;
 		height: 24px;
 		line-height: 24px;
+		white-space: nowrap;
 
 		a:hover {
 			text-decoration: underline;
+			white-space: pre;
+			text-overflow: ellipsis;
+			overflow: hidden;
 		}
 	}
 
@@ -606,9 +610,7 @@
 		font-size: 14px;
 		height: 36px;
 		line-height: 36px;
-
-		.item-comments-link {
-		}
+		white-space: nowrap;
 
 		.item-comments-counter {
 			&::before {
@@ -628,8 +630,9 @@
 
 	.item-assignees {
 		position: relative;
-		.clearfix();
 		padding: 2px 0;
+		flex-shrink: 0;
+		.clearfix();
 
 		&::before {
 			font-size: 18px;

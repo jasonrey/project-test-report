@@ -2,11 +2,13 @@
 !defined('SERVER_EXEC') && die('No access.');
 ?>
 <?php if ($isLoggedIn) { ?>
-<div id="report-frame">
-	<a class="report-item-back icon-feather-rewind" href="<?php echo Lib::url('index'); ?>">Back</a>
-	<ul id="report-item-list">
-		<?php echo Lib::output('embed/report-item', array('report' => $report, 'user' => $user, 'assignees' => $assignees, 'commentsLoaded' => true)); ?>
-	</ul>
+<div class="container">
+	<div id="report-frame">
+		<a class="report-item-back icon-feather-rewind" href="<?php echo Lib::url('index'); ?>">Back</a>
+		<ul id="report-item-list">
+			<?php echo Lib::output('embed/report-item', array('report' => $report, 'user' => $user, 'assignees' => $assignees, 'commentsLoaded' => true)); ?>
+		</ul>
+	</div>
 </div>
 <?php echo Lib::output('embed/screenshot-preview'); ?>
 <?php } else { ?>
