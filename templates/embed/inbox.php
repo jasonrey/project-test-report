@@ -93,7 +93,13 @@
 						<?php } elseif ($filterAssignee === 'unassigned') { ?>
 						<div class="filter-item-assignee-image filter-item-assignee-image-unassigned"><i class="icon-">?</i></div>
 						<?php } else { ?>
-						<div class="filter-item-assignee-image"><img src="<?php echo $assignees[$filterAssignee]->picture; ?>" /></div>
+						<div class="filter-item-assignee-image user-avatar">
+							<?php if (!empty($assignees[$filterAssignee]->picture)) { ?>
+							<img src="<?php echo $assignees[$filterAssignee]->picture; ?>" />
+							<?php } else { ?>
+							<span class="user-avatar-initial"><?php echo $assignees[$filterAssignee]->initial; ?></span>
+							<?php } ?>
+						</div>
 						<?php } ?>
 					</div>
 					<div class="filter-item-text">Fixer</div>
@@ -119,7 +125,13 @@
 					<?php foreach ($assignees as $assignee) { ?>
 					<div class="filter-item-option <?php if ($filterAssignee == $assignee->id) { ?>active<?php } ?>" data-value="<?php echo $assignee->id; ?>">
 						<div class="filter-item-icon">
-							<div class="filter-item-assignee-image"><img src="<?php echo $assignee->picture; ?>" /></div>
+							<div class="filter-item-assignee-image user-avatar">
+								<?php if (!empty($assignee->picture)) { ?>
+								<img src="<?php echo $assignee->picture; ?>" />
+								<?php } else { ?>
+								<span class="user-avatar-initial"><?php echo $assignee->initial; ?></span>
+								<?php } ?>
+							</div>
 						</div>
 						<div class="filter-item-text"><?php echo $assignee->nick; ?></div>
 					</div>
@@ -173,7 +185,18 @@
 
 <script type="text/html" id="report-item-assignee">
 <a href="javascript:void(0);" class="item-assignee <?php if ($user->role == USER_ROLE_ADMIN) { ?>item-assignee-deletable<?php } ?>" data-value="{{id}}">
-	<span class="item-assignee-image"><img src="{{image}}" /><?php if ($user->role == USER_ROLE_ADMIN) { ?><i class="icon-feather-cross"></i><?php } ?></span>
+	<span class="item-assignee-image user-avatar">
+		<img src="{{image}}" />
+		<?php if ($user->role == USER_ROLE_ADMIN) { ?><i class="icon-feather-cross"></i><?php } ?>
+	</span>
+</a>
+</script>
+<script type="text/html" id="report-item-assignee-initial">
+<a href="javascript:void(0);" class="item-assignee <?php if ($user->role == USER_ROLE_ADMIN) { ?>item-assignee-deletable<?php } ?>" data-value="{{id}}">
+	<span class="item-assignee-image user-avatar">
+		<span class="user-avatar-initial">{{initial}}</span>
+		<?php if ($user->role == USER_ROLE_ADMIN) { ?><i class="icon-feather-cross"></i><?php } ?>
+	</span>
 </a>
 </script>
 

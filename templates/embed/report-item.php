@@ -4,7 +4,13 @@
 <li id="report-<?php echo $report->id; ?>" class="item <?php if ($user->role == USER_ROLE_ADMIN || (!empty($report->assignee_id) && $report->assignee_id == $user->id)) { ?>is-assignee<?php } ?> <?php if (!empty($commentsLoaded)) { ?>show-comments loaded-comments<?php } ?>" data-id="<?php echo $report->id; ?>" data-state="<?php echo $report->state; ?>">
 	<div class="item-flexrow item-header">
 		<div class="item-user">
-			<div class="item-user-image"><img src="<?php echo $report->picture; ?>" /></div>
+			<div class="item-user-image user-avatar">
+				<?php if (!empty($report->picture)) { ?>
+				<img src="<?php echo $report->picture; ?>" />
+				<?php } else { ?>
+				<span class="user-avatar-initial"><?php echo $report->initial; ?></span>
+				<?php } ?>
+			</div>
 		</div>
 		<div class="item-details">
 			<div class="item-url icon-feather-link"><a href="<?php echo $report->url; ?>"><?php echo $report->url; ?></a></div>
@@ -32,7 +38,13 @@
 		<div class="item-available-assignees-content">
 			<?php foreach ($assignees as $assignee) { ?>
 				<a href="javascript:void(0);" class="item-available-assignee <?php if (!empty($report->assignee_id) && $report->assignee_id == $assignee->id) { ?>active<?php } ?> <?php if ($assignee->id == $user->id) { ?>is-self<?php } ?>" data-value="<?php echo $assignee->id; ?>">
-					<span class="item-available-assignee-image"><img src="<?php echo $assignee->picture; ?>" /></span>
+					<span class="item-available-assignee-image user-avatar">
+						<?php if (!empty($assignee->picture)) { ?>
+						<img src="<?php echo $assignee->picture; ?>" />
+						<?php } else { ?>
+						<span class="user-avatar-initial"><?php echo $assignee->initial; ?></span>
+						<?php } ?>
+					</span>
 				</a>
 			<?php } ?>
 		</div>
@@ -46,8 +58,16 @@
 				<?php if ($user->role != USER_ROLE_ADMIN) { ?>
 				<div class="item-assignee-icon"><i class="icon-wrench"></i></div>
 				<?php } ?>
+
 				<a href="javascript:void(0);" class="item-assignee <?php if ($user->role == USER_ROLE_ADMIN) { ?>item-assignee-deletable<?php } ?>" data-value="<?php echo $report->assignee_id ?>">
-					<span class="item-assignee-image"><img src="<?php echo $assignees[$report->assignee_id]->picture; ?>" /><?php if ($user->role == USER_ROLE_ADMIN) { ?><i class="icon-feather-cross"></i><?php } ?></span>
+					<span class="item-assignee-image user-avatar">
+						<?php if (!empty($assignees[$report->assignee_id]->picture)) { ?>
+						<img src="<?php echo $assignees[$report->assignee_id]->picture; ?>" />
+						<?php } else { ?>
+						<span class="user-avatar-initial"><?php echo $assignees[$report->assignee_id]->initial; ?></span>
+						<?php } ?>
+						<?php if ($user->role == USER_ROLE_ADMIN) { ?><i class="icon-feather-cross"></i><?php } ?>
+					</span>
 				</a>
 			<?php } ?>
 			<?php if ($user->role == USER_ROLE_ADMIN) { ?>

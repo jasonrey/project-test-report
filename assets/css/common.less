@@ -13,6 +13,29 @@ body {
 	min-width: 260px;
 }
 
+.user-avatar {
+	border-radius: 50%;
+	border: 3px solid @cyan500;
+	overflow: hidden;
+	position: relative;
+	display: inline-block;
+
+	img {
+		max-width: 100%;
+		max-height: 100%;
+		vertical-align: top;
+	}
+
+	.user-avatar-initial {
+		width: 100%;
+		text-align: center;
+		font-size: 14px;
+		font-weight: 500;
+		vertical-align: top;
+		display: inline-block;
+	}
+}
+
 .alert {
 	margin: 8px 0;
 	padding: 16px;

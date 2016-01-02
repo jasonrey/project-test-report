@@ -44,7 +44,7 @@ $(function() {
 		siblings.removeClass('active');
 	});
 
-	$$('#filter-form').on('click', '.filter-item-option', function(event) {
+	$$('#filter-form').on('click', '.filter-item-option:not(.active)', function(event) {
 		var button = $(this),
 			siblings = button.siblings(),
 			value = button.attr('data-value'),
@@ -186,10 +186,19 @@ $(function() {
 
 		item.find('.item-assignee').remove();
 
-		addButton.before($template('report-item-assignee', {
-			id: assigneeid,
-			image: assignee.find('img').attr('src')
-		}));
+		var assigneeImage = assignee.find('img');
+
+		if (assigneeImage.length) {
+			addButton.before($template('report-item-assignee', {
+				id: assigneeid,
+				image: assignee.find('img').attr('src')
+			}));
+		} else {
+			addButton.before($template('report-item-assignee-initial', {
+				id: assigneeid,
+				initial: assignee.find('.user-avatar-initial').text()
+			}));
+		}
 
 		if (assignee.hasClass('is-self')) {
 			item.addClass('is-assignee');
