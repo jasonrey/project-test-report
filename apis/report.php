@@ -160,6 +160,28 @@ class ReportApi extends Api
 
 		$reportStateHistoryTable->store();
 
+		if ($user->id != $reportTable->user_id) {
+			$projectTable = Lib::table('project');
+			$projectTable->load($reportTable->project_id);
+
+			$slackMessage = Lib::helper('slack')->newMessage();
+
+			$slackMessage->to($reportTable->user_id);
+			$slackMessage->message($user->nick . ' marked your report as *' . constant('STATE_NAME_' . $reportTable->state) . '*.');
+			$slackMessage->username = 'Project Report Status - ' . ($reportTable->state == 1 ? 'Completed' : ($reportTable->state == 2 ? 'Rejected' : 'Pending'));
+			$slackMessage->icon_emoji = $reportTable->state == 1 ? ':thumbsup:' : ($reportTable->state == 2 ? ':x:' : ':clock1:');
+
+			$attachment = $slackMessage->newAttachment();
+
+			$attachment->fallback = '<' . $reportTable->getLink() . '|Report ticket ID ' . $reportTable->id . '>.';
+			$attachment->color = $reportTable->state == 1 ? 'good' : ($reportTable->state == 2 ? 'danger' : 'warning');
+			$attachment->title = $projectTable->name;
+			$attachment->title_link = $reportTable->getLink();
+			$attachment->text = $reportTable->content;
+
+			$slackMessage->send();
+		}
+
 		return $this->success();
 	}
 
@@ -200,11 +222,12 @@ class ReportApi extends Api
 
 			$slackMessage->to($post['assigneeid']);
 			$slackMessage->message($user->nick . ' assigned you a report ticket.');
-			$slackMessage->icon_emoji = ':ticket:';
+			$slackMessage->username = 'Project Report Assignment';
+			$slackMessage->icon_emoji = ':gift:';
 
 			$attachment = $slackMessage->newAttachment();
 
-			$attachment->fallback = 'You\'ve been assigned a report ticket.';
+			$attachment->fallback = '<' . $reportTable->getLink() . '|Report ticket ID ' . $reportTable->id . '>.';
 			$attachment->color = '#00bcd4';
 			$attachment->title = $projectTable->name;
 			$attachment->title_link = $reportTable->getLink();

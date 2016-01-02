@@ -28,14 +28,7 @@ class IndexView extends View
 		if ($isLoggedIn) {
 			array_shift($this->js);
 
-			$filterState = $cookie->get('filter-state', 'pending');
-			$filterAssignee = $cookie->get('filter-assignee', empty($assignees[$user->id]) ? 'all' : $user->id);
-			$filterSort = $cookie->get('filter-sort', 'asc');
 			$filterProject = $cookie->get('filter-project', 'all');
-
-			$projectModel = Lib::model('project');
-
-			$projects = $projectModel->getProjects(array('state' => PROJECT_STATE_ACTIVE));
 
 			$projectTable = Lib::table('project');
 
@@ -44,8 +37,15 @@ class IndexView extends View
 			}
 
 			$userModel = Lib::model('user');
-
 			$assignees = $userModel->getProjectAssignees($projectTable->id);
+
+			$filterState = $cookie->get('filter-state', 'pending');
+			$filterAssignee = $cookie->get('filter-assignee', empty($assignees[$user->id]) ? 'all' : $user->id);
+			$filterSort = $cookie->get('filter-sort', 'asc');
+
+			$projectModel = Lib::model('project');
+
+			$projects = $projectModel->getProjects(array('state' => PROJECT_STATE_ACTIVE));
 
 			$reportModel = Lib::model('report');
 

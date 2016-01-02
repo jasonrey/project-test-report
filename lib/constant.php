@@ -10,6 +10,10 @@ define('STATE_PENDING', 0);
 define('STATE_COMPLETED', 1);
 define('STATE_REJECTED', 2);
 
+define('STATE_NAME_0', 'pending');
+define('STATE_NAME_1', 'completed');
+define('STATE_NAME_2', 'rejected');
+
 define('PROJECT_STATE_ALL', 'all');
 define('PROJECT_STATE_ACTIVE', 1);
 define('PROJECT_STATE_INACTIVE', 0);
