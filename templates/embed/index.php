@@ -19,11 +19,7 @@
 		</div>
 	</div>
 </div>
-<div id="screenshot-preview">
-	<div class="overlay"></div>
-	<a href="javascript:void(0);" id="screenshot-preview-close-button"><i class="icon-feather-cross"></i></a>
-	<img />
-</div>
+<?php echo $this->includeTemplate('screenshot-preview'); ?>
 <?php } else { ?>
 <?php echo $this->loadTemplate('before-login'); ?>
 <?php } ?>
