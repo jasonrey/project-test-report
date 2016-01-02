@@ -21,3 +21,27 @@ body {
 	/* max-width: 604px; */
 	/* min-width: 164px; */
 }
+
+.item:nth-child(odd) {
+	background-color: white;
+	border-top-right-radius: 2px;
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+}
+
+.report-item-back {
+	padding: 0 16px;
+	height: 36px;
+	line-height: 36px;
+	font-size: 14px;
+	text-transform: uppercase;
+	background-color: white;
+	color: @cyan500;
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+
+	&:hover {
+		background-color: @cyan500;
+		color: white;
+	}
+}
