@@ -71,6 +71,10 @@ $(function() {
 		if (target.closest('.item-state').length === 0) {
 			$('.item-state').removeClass('active');
 		}
+
+		if (target.closest('.filter-project').length === 0) {
+			$$('.filter-project').removeClass('active');
+		}
 	});
 
 	$$('#report-tab-navs').on('click', '.report-tab-nav', function(event) {
