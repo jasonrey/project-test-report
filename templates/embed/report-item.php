@@ -1,7 +1,7 @@
 <?php
 !defined('SERVER_EXEC') && die('No access.');
 ?>
-<li id="report-<?php echo $report->id; ?>" class="item <?php if (!empty($report->assignee_id) && $report->assignee_id == $user->id) { ?>is-assignee<?php } ?> <?php if (!empty($commentsLoaded)) { ?>show-comments loaded-comments<?php } ?>" data-id="<?php echo $report->id; ?>" data-state="<?php echo $report->state; ?>">
+<li id="report-<?php echo $report->id; ?>" class="item <?php if ($user->role == USER_ROLE_ADMIN || (!empty($report->assignee_id) && $report->assignee_id == $user->id)) { ?>is-assignee<?php } ?> <?php if (!empty($commentsLoaded)) { ?>show-comments loaded-comments<?php } ?>" data-id="<?php echo $report->id; ?>" data-state="<?php echo $report->state; ?>">
 	<div class="item-flexrow item-header">
 		<div class="item-user">
 			<div class="item-user-image"><img src="<?php echo $report->picture; ?>" /></div>
