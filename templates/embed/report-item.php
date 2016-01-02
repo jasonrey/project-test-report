@@ -1,14 +1,14 @@
 <?php
 !defined('SERVER_EXEC') && die('No access.');
 ?>
-<li class="item <?php if (!empty($report->assignee_id) && $report->assignee_id == $user->id) { ?>is-assignee<?php } ?>" data-id="<?php echo $report->id; ?>" data-state="<?php echo $report->state; ?>">
+<li id="report-<?php echo $report->id; ?>" class="item <?php if (!empty($report->assignee_id) && $report->assignee_id == $user->id) { ?>is-assignee<?php } ?> <?php if (!empty($commentsLoaded)) { ?>show-comments loaded-comments<?php } ?>" data-id="<?php echo $report->id; ?>" data-state="<?php echo $report->state; ?>">
 	<div class="item-flexrow item-header">
 		<div class="item-user">
 			<div class="item-user-image"><img src="<?php echo $report->picture; ?>" /></div>
 		</div>
 		<div class="item-details">
-			<a href="javascript:void(0);" class="item-url icon-feather-link"><?php echo $report->url; ?></a>
-			<div class="item-date icon-calendar"><?php echo $report->date; ?></div>
+			<div class="item-url icon-feather-link"><a href="<?php echo $report->url; ?>"><?php echo $report->url; ?></a></div>
+			<div class="item-date icon-calendar"><a href="<?php echo $report->getLink(); ?>"><?php echo $report->date; ?></div>
 		</div>
 		<div class="item-state">
 			<a href="javascript:void(0);" class="item-state-option item-state-pending <?php if ($report->state == STATE_PENDING) { ?>item-state-selected<?php } ?>" data-value="0"><i class="icon-feather-clock"></i></a>
@@ -60,6 +60,11 @@
 	<div class="item-comments">
 		<div class="item-comments-content">
 			<ul class="comment-item-list">
+				<?php if (!empty($commentsLoaded)) { ?>
+				<?php foreach ($report->comments as $comment) { ?>
+				<?php echo Lib::output('embed/comment-item', array('comment' => $comment, 'user' => $user)); ?>
+				<?php } ?>
+				<?php } else { ?>
 				<li class="comment-loading">
 					<div class="icon-loader">
 						<span class="icon-loader-clock"></span>
@@ -67,6 +72,7 @@
 						<span class="icon-loader-minute"></span>
 					</div>
 				</li>
+				<?php } ?>
 			</ul>
 			<form class="comment-reply">
 				<input type="text" class="comment-reply-input" placeholder="Your comment..." />

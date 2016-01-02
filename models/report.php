@@ -94,4 +94,11 @@ class ReportModel extends Model
 
 		return $reports;
 	}
+
+	public function getScreenshotsByReportId($reportid)
+	{
+		$query = 'SELECT * FROM `screenshot` WHERE `report_id` = ' . $this->db->q($reportid);
+
+		return $this->getResult($query, false);
+	}
 }
