@@ -37,4 +37,12 @@ class CommentModel extends Model
 
 		return $this->getResult($query);
 	}
+
+	public function getUsersByReportId($reportid)
+	{
+		$query = 'SELECT DISTINCT `user_id` FROM ' . $this->db->qn($this->tablename);
+		$query .= ' WHERE `report_id` = ' . $this->db->q($reportid);
+
+		return $this->getColumn($query);
+	}
 }

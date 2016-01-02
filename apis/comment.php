@@ -64,6 +64,39 @@ class CommentApi extends Api
 		$commentTable->content = $post['content'];
 		$commentTable->store();
 
+		$commentModel = Lib::model('comment');
+		$recipients = $commentModel->getUsersByReportId($post['id']);
+
+		$reportTable = Lib::table('report');
+		$reportTable->load($post['id']);
+
+		$projectTable = Lib::table('project');
+		$projectTable->load($reportTable->project_id);
+
+		foreach ($recipients as $userid) {
+			if ($userid == $user->id) {
+				continue;
+			}
+
+			$slackMessage = Lib::helper('slack')->newMessage();
+			$slackMessage->to($userid);
+			$slackMessage->message($user->nick . ' posted a new comment.');
+			$slackMessage->username = 'Project Report Comment';
+			$slackMessage->icon_emoji = ':speech_balloon:';
+
+			$attachment = $slackMessage->newAttachment();
+
+			$attachment->fallback = 'New comment in <' . $reportTable->getLink() . '|Report ticket ID ' . $reportTable->id . '>.';
+			$attachment->color = '#FFEB3B';
+			$attachment->title = $projectTable->name;
+			$attachment->title_link = $reportTable->getLink();
+			$attachment->text = $reportTable->content;
+
+			$attachment->newField('Comment', $post['content']);
+
+			$slackMessage->send();
+		}
+
 		return $this->success($commentTable->id);
 	}
 
