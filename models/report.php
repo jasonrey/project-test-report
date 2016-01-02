@@ -67,7 +67,7 @@ class ReportModel extends Model
 
 		$query .= $this->buildWhere($conditions);
 
-		$query .= ' GROUP BY `c`.`id`';
+		$query .= ' GROUP BY `c`.`id`, `a`.`id`';
 
 		$query .= $this->buildOrder($options, 'date', 'asc');
 
