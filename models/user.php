@@ -7,7 +7,7 @@ class UserModel extends Model
 
 	public function getProjectAssignees($projectid = null)
 	{
-		$query = 'SELECT DISTINCT `b`.* FROM `project_assignee` AS `a`';
+		$query = 'SELECT `b`.*, `a`.`project_id` FROM `project_assignee` AS `a`';
 		$query .= ' LEFT JOIN `user` AS `b`';
 		$query .= ' ON `a`.`user_id` = `b`.`id`';
 
@@ -17,7 +17,20 @@ class UserModel extends Model
 
 		$result = $this->getResult($query);
 
-		$assignees = $this->assignByKey($result);
+		if (!empty($projectid)) {
+			return $this->assignByKey($result);
+		}
+
+		$assignees = array();
+
+		foreach ($result as $row) {
+			if (!isset($assignees[$row->id])) {
+				$row->project_ids = array();
+				$assignees[$row->id] = $row;
+			}
+
+			$assignees[$row->id]->project_ids[] = $row->project_id;
+		}
 
 		return $assignees;
 	}

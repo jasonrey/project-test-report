@@ -37,6 +37,10 @@
 	<div class="item-available-assignees">
 		<div class="item-available-assignees-content">
 			<?php foreach ($assignees as $assignee) { ?>
+				<?php if (
+					(empty($assignee->project_ids) && $assignee->project_id == $report->project_id) ||
+					(!empty($assignee->project_ids) && in_array($report->project_id, $assignee->project_ids))
+				) { ?>
 				<a href="javascript:void(0);" class="item-available-assignee <?php if (!empty($report->assignee_id) && $report->assignee_id == $assignee->id) { ?>active<?php } ?> <?php if ($assignee->id == $user->id) { ?>is-self<?php } ?>" data-value="<?php echo $assignee->id; ?>">
 					<span class="item-available-assignee-image user-avatar">
 						<?php if (!empty($assignee->picture)) { ?>
@@ -46,6 +50,7 @@
 						<?php } ?>
 					</span>
 				</a>
+				<?php } ?>
 			<?php } ?>
 		</div>
 	</div>
