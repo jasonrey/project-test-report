@@ -5,7 +5,7 @@ $(function() {
 		$(this).toggleClass('active');
 	});
 
-	$$('.filter-project').on('click', '.filter-project-items li:not(.active)', function(event) {
+	$$('.filter-project').on('click', '.filter-project-list li:not(.active)', function(event) {
 		var item = $(this),
 			siblings = item.siblings(),
 			value = item.text();
