@@ -27,9 +27,7 @@
 		<?php } ?>
 
 		<div class="filter-bar">
-			<div class="filter-title">
-				<i class="icon-feather-cog"></i>
-			</div>
+			<div class="filter-title">Filter</div>
 			<div class="filter-item" data-name="state">
 				<div class="filter-item-selected">
 					<div class="filter-item-icon">
