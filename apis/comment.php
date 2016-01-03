@@ -73,6 +73,10 @@ class CommentApi extends Api
 		$projectTable = Lib::table('project');
 		$projectTable->load($reportTable->project_id);
 
+		if (!in_array($user->id, $recipients)) {
+			$recipients[] = $user->id;
+		}
+
 		foreach ($recipients as $userid) {
 			if ($userid == $user->id) {
 				continue;
