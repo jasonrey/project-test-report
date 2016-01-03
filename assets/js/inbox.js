@@ -24,8 +24,12 @@ $(function() {
 			$('.item-state').removeClass('active');
 		}
 
-		if (target.closest('.filter-project').length === 0) {
-			$$('.filter-project').removeClass('active');
+		if (target.closest('.form-select').length) {
+			$('.form-select').not(target.closest('.form-select')).removeClass('active');
+		}
+
+		if (target.closest('.form-select').length === 0) {
+			$('.form-select').removeClass('active');
 		}
 	});
 

@@ -1,7 +1,7 @@
 'use strict';
 
 $(function() {
-	$$('.filter-project').on('click', function(event) {
+	$$('.form-select').on('click', function(event) {
 		$(this).toggleClass('active');
 	});
 
