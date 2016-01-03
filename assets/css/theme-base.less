@@ -118,35 +118,29 @@ body {
 			}
 		}
 
-		.filter-project-bar {
-			.filter-project {
-				.filter-project-list {
-					border-bottom-color: @@color100;
-				}
+		.form-select {
+			border-bottom-color: @@color100;
 
-				.filter-project-items {
-					border-left-color: @@color100;
-					border-right-color: @@color100;
-					border-bottom-color: @@color100;
+			.form-select-list {
+				border-color: @@color100;
 
-					li {
-						&:hover {
-							background-color: @@color50;
-						}
+				li {
+					&:hover {
+						background-color: @@color50;
+					}
 
-						&.active {
-							background-color: @@color500;
-						}
+					&.active {
+						background-color: @@color500;
 					}
 				}
+			}
 
-				&:hover {
-					background-color: @@color50;
-				}
+			&:hover {
+				background-color: @@color50;
+			}
 
-				&.active {
-					background-color: @@color50;
-				}
+			&.active {
+				background-color: @@color50;
 			}
 		}
 	}
@@ -178,7 +172,6 @@ body {
 	.item-screenshot {
 		&:hover {
 			background-color: @@color100;
-			border-color: @@color300;
 		}
 	}
 
@@ -326,6 +319,25 @@ body {
 		&:focus {
 			color: @@color700;
 			border-bottom-color: @@color500;
+		}
+
+		&::placeholder {
+			color: @@color100;
+		}
+		&::-webkit-input-placeholder {
+			color: @@color100;
+		}
+		&:-moz-placholder {
+			color: @@color100;
+		}
+		&::-moz-placholder {
+			color: @@color100;
+		}
+		&:-ms-input-placeholder {
+			color: @@color100;
+		}
+		&::-ms-input-placeholder {
+			color: @@color100;
 		}
 	}
 

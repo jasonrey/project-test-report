@@ -60,13 +60,32 @@ body {
 		line-height: 48px;
 		font-size: 16px;
 		color: @cyan500;
-		border-bottom: 2px solid @cyan100;
+		border-bottom: 1px solid @cyan100;
 		padding: 0 4px;
 		font-family: 'Roboto', sans-serif;
 
 		&:focus {
 			color: @cyan700;
 			border-bottom-color: @cyan500;
+		}
+
+		&::placeholder {
+			color: @cyan100;
+		}
+		&::-webkit-input-placeholder {
+			color: @cyan100;
+		}
+		&:-moz-placholder {
+			color: @cyan100;
+		}
+		&::-moz-placholder {
+			color: @cyan100;
+		}
+		&:-ms-input-placeholder {
+			color: @cyan100;
+		}
+		&::-ms-input-placeholder {
+			color: @cyan100;
 		}
 	}
 
@@ -79,7 +98,7 @@ body {
 		margin: 8px 0;
 		padding: 16px;
 		font-size: 16px;
-		color: @cyan700;
+		color: @cyan500;
 		border-bottom: 2px solid transparent;
 		font-family: 'Roboto', sans-serif;
 		transition: border-color .2s, box-shadow .2s;
@@ -87,10 +106,70 @@ body {
 		border-radius: 2px;
 
 		&:focus {
-			color: @cyan900;
+			color: @cyan700;
 			border-bottom-color: @cyan500;
 			box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 		}
+	}
+}
+
+.form-field {
+	.clearfix();
+	font-size: 14px;
+	margin: 8px 0 0 0;
+	position: relative;
+
+	.w-25 {
+		float: left;
+		width: 25%;
+	}
+
+	.w-50 {
+		float: left;
+		width: 50%;
+	}
+
+	.w-75 {
+		float: left;
+		width: 75%;
+	}
+
+	.w-100 {
+		float: left;
+		width: 100%;
+	}
+
+	.form-title {
+		height: 48px;
+		line-height: 48px;
+		white-space: pre;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.form-subtitle {
+		height: 32px;
+		line-height: 32px;
+		white-space: pre;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.form-subtext {
+		font-weight: 300;
+		font-size: 12px;
+	}
+
+	.subtext-indent {
+		padding: 0 0 0 24px;
+	}
+
+	p {
+		line-height: 24px;
+	}
+
+	input[type="text"] {
+		text-align: center;
 	}
 }
 
@@ -140,13 +219,15 @@ body {
 
 	.form-select-list {
 		position: absolute;
-		top: 48px;
+		top: 100%;
 		left: 0;
 		width: 100%;
-		border-left: 1px solid @cyan100;
-		border-right: 1px solid @cyan100;
-		border-bottom: 1px solid @cyan100;
+		border: 1px solid @cyan100;
 		display: none;
+		max-height: 200px;
+		overflow-x: hidden;
+		overflow-y: auto;
+		z-index: 1;
 
 		li {
 			height: 36px;
@@ -174,6 +255,42 @@ body {
 
 		.form-select-list {
 			display: block;
+		}
+	}
+}
+
+.form-checkbox {
+	width: 48px;
+	height: 48px;
+	line-height: 48px;
+	text-align: center;
+	cursor: pointer;
+
+	&::before {
+		font-family: "Feather";
+		content: "\e116";
+		width: 26px;
+		height: 26px;
+		line-height: 26px;
+		font-size: 16px;
+		color: transparent;
+		border: 1px solid @cyan100;
+		border-radius: 2px;
+		display: inline-block;
+		position: absolute;
+		top: 10px;
+		left: 10px;
+	}
+
+	&:hover {
+		&::before {
+			background-color: @cyan50;
+		}
+	}
+
+	&.active {
+		&::before {
+			color: @cyan500;
 		}
 	}
 }
