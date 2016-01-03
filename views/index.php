@@ -4,7 +4,7 @@
 class IndexView extends View
 {
 	public $googlefont = 'Roboto:300,400,500,600';
-	public $css = 'index';
+	public $css = array('index');
 	public $js = array('https://apis.google.com/js/platform.js', 'library', 'common', 'index');
 	public $meta = array();
 
@@ -68,13 +68,27 @@ class IndexView extends View
 				'project_id' => $projectTable->id
 			));
 
-			$userSettings = Lib::table('user_settings');
+			$userSettingsTable = Lib::table('user_settings');
 
-			if (!$userSettings->load(array(
+			if (!$userSettingsTable->load(array(
 				'user_id' => $user->id,
 				'project_id' => $filterSettingsProject == 'all' ? 0 : $settingsProjectTable->id
 			)) && $filterSettingsProject !== 'all') {
-				$userSettings->load(array('user_id' => $user->id, 'project_id' => 0));
+				$userSettingsTable->load(array('user_id' => $user->id, 'project_id' => 0));
+			}
+
+			$userSettings = $userSettingsTable->getData();
+
+			$interfaceSettingsTable = Lib::table('user_settings');
+
+			if (!$interfaceSettingsTable->load(array('user_id' => $user->id, 'project_id' => '-1'))) {
+				$interfaceSettingsTable->load(array('user_id' => $user->id, 'project_id' => 0));
+			}
+
+			$interfaceSettings = $interfaceSettingsTable->getData();
+
+			if ($interfaceSettings['color'] !== 'cyan' && $interfaceSettings['color'] !== 'custom') {
+				$this->css[] = 'theme-' . str_replace(' ', '', $interfaceSettings['color']);
 			}
 
 			$this->set('projects', $projects);
@@ -85,7 +99,7 @@ class IndexView extends View
 			$this->set('filterSettingsProject', $filterSettingsProject);
 			$this->set('reports', $reports);
 			$this->set('assignees', $assignees);
-			$this->set('userSettings', $userSettings->getData());
+			$this->set('userSettings', $userSettings);
 		}
 	}
 }

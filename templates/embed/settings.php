@@ -1,17 +1,18 @@
 <?php
 !defined('SERVER_EXEC') && die('No access.');
 ?>
-<form id="settings-form" class="<?php if ($filterSettingsProject === 'all') { ?>show-warning<?php } ?>">
+<form id="settings-form" class="<?php if ($filterSettingsProject === 'all') { ?>show-warning<?php } ?> <?php if ($filterSettingsProject === '-1') { ?>hide-notification-settings<?php } ?>">
 	<input type="hidden" name="project" value="<?php echo $filterSettingsProject; ?>" />
 
 	<?php if (!empty($showProjectsFilter)) { ?>
 	<div class="settings-project-bar">
 		<div class="settings-project-title">Project</div>
 		<div class="settings-project form-select icon-down-dir" data-value="<?php echo $filterSettingsProject; ?>">
-			<div class="settings-project-selected form-select-selected"><?php echo $filterSettingsProject === 'all' ? 'All' : $filterSettingsProject; ?></div>
+			<div class="settings-project-selected form-select-selected"><?php echo $filterSettingsProject === 'all' ? 'All' : ($filterSettingsProject === '-1' ? 'This Interface' : $filterSettingsProject); ?></div>
 
 			<ul class="settings-project-list form-select-list">
 				<li class="<?php if ($filterSettingsProject === 'all') { ?>active<?php } ?>">All</li>
+				<li data-value="-1" class="<?php if ($filterSettingsProject === '-1') { ?>active<?php } ?>">This Interface</li>
 				<?php foreach ($projects as $project) { ?>
 				<li class="<?php if ($project->name === $filterSettingsProject) { ?>active<?php } ?>"><?php echo $project->name; ?></li>
 				<?php } ?>
@@ -64,16 +65,16 @@
 
 					<ul class="form-select-list">
 						<li class="theme-blue <?php if ($userSettings['color'] == 'blue') { ?>active<?php } ?>">Blue</li>
-						<li class="theme-bluegrey <?php if ($userSettings['color'] == 'bluegrey') { ?>active<?php } ?>">Blue Grey</li>
+						<li class="theme-bluegrey <?php if ($userSettings['color'] == 'blue grey') { ?>active<?php } ?>">Blue Grey</li>
 						<li class="theme-brown <?php if ($userSettings['color'] == 'brown') { ?>active<?php } ?>">Brown</li>
 						<li class="theme-cyan <?php if ($userSettings['color'] == 'cyan') { ?>active<?php } ?>">Cyan</li>
-						<li class="theme-deeporange <?php if ($userSettings['color'] == 'deeporange') { ?>active<?php } ?>">Deep Orange</li>
-						<li class="theme-deeppurple <?php if ($userSettings['color'] == 'deeppurple') { ?>active<?php } ?>">Deep Purple</li>
+						<li class="theme-deeporange <?php if ($userSettings['color'] == 'deep orange') { ?>active<?php } ?>">Deep Orange</li>
+						<li class="theme-deeppurple <?php if ($userSettings['color'] == 'deep purple') { ?>active<?php } ?>">Deep Purple</li>
 						<li class="theme-green <?php if ($userSettings['color'] == 'green') { ?>active<?php } ?>">Green</li>
 						<li class="theme-grey <?php if ($userSettings['color'] == 'grey') { ?>active<?php } ?>">Grey</li>
 						<li class="theme-indigo <?php if ($userSettings['color'] == 'indigo') { ?>active<?php } ?>">Indigo</li>
-						<li class="theme-lightblue <?php if ($userSettings['color'] == 'lightblue') { ?>active<?php } ?>">Light Blue</li>
-						<li class="theme-lightgreen <?php if ($userSettings['color'] == 'lightgreen') { ?>active<?php } ?>">Light Green</li>
+						<li class="theme-lightblue <?php if ($userSettings['color'] == 'light blue') { ?>active<?php } ?>">Light Blue</li>
+						<li class="theme-lightgreen <?php if ($userSettings['color'] == 'light green') { ?>active<?php } ?>">Light Green</li>
 						<li class="theme-pink <?php if ($userSettings['color'] == 'pink') { ?>active<?php } ?>">Pink</li>
 						<li class="theme-purple <?php if ($userSettings['color'] == 'purple') { ?>active<?php } ?>">Purple</li>
 						<li class="theme-red <?php if ($userSettings['color'] == 'red') { ?>active<?php } ?>">Red</li>

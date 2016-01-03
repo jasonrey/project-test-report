@@ -86,13 +86,17 @@ class UserApi extends Api
 
 		$projectTable = Lib::table('project');
 
-		if ($project !== 'all' && !$projectTable->load(array('name' => $project))) {
+		if ($project !== 'all' && $project !== '-1' && !$projectTable->load(array('name' => $project))) {
 			return $this->fail('No such project.');
 		}
 
 		Lib::cookie('filter-settings-project', $project);
 
 		$userSettings = Lib::table('user_settings');
+
+		if ($project === '-1') {
+			$projectTable->id = '-1';
+		}
 
 		if (!$userSettings->load(array('user_id' => $user->id, 'project_id' => $project === 'all' ? 0 : $projectTable->id)) && $project !== 'all') {
 			$userSettings->load(array('user_id' => $user->id, 'project_id' => 0));
@@ -124,12 +128,16 @@ class UserApi extends Api
 
 		$projectTable = Lib::table('project');
 
-		if ($project !== 'all' && !$projectTable->load(array('name' => $project))) {
+		if ($project !== 'all' && $project !== '-1' && !$projectTable->load(array('name' => $project))) {
 			return $this->fail('No such project.');
 		}
 
 		if ($project !== 'all') {
 			$userSettings = Lib::table('user_settings');
+
+			if ($project === '-1') {
+				$projectTable->id = '-1';
+			}
 
 			if (!$userSettings->load(array('user_id' => $user->id, 'project_id' => $projectTable->id))) {
 				$userSettings->load(array('user_id' => $user->id, 'project_id' => 0));

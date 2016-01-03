@@ -8,6 +8,7 @@ $(function() {
 		document.forms['settings-form'].project.value = value;
 
 		$$('#settings-form').toggleClass('show-warning', value === 'all');
+		$$('#settings-form').toggleClass('hide-notification-settings', value === '-1');
 
 		$api('user/loadSettings', {
 			project: value
@@ -76,6 +77,10 @@ $(function() {
 				value: value
 			})
 		});
+
+		if ($$('.settings-project-bar').length && project !== '-1' && project !== 'all') {
+			return;
+		}
 
 		var isDevelopment = $$('body').attr('data-development') == 1;
 

@@ -4,7 +4,7 @@
 class EmbedView extends View
 {
 	public $googlefont = 'Roboto:300,400,500,600';
-	public $css = 'embed';
+	public $css = array('embed');
 	public $js = array('https://apis.google.com/js/platform.js', 'library', 'common', 'embed');
 	public $meta = array();
 
@@ -67,10 +67,16 @@ class EmbedView extends View
 				'project_id' => $projectTable->id
 			));
 
-			$userSettings = Lib::table('user_settings');
+			$userSettingsTable = Lib::table('user_settings');
 
-			if (!$userSettings->load(array('user_id' => $user->id, 'project_id' => $projectTable->id))) {
-				$userSettings->load(array('user_id' => $user->id, 'project_id' => 0));
+			if (!$userSettingsTable->load(array('user_id' => $user->id, 'project_id' => $projectTable->id))) {
+				$userSettingsTable->load(array('user_id' => $user->id, 'project_id' => 0));
+			}
+
+			$userSettings = $userSettingsTable->getData();
+
+			if ($userSettings['color'] !== 'cyan' && $userSettings['color'] !== 'custom') {
+				$this->css[] = 'theme-' . str_replace(' ', '', $userSettings['color']);
 			}
 
 			$this->set('filterState', $filterState);
@@ -78,7 +84,7 @@ class EmbedView extends View
 			$this->set('filterSort', $filterSort);
 			$this->set('reports', $reports);
 			$this->set('assignees', $assignees);
-			$this->set('userSettings', $userSettings->getData());
+			$this->set('userSettings', $userSettings);
 		}
 	}
 }
