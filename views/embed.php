@@ -38,9 +38,14 @@ class EmbedView extends View
 		$this->set('filterProject', $filterProject);
 		$this->set('isLoggedIn', $isLoggedIn);
 
-		$this->js[] = $isLoggedIn ? 'inbox' : 'login';
+		if (!$isLoggedIn) {
+			$this->js[] = 'login';
+		}
 
 		if ($isLoggedIn) {
+			$this->js[] = 'inbox';
+			$this->js[] = 'settings';
+
 			array_shift($this->js);
 
 			$userModel = Lib::model('user');

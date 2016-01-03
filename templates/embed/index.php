@@ -8,6 +8,7 @@
 	<div id="report-tab-navs">
 		<a href="javascript:void(0);" class="report-tab-nav" data-name="report"><i class="icon-feather-paper"></i><p>Report</p></a>
 		<a href="javascript:void(0);" class="report-tab-nav" data-name="inbox"><i class="icon-feather-archive"></i><p>Inbox</p></a>
+		<a href="javascript:void(0);" class="report-tab-nav" data-name="settings"><i class="icon-feather-cog"></i><p>Settings</p></a>
 	</div>
 
 	<div id="report-tab-contents">
@@ -16,6 +17,9 @@
 		</div>
 		<div class="report-tab-content" data-name="inbox">
 			<?php echo $this->includeTemplate('inbox'); ?>
+		</div>
+		<div class="report-tab-content" data-name="settings">
+			<?php echo $this->includeTemplate('settings'); ?>
 		</div>
 	</div>
 </div>

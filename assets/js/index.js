@@ -1,7 +1,7 @@
 'use strict';
 
 $(function() {
-	$$('.filter-project').on('change', function(event) {
+	$$('#filter-form').on('change', '.filter-project', function(event) {
 		var item = $(this),
 			value = item.attr('data-value');
 

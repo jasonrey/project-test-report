@@ -8,7 +8,7 @@ class UserApi extends Api
 		$keys = array('gid', 'token');
 
 		if (!Req::haspost($keys)) {
-			return $this->fail();
+			return $this->fail('Insufficient data.');
 		}
 
 		$gid = Req::post('gid');
@@ -62,6 +62,115 @@ class UserApi extends Api
 		$user->store();
 
 		Lib::cookie(Lib::hash(Config::$userkey), $user->identifier);
+
+		return $this->success();
+	}
+
+	public function loadSettings()
+	{
+		if (!Req::haspost('project')) {
+			return $this->fail('Insufficient data.');
+		}
+
+		$identifier = Lib::cookie(Lib::hash(Config::$userkey));
+
+		$user = Lib::table('user');
+
+		$isLoggedIn = !empty($identifier) && $user->load(array('identifier' => $identifier));
+
+		if (!$isLoggedIn) {
+			return $this->fail('You are not authorized.');
+		}
+
+		$project = Req::post('project');
+
+		$projectTable = Lib::table('project');
+
+		if ($project !== 'all' && !$projectTable->load(array('name' => $project))) {
+			return $this->fail('No such project.');
+		}
+
+		Lib::cookie('filter-settings-project', $project);
+
+		$userSettings = Lib::table('user_settings');
+
+		if (!$userSettings->load(array('user_id' => $user->id, 'project_id' => $project === 'all' ? 0 : $projectTable->id)) && $project !== 'all') {
+			$userSettings->load(array('user_id' => $user->id, 'project_id' => 0));
+		}
+
+		return $this->success($userSettings->getData());
+	}
+
+	public function saveSettings()
+	{
+		$keys = array('project', 'setting');
+
+		if (!Req::haspost($keys)) {
+			return $this->fail('Insufficient data.');
+		}
+
+		$identifier = Lib::cookie(Lib::hash(Config::$userkey));
+
+		$user = Lib::table('user');
+
+		$isLoggedIn = !empty($identifier) && $user->load(array('identifier' => $identifier));
+
+		if (!$isLoggedIn) {
+			return $this->fail('You are not authorized.');
+		}
+
+		$project = Req::post('project');
+		$setting = json_decode(Req::post('setting'));
+
+		$projectTable = Lib::table('project');
+
+		if ($project !== 'all' && !$projectTable->load(array('name' => $project))) {
+			return $this->fail('No such project.');
+		}
+
+		if ($project !== 'all') {
+			$userSettings = Lib::table('user_settings');
+
+			if (!$userSettings->load(array('user_id' => $user->id, 'project_id' => $projectTable->id))) {
+				$userSettings->load(array('user_id' => $user->id, 'project_id' => 0));
+
+				$userSettings->isNew = true;
+				$userSettings->id = 0;
+				$userSettings->project_id = $projectTable->id;
+			}
+
+			$data = $userSettings->getData();
+
+			$data[$setting->name] = $setting->value;
+
+			$userSettings->data = $data;
+
+			$userSettings->store();
+		} else {
+			$settings = Lib::model('user_settings')->getSettings(array('user_id' => $user->id));
+
+			if (empty($settings)) {
+				$userSettings = Lib::table('user_settings');
+				$userSettings->load(array('user_id' => $user->id, 'project_id' => 0));
+				$data = $userSettings->getData();
+
+				$data[$setting->name] = $setting->value;
+
+				$userSettings->data = $data;
+
+				$userSettings->store();
+			}
+
+			foreach ($settings as $row) {
+				$data = $row->getData();
+
+				$data[$setting->name] = $setting->value;
+
+				$row->data = $data;
+
+				$row->store();
+			}
+		}
 
 		return $this->success();
 	}

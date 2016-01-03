@@ -11,7 +11,7 @@
 		<?php if (!empty($showProjectsFilter)) { ?>
 		<div class="filter-project-bar">
 			<div class="filter-title">Project</div>
-			<div class="filter-project form-select icon-down-dir" data-value="<?php echo $filterProject === 'all' ? 'All' : $filterProject; ?>">
+			<div class="filter-project form-select icon-down-dir" data-value="<?php echo $filterProject; ?>">
 				<div class="filter-project-selected form-select-selected"><?php echo $filterProject === 'all' ? 'All' : $filterProject; ?></div>
 
 				<ul class="filter-project-list form-select-list">

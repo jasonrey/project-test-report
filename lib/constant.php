@@ -17,3 +17,22 @@ define('STATE_NAME_2', 'rejected');
 define('PROJECT_STATE_ALL', 'all');
 define('PROJECT_STATE_ACTIVE', 1);
 define('PROJECT_STATE_INACTIVE', 0);
+
+define('USER_SETTINGS', serialize(array(
+	'assign' => true,
+	'completed' => true,
+	'rejected' => true,
+	'comment-owner' => true,
+	'comment-participant' => true,
+	'color' => 'cyan',
+	'color50' => '',
+	'color100' => '',
+	'color200' => '',
+	'color300' => '',
+	'color400' => '',
+	'color500' => '',
+	'color600' => '',
+	'color700' => '',
+	'color800' => '',
+	'color900' => ''
+)));

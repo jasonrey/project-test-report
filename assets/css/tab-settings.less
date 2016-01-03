@@ -1,0 +1,269 @@
+@import 'colors';
+@import 'library';
+
+#settings-form {
+	padding: 0 0 16px 0;
+	background-color: white;
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	position: relative;
+
+	.theme-blue {
+		color: @blue500;
+
+		&:hover {
+			background-color: @blue50;
+		}
+
+		&.active {
+			background-color: @blue500;
+		}
+	}
+
+	.theme-bluegrey {
+		color: @bluegrey500;
+
+		&:hover {
+			background-color: @bluegrey50;
+		}
+
+		&.active {
+			background-color: @bluegrey500;
+		}
+	}
+
+	.theme-brown {
+		color: @brown500;
+
+		&:hover {
+			background-color: @brown50;
+		}
+
+		&.active {
+			background-color: @brown500;
+		}
+	}
+
+	.theme-cyan {
+		color: @cyan500;
+
+		&:hover {
+			background-color: @cyan50;
+		}
+
+		&.active {
+			background-color: @cyan500;
+		}
+	}
+
+	.theme-deeporange {
+		color: @deeporange500;
+
+		&:hover {
+			background-color: @deeporange50;
+		}
+
+		&.active {
+			background-color: @deeporange500;
+		}
+	}
+
+	.theme-deeppurple {
+		color: @deeppurple500;
+
+		&:hover {
+			background-color: @deeppurple50;
+		}
+
+		&.active {
+			background-color: @deeppurple500;
+		}
+	}
+
+	.theme-green {
+		color: @green500;
+
+		&:hover {
+			background-color: @green50;
+		}
+
+		&.active {
+			background-color: @green500;
+		}
+	}
+
+	.theme-grey {
+		color: @grey500;
+
+		&:hover {
+			background-color: @grey50;
+		}
+
+		&.active {
+			background-color: @grey500;
+		}
+	}
+
+	.theme-indigo {
+		color: @indigo500;
+
+		&:hover {
+			background-color: @indigo50;
+		}
+
+		&.active {
+			background-color: @indigo500;
+		}
+	}
+
+	.theme-lightblue {
+		color: @lightblue500;
+
+		&:hover {
+			background-color: @lightblue50;
+		}
+
+		&.active {
+			background-color: @lightblue500;
+		}
+	}
+
+	.theme-lightgreen {
+		color: @lightgreen500;
+
+		&:hover {
+			background-color: @lightgreen50;
+		}
+
+		&.active {
+			background-color: @lightgreen500;
+		}
+	}
+
+	.theme-pink {
+		color: @pink500;
+
+		&:hover {
+			background-color: @pink50;
+		}
+
+		&.active {
+			background-color: @pink500;
+		}
+	}
+
+	.theme-purple {
+		color: @purple500;
+
+		&:hover {
+			background-color: @purple50;
+		}
+
+		&.active {
+			background-color: @purple500;
+		}
+	}
+
+	.theme-red {
+		color: @red500;
+
+		&:hover {
+			background-color: @red50;
+		}
+
+		&.active {
+			background-color: @red500;
+		}
+	}
+
+	.theme-teal {
+		color: @teal500;
+
+		&:hover {
+			background-color: @teal50;
+		}
+
+		&.active {
+			background-color: @teal500;
+		}
+	}
+
+	[class^="theme-"].active {
+		color: white;
+	}
+
+	.form-group {
+		padding: 0 16px;
+	}
+
+	.notification-settings {
+		.form-checkbox {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		.form-title {
+			padding: 0 0 0 48px;
+		}
+
+		.form-field {
+			cursor: pointer;
+
+			&:hover {
+				.form-checkbox {
+					&::before {
+						background-color: @cyan50;
+					}
+				}
+			}
+		}
+	}
+
+	.theme-settings {
+		.custom-theme-settings {
+			display: none;
+
+			&.active {
+				display: block;
+			}
+		}
+	}
+
+	.settings-project-bar {
+		height: 48px;
+		position: relative;
+		z-index: 2;
+		.clearfix();
+
+		.settings-project-title {
+			float: left;
+			width: 25%;
+			height: 48px;
+			line-height: 48px;
+			text-transform: uppercase;
+			font-size: 14px;
+			text-align: center;
+		}
+
+		.settings-project {
+			float: left;
+			width: 75%;
+		}
+	}
+
+	.filter-project-all-warning {
+		margin: 8px 0 0 25%;
+		font-size: 14px;
+		font-weight: 500;
+		display: none;
+
+		&::before {
+			content: '*';
+		}
+
+		.show-warning& {
+			display: block;
+		}
+	}
+}

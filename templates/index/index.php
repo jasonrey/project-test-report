@@ -2,9 +2,10 @@
 !defined('SERVER_EXEC') && die('No access.');
 ?>
 <?php if ($isLoggedIn) { ?>
-<div id="report-frame" data-tab="inbox">
+<div id="report-frame" data-tab="settings">
 	<div id="report-tab-navs">
 		<a href="javascript:void(0);" class="report-tab-nav" data-name="inbox"><i class="icon-feather-archive"></i><p>Inbox</p></a>
+		<a href="javascript:void(0);" class="report-tab-nav" data-name="settings"><i class="icon-feather-cog"></i><p>Settings</p></a>
 	</div>
 
 	<div id="report-tab-contents">
@@ -19,6 +20,14 @@
 				'assignees' => $assignees,
 				'showProjectsFilter' => true,
 				'user' => $user
+			)); ?>
+		</div>
+		<div class="report-tab-content" data-name="settings">
+			<?php echo Lib::output('embed/settings', array(
+				'projects' => $projects,
+				'filterSettingsProject' => $filterSettingsProject,
+				'userSettings' => $userSettings,
+				'showProjectsFilter' => true
 			)); ?>
 		</div>
 	</div>

@@ -23,9 +23,14 @@ class IndexView extends View
 		$this->set('user', $user);
 		$this->set('isLoggedIn', $isLoggedIn);
 
-		$this->js[] = $isLoggedIn ? 'inbox' : 'login';
+		if (!$isLoggedIn) {
+			$this->js[] = 'login';
+		}
 
 		if ($isLoggedIn) {
+			$this->js[] = 'inbox';
+			$this->js[] = 'settings';
+
 			array_shift($this->js);
 
 			$userModel = Lib::model('user');
@@ -36,10 +41,17 @@ class IndexView extends View
 			$filterSort = $cookie->get('filter-sort', 'asc');
 			$filterProject = $cookie->get('filter-project', 'all');
 
+			$filterSettingsProject = $cookie->get('filter-settings-project', 'all');
+
 			$projectTable = Lib::table('project');
+			$settingsProjectTable = Lib::table('project');
 
 			if ($filterProject !== 'all') {
 				$projectTable->load(array('name' => $filterProject));
+			}
+
+			if ($filterSettingsProject !== 'all') {
+				$settingsProjectTable->load(array('name' => $filterSettingsProject));
 			}
 
 			$projectModel = Lib::model('project');
@@ -56,13 +68,24 @@ class IndexView extends View
 				'project_id' => $projectTable->id
 			));
 
+			$userSettings = Lib::table('user_settings');
+
+			if (!$userSettings->load(array(
+				'user_id' => $user->id,
+				'project_id' => $filterSettingsProject == 'all' ? 0 : $settingsProjectTable->id
+			)) && $filterSettingsProject !== 'all') {
+				$userSettings->load(array('user_id' => $user->id, 'project_id' => 0));
+			}
+
 			$this->set('projects', $projects);
 			$this->set('filterState', $filterState);
 			$this->set('filterAssignee', $filterAssignee);
 			$this->set('filterSort', $filterSort);
 			$this->set('filterProject', $filterProject);
+			$this->set('filterSettingsProject', $filterSettingsProject);
 			$this->set('reports', $reports);
 			$this->set('assignees', $assignees);
+			$this->set('userSettings', $userSettings->getData());
 		}
 	}
 }
