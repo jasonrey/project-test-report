@@ -36,6 +36,7 @@ class EmbedView extends View
 
 		$this->set('user', $user);
 		$this->set('filterProject', $filterProject);
+		$this->set('filterSettingsProject', $filterProject);
 		$this->set('isLoggedIn', $isLoggedIn);
 
 		if (!$isLoggedIn) {
@@ -66,11 +67,18 @@ class EmbedView extends View
 				'project_id' => $projectTable->id
 			));
 
+			$userSettings = Lib::table('user_settings');
+
+			if (!$userSettings->load(array('user_id' => $user->id, 'project_id' => $projectTable->id))) {
+				$userSettings->load(array('user_id' => $user->id, 'project_id' => 0));
+			}
+
 			$this->set('filterState', $filterState);
 			$this->set('filterAssignee', $filterAssignee);
 			$this->set('filterSort', $filterSort);
 			$this->set('reports', $reports);
 			$this->set('assignees', $assignees);
+			$this->set('userSettings', $userSettings->getData());
 		}
 	}
 }

@@ -92,7 +92,7 @@
 					<p class="form-subtext subtext-indent">Filter menu hover, dropdown hover, dropdown showing, checkbox hover</p>
 				</div>
 				<div class="w-25">
-					<input type="text" class="form-input" name="color50" placeholder="#color50" value="<?php echo $userSettings['color50']; ?>" />
+					<input type="text" maxlength="6" class="form-input" name="color50" placeholder="#color50" value="<?php echo $userSettings['color50']; ?>" />
 				</div>
 			</div>
 
@@ -105,7 +105,7 @@
 					<p class="form-subtext subtext-indent">Filter menu border, dropdown border</p>
 				</div>
 				<div class="w-25">
-					<input type="text" class="form-input" name="color100" placeholder="#color100" value="<?php echo $userSettings['color100']; ?>" />
+					<input type="text" maxlength="6" class="form-input" name="color100" placeholder="#color100" value="<?php echo $userSettings['color100']; ?>" />
 				</div>
 			</div>
 
@@ -118,7 +118,7 @@
 					<p class="form-subtext subtext-indent">Item elements border</p>
 				</div>
 				<div class="w-25">
-					<input type="text" class="form-input" name="color200" placeholder="#color200" value="<?php echo $userSettings['color200']; ?>" />
+					<input type="text" maxlength="6" class="form-input" name="color200" placeholder="#color200" value="<?php echo $userSettings['color200']; ?>" />
 				</div>
 			</div>
 
@@ -129,7 +129,7 @@
 					<p class="form-subtext subtext-indent">Report form hover border</p>
 				</div>
 				<div class="w-25">
-					<input type="text" class="form-input" name="color300" placeholder="#color300" value="<?php echo $userSettings['color300']; ?>" />
+					<input type="text" maxlength="6" class="form-input" name="color300" placeholder="#color300" value="<?php echo $userSettings['color300']; ?>" />
 				</div>
 			</div>
 
@@ -140,7 +140,7 @@
 					<p class="form-subtext subtext-indent">Subtext, info text, subinfo text</p>
 				</div>
 				<div class="w-25">
-					<input type="text" class="form-input" name="color400" placeholder="#color400" value="<?php echo $userSettings['color400']; ?>" />
+					<input type="text" maxlength="6" class="form-input" name="color400" placeholder="#color400" value="<?php echo $userSettings['color400']; ?>" />
 				</div>
 			</div>
 
@@ -153,7 +153,7 @@
 					<p class="form-subtext subtext-indent">User avatar border, focused form input border, selected tab border</p>
 				</div>
 				<div class="w-25">
-					<input type="text" class="form-input" name="color500" placeholder="#color500" value="<?php echo $userSettings['color500']; ?>" />
+					<input type="text" maxlength="6" class="form-input" name="color500" placeholder="#color500" value="<?php echo $userSettings['color500']; ?>" />
 				</div>
 			</div>
 
@@ -164,7 +164,7 @@
 					<p class="form-subtext subtext-indent">Non-selected tab hover border</p>
 				</div>
 				<div class="w-25">
-					<input type="text" class="form-input" name="color600" placeholder="#color600" value="<?php echo $userSettings['color600']; ?>" />
+					<input type="text" maxlength="6" class="form-input" name="color600" placeholder="#color600" value="<?php echo $userSettings['color600']; ?>" />
 				</div>
 			</div>
 
@@ -177,7 +177,7 @@
 					<p class="form-subtext subtext-indent">Button background</p>
 				</div>
 				<div class="w-25">
-					<input type="text" class="form-input" name="color700" placeholder="#color700" value="<?php echo $userSettings['color700']; ?>" />
+					<input type="text" maxlength="6" class="form-input" name="color700" placeholder="#color700" value="<?php echo $userSettings['color700']; ?>" />
 				</div>
 			</div>
 
@@ -187,7 +187,7 @@
 					<p class="form-subtext">Button background color</p>
 				</div>
 				<div class="w-25">
-					<input type="text" class="form-input" name="color800" placeholder="#color800" value="<?php echo $userSettings['color800']; ?>" />
+					<input type="text" maxlength="6" class="form-input" name="color800" placeholder="#color800" value="<?php echo $userSettings['color800']; ?>" />
 				</div>
 			</div>
 
@@ -198,7 +198,7 @@
 					<p class="form-subtext subtext-indent">Main content text, emphasized text</p>
 				</div>
 				<div class="w-25">
-					<input type="text" class="form-input" name="color900" placeholder="#color900" value="<?php echo $userSettings['color900']; ?>" />
+					<input type="text" maxlength="6" class="form-input" name="color900" placeholder="#color900" value="<?php echo $userSettings['color900']; ?>" />
 				</div>
 			</div>
 		</div>
