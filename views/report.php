@@ -23,7 +23,7 @@ class ReportView extends View
 		$this->set('user', $user);
 		$this->set('isLoggedIn', $isLoggedIn);
 
-		$this->js[] = $isLoggedIn ? 'report-list' : 'login';
+		$this->js[] = $isLoggedIn ? 'inbox' : 'login';
 
 		if ($isLoggedIn) {
 			array_shift($this->js);
