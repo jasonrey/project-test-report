@@ -64,7 +64,7 @@ $(function() {
 		var item = $(this),
 			field = item.parents('.form-field'),
 			name = field.attr('data-name'),
-			value = item.attr('data-value').toLowerCase(),
+			value = item.attr('data-value').toLowerCase().replace(' ', ''),
 			project = document.forms['settings-form'].project.value;
 
 		$$('.custom-theme-settings').toggleClass('active', value === 'custom');
@@ -76,6 +76,49 @@ $(function() {
 				value: value
 			})
 		});
+
+		var isDevelopment = $$('body').attr('data-development') == 1;
+
+		var link = $('#theme');
+
+		link.remove();
+
+		if (isDevelopment) {
+			$('[id^="less:"]').remove();
+		}
+
+		if (value === 'custom') {
+			return;
+		}
+
+		if (value === 'cyan') {
+			less.registerStylesheets().then(function() {
+				less.refresh();
+			});
+
+			return;
+		}
+
+		link = $('<link id="theme" />');
+
+		link.one('load', function() {
+
+			if (isDevelopment) {
+				link.attr('rel', 'stylesheet/less');
+			}
+
+			if (isDevelopment) {
+				less.registerStylesheets().then(function() {
+					less.refresh();
+				});
+			}
+		});
+
+		link.attr('rel', 'stylesheet');
+		link.attr('type', 'text/css');
+		link.attr('href', 'assets/css/theme-' + value + '.' + (isDevelopment ? 'less' : 'css'));
+
+		$$('head').append(link);
 	});
 
 	var customThemeSettingsTimeout = {};
