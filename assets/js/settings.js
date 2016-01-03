@@ -64,7 +64,7 @@ $(function() {
 		var item = $(this),
 			field = item.parents('.form-field'),
 			name = field.attr('data-name'),
-			value = item.attr('data-value').toLowerCase().replace(' ', ''),
+			value = item.attr('data-value').toLowerCase(),
 			project = document.forms['settings-form'].project.value;
 
 		$$('.custom-theme-settings').toggleClass('active', value === 'custom');
@@ -116,7 +116,7 @@ $(function() {
 
 		link.attr('rel', 'stylesheet');
 		link.attr('type', 'text/css');
-		link.attr('href', 'assets/css/theme-' + value + '.' + (isDevelopment ? 'less' : 'css'));
+		link.attr('href', 'assets/css/theme-' + value.replace(' ', '') + '.' + (isDevelopment ? 'less' : 'css'));
 
 		$$('head').append(link);
 	});

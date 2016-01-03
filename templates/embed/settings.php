@@ -58,7 +58,7 @@
 						<?php if ($userSettings['color'] === 'custom') { ?>
 						<i class="icon-feather-cog"></i> Custom
 						<?php } else { ?>
-						<?php echo ucfirst($userSettings['color']); ?>
+						<?php echo ucwords($userSettings['color']); ?>
 						<?php } ?>
 					</div>
 
