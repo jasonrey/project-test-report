@@ -80,6 +80,12 @@ $(function() {
 			})
 		});
 
+		reloadTheme(value);
+	});
+
+	var reloadTheme = function(value) {
+		var project = document.forms['settings-form'].project.value;
+
 		if ($$('.settings-project-bar').length && project !== '-1' && project !== 'all') {
 			return;
 		}
@@ -125,7 +131,7 @@ $(function() {
 		}
 
 		$$('head').append(link);
-	});
+	};
 
 	var customThemeSettingsTimeout = {};
 
@@ -146,6 +152,8 @@ $(function() {
 					name: name,
 					value: value
 				})
+			}).done(function() {
+				reloadTheme('custom');
 			});
 		}, 500);
 	});
