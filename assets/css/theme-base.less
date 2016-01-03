@@ -1,0 +1,405 @@
+@import 'colors';
+
+@color50: "@{color}50";
+@color100: "@{color}100";
+@color200: "@{color}200";
+@color300: "@{color}300";
+@color400: "@{color}400";
+@color500: "@{color}500";
+@color600: "@{color}600";
+@color700: "@{color}700";
+@color800: "@{color}800";
+@color900: "@{color}900";
+
+body {
+	color: @@color500;
+}
+
+.user-avatar {
+	border-color: @@color500;
+}
+
+#report-tab-navs {
+	.report-tab-nav {
+		&::before {
+			background-color: @@color600;
+		}
+
+		&:hover {
+			color: @@color500;
+		}
+	}
+
+	[data-tab="report"] & [data-name="report"],
+	[data-tab="inbox"] & [data-name="inbox"] {
+		color: @@color500;
+
+		&::before {
+			background-color: @@color300;
+		}
+	}
+}
+
+#report-item-filter {
+	#filter-form {
+		.filter-item {
+			.filter-item-selected {
+				&:hover {
+					background-color: @@color50;
+				}
+			}
+
+			&::before {
+				background-color: @@color100;
+			}
+
+			.filter-item-icon {
+				.filter-item-assignee-image {
+					border-color: @@color500;
+				}
+			}
+
+			.filter-item-options {
+				border-color: @@color100;
+			}
+
+			&:hover {
+				background-color: @@color50;
+
+				.filter-item-icon {
+					.filter-item-assignee-image-all {
+						.filter-item-assignee-image {
+							background-color: @@color50;
+						}
+					}
+				}
+			}
+
+			&.active {
+				.filter-item-selected {
+					background-color: @@color50;
+				}
+
+				.filter-item-icon {
+					.filter-item-assignee-image-all {
+						.filter-item-assignee-image {
+							background-color: @@color50;
+						}
+					}
+				}
+
+				.filter-item-options {
+					.filter-item-option {
+						&:hover {
+							background-color: @@color50;
+
+							.filter-item-assignee-image-all {
+								.filter-item-assignee-image {
+									background-color: @@color50;
+								}
+							}
+						}
+
+						&.active {
+							background-color: @@color500;
+
+							.filter-item-assignee-image {
+								background-color: @@color500;
+							}
+
+							.filter-item-assignee-image-all {
+								.filter-item-assignee-image {
+									background-color: @@color500;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.filter-project-bar {
+			.filter-project {
+				.filter-project-list {
+					border-bottom-color: @@color100;
+				}
+
+				.filter-project-items {
+					border-left-color: @@color100;
+					border-right-color: @@color100;
+					border-bottom-color: @@color100;
+
+					li {
+						&:hover {
+							background-color: @@color50;
+						}
+
+						&.active {
+							background-color: @@color500;
+						}
+					}
+				}
+
+				&:hover {
+					background-color: @@color50;
+				}
+
+				&.active {
+					background-color: @@color50;
+				}
+			}
+		}
+	}
+}
+
+.item {
+	.item-state {
+		.item-state-option {
+			border-top-color: @@color500;
+			border-bottom-color: @@color500;
+		}
+	}
+
+	.item-content {
+		color: @@color900;
+	}
+
+	.item-screenshots {
+		border-top-color: @@color100;
+		border-bottom-color: @@color100;
+		border-left-color: @@color100;
+	}
+
+	.item-screenshots-title {
+		color: @@color500;
+		border-bottom-color: @@color100;
+	}
+
+	.item-screenshot {
+		&:hover {
+			background-color: @@color100;
+			border-color: @@color300;
+		}
+	}
+
+	.item-available-assignees {
+		&::before {
+			border-top-color: @@color200;
+		}
+
+		.item-available-assignees-content {
+			border-top-color: @@color200;
+			border-bottom-color: @@color200;
+		}
+
+		.item-available-assignee {
+			&:hover {
+				background-color: @@color100;
+			}
+
+			&.active {
+				background-color: @@color500;
+			}
+		}
+	}
+
+	.item-assignees {
+		.item-assignee {
+			.item-assignee-image {
+				i {
+					background-color: fade(@@color500, 80%);
+				}
+			}
+		}
+
+		.item-assignee-add {
+			.item-assignee-add-button {
+				&::before {
+					background-color: @@color200;
+				}
+			}
+
+			&:hover {
+				.item-assignee-add-button {
+					border-color: @@color200;
+				}
+			}
+
+			.show-assignees& {
+				.item-assignee-add-button {
+					border-color: @@color200;
+				}
+			}
+		}
+	}
+
+	.comment-item-list {
+		border-top-color: @grey300;
+		border-bottom-color: @grey300;
+	}
+
+	.comment-item {
+		.comment-user-image {
+			border-color: @green500;
+
+			.user-avatar-initial {
+				color: @green500;
+			}
+		}
+
+		.comment-user-text {
+			border-color: @green100;
+
+			&::before {
+				border-right-color: @green100;
+			}
+
+			p {
+				background-color: @green50;
+				color: @green700;
+			}
+		}
+
+		&.comment-owner {
+			.comment-user-image {
+				border-color: @@color500;
+
+				.user-avatar-initial {
+					color: @@color500;
+				}
+			}
+
+			.comment-user-text {
+				border-color: @@color100;
+
+				&::after {
+					border-left-color: @@color100;
+				}
+
+				p {
+					background-color: @@color50;
+					color: @@color700;
+				}
+			}
+		}
+	}
+
+	.comment-reply-input {
+		color: @@color700;
+	}
+
+	.comment-reply-button {
+		color: @@color500;
+	}
+}
+
+#screenshot-preview {
+	#screenshot-preview-close-button {
+		color: @@color500;
+
+		&:hover {
+			color: @@color700;
+		}
+	}
+
+	img {
+		border-color: @@color500;
+	}
+}
+
+
+#report-close-button {
+	&:hover {
+		color: @@color100;
+	}
+}
+
+.form-group {
+	label {
+		color: @@color700;
+	}
+
+	input[type="text"] {
+		color: @@color500;
+		border-bottom-color: @@color100;
+
+		&:focus {
+			color: @@color700;
+			border-bottom-color: @@color500;
+		}
+	}
+
+	textarea {
+		background-color: @@color50;
+
+		&:focus {
+			color: @@color900;
+			border-bottom-color: @@color500;
+		}
+	}
+}
+
+.form-submit {
+	background-color: @@color700;
+	color: @@color50;
+
+	&:hover {
+		background-color: @@color800;
+	}
+}
+
+.report-screenshots {
+	.report-screenshot {
+		border-color: @@color50;
+
+		&:hover {
+			border-color: @@color300;
+		}
+
+		.report-screenshot-delete {
+			background-color: @@color50;
+			color: @@color300;
+
+			&:hover {
+				background-color: @@color300;
+			}
+		}
+	}
+
+	#report-screenshot-add {
+		border-color: @@color200;
+		color: @@color200;
+
+		&:hover {
+			border-color: @@color500;
+			color: @@color500;
+			background-color: @@color50;
+		}
+	}
+}
+
+#drop-file-mask {
+	border-color: @@color500;
+}
+
+#report-submitting {
+	background-color: fade(@@color900, 90%);
+}
+
+.report-item-back {
+	color: @@color500;
+
+	&:hover {
+		background-color: @@color500;
+	}
+}
+
+.report-project {
+	border-bottom-color: @@color100;
+
+	.project-name {
+		&::before {
+			background-color: @@color100;
+		}
+	}
+}
