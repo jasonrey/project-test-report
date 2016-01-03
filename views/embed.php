@@ -5,7 +5,7 @@ class EmbedView extends View
 {
 	public $googlefont = 'Roboto:300,400,500,600';
 	public $css = 'embed';
-	public $js = array('https://apis.google.com/js/platform.js', 'library', 'embed');
+	public $js = array('https://apis.google.com/js/platform.js', 'library', 'common', 'embed');
 	public $meta = array();
 
 	public function main()

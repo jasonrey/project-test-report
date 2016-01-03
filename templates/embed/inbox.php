@@ -11,17 +11,15 @@
 		<?php if (!empty($showProjectsFilter)) { ?>
 		<div class="filter-project-bar">
 			<div class="filter-title">Project</div>
-			<div class="filter-project">
-				<div class="filter-project-list icon-down-dir">
-					<div class="filter-project-selected"><?php echo $filterProject === 'all' ? 'All' : $filterProject; ?></div>
+			<div class="filter-project form-select icon-down-dir" data-value="<?php echo $filterProject === 'all' ? 'All' : $filterProject; ?>">
+				<div class="filter-project-selected form-select-selected"><?php echo $filterProject === 'all' ? 'All' : $filterProject; ?></div>
 
-					<ul class="filter-project-items">
-						<li class="<?php if ($filterProject === 'all') { ?>active<?php } ?>">All</li>
-						<?php foreach ($projects as $project) { ?>
-						<li class="<?php if ($project->name === $filterProject) { ?>active<?php } ?>"><?php echo $project->name; ?></li>
-						<?php } ?>
-					</ul>
-				</div>
+				<ul class="filter-project-list form-select-list">
+					<li class="<?php if ($filterProject === 'all') { ?>active<?php } ?>">All</li>
+					<?php foreach ($projects as $project) { ?>
+					<li class="<?php if ($project->name === $filterProject) { ?>active<?php } ?>"><?php echo $project->name; ?></li>
+					<?php } ?>
+				</ul>
 			</div>
 		</div>
 		<?php } ?>

@@ -5,7 +5,7 @@ class IndexView extends View
 {
 	public $googlefont = 'Roboto:300,400,500,600';
 	public $css = 'index';
-	public $js = array('https://apis.google.com/js/platform.js', 'library', 'index');
+	public $js = array('https://apis.google.com/js/platform.js', 'library', 'common', 'index');
 	public $meta = array();
 
 	public function main()

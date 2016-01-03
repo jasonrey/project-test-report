@@ -5,7 +5,7 @@ class ReportView extends View
 {
 	public $googlefont = 'Roboto:300,400,500,600';
 	public $css = 'report';
-	public $js = array('https://apis.google.com/js/platform.js', 'library', 'report');
+	public $js = array('https://apis.google.com/js/platform.js', 'library', 'common', 'report');
 	public $meta = array();
 
 	public function main()
