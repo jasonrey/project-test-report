@@ -14,7 +14,7 @@ $(function() {
 		}).done(function(response) {
 			if (response.state) {
 				var themeColor = $$('.theme-settings').find('.form-select'),
-					colorOption = themeColor.find('.theme-' + response.data.color),
+					colorOption = themeColor.find('.theme-' + response.data.color.replace(' ', '')),
 					colorOptionSiblings = colorOption.siblings();
 
 				colorOption.addClass('active');
