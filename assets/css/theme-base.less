@@ -219,7 +219,7 @@ body {
 		.item-assignee {
 			.item-assignee-image {
 				i {
-					background-color: fade(@@color500, 80%);
+					background-color: @@color500;
 				}
 			}
 		}
@@ -414,7 +414,9 @@ body {
 }
 
 #report-submitting {
-	background-color: fade(@@color900, 90%);
+	&::before {
+		background-color: @@color900, 90%;
+	}
 }
 
 .report-item-back {
