@@ -25,6 +25,8 @@ $(function() {
 
 				themeColor.find('.form-select-selected').html(colorOption.html());
 
+				$$('.custom-theme-settings').toggleClass('active', response.data.color === 'custom');
+
 				$.each(['assign', 'completed', 'rejected', 'comment-owner', 'comment-participant'], function(i, name) {
 					$$('#settings-form').find('[data-name="' + name + '"] .form-checkbox').toggleClass('active', response.data[name]);
 				});
@@ -92,10 +94,6 @@ $(function() {
 			$('[id^="less:"]').remove();
 		}
 
-		if (value === 'custom') {
-			return;
-		}
-
 		if (value === 'cyan') {
 			less.registerStylesheets().then(function() {
 				less.refresh();
@@ -104,24 +102,27 @@ $(function() {
 			return;
 		}
 
-		link = $('<link id="theme" />');
+		link = $('<link id="theme" rel="stylesheet" type="text/css" />');
 
 		link.one('load', function() {
 
 			if (isDevelopment) {
-				link.attr('rel', 'stylesheet/less');
-			}
 
-			if (isDevelopment) {
+				if (value !== 'custom') {
+					link.attr('rel', 'stylesheet/less');
+				}
+
 				less.registerStylesheets().then(function() {
 					less.refresh();
 				});
 			}
 		});
 
-		link.attr('rel', 'stylesheet');
-		link.attr('type', 'text/css');
 		link.attr('href', 'assets/css/theme-' + value.replace(' ', '') + '.' + (isDevelopment ? 'less' : 'css'));
+
+		if (value === 'custom') {
+			link.attr('href', 'css/theme-custom/' + project);
+		}
 
 		$$('head').append(link);
 	});

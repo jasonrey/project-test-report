@@ -50,8 +50,12 @@ class IndexView extends View
 				$projectTable->load(array('name' => $filterProject));
 			}
 
-			if ($filterSettingsProject !== 'all') {
+			if ($filterSettingsProject !== 'all' && $filterSettingsProject !== '-1') {
 				$settingsProjectTable->load(array('name' => $filterSettingsProject));
+			}
+
+			if ($filterSettingsProject === '-1') {
+				$settingsProjectTable->id = '-1';
 			}
 
 			$projectModel = Lib::model('project');
@@ -89,6 +93,10 @@ class IndexView extends View
 
 			if ($interfaceSettings['color'] !== 'cyan' && $interfaceSettings['color'] !== 'custom') {
 				$this->css[] = 'theme-' . str_replace(' ', '', $interfaceSettings['color']);
+			}
+
+			if ($interfaceSettings['color'] === 'custom') {
+				$this->css[] = Config::getHtmlBase() . 'css/theme-custom/-1';
 			}
 
 			$this->set('projects', $projects);

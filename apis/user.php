@@ -157,17 +157,15 @@ class UserApi extends Api
 		} else {
 			$settings = Lib::model('user_settings')->getSettings(array('user_id' => $user->id));
 
-			if (empty($settings)) {
-				$userSettings = Lib::table('user_settings');
-				$userSettings->load(array('user_id' => $user->id, 'project_id' => 0));
-				$data = $userSettings->getData();
+			$userSettings = Lib::table('user_settings');
+			$userSettings->load(array('user_id' => $user->id, 'project_id' => 0));
+			$data = $userSettings->getData();
 
-				$data[$setting->name] = $setting->value;
+			$data[$setting->name] = $setting->value;
 
-				$userSettings->data = $data;
+			$userSettings->data = $data;
 
-				$userSettings->store();
-			}
+			$userSettings->store();
 
 			foreach ($settings as $row) {
 				$data = $row->getData();

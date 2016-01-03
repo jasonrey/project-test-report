@@ -3,9 +3,9 @@
 
 class ScriptRouter extends Router
 {
-	public $allowedRoute = array('reporting');
+	public $allowedRoute = array('js', 'css');
 
-	public $segments = array('script', 'project');
+	public $segments = array('type', 'script', 'name');
 
 	public function decode($segments)
 	{
