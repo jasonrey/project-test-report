@@ -36,6 +36,148 @@ body {
 	}
 }
 
+.form-group {
+	margin: 12px 0;
+
+	&:first-child {
+		margin: 0;
+	}
+
+	label {
+		display: block;
+		color: @cyan500;
+		text-transform: uppercase;
+		font-size: 14px;
+	}
+
+	input[type="text"] {
+		display: block;
+		width: 100%;
+		outline: 0;
+		border: 0;
+		background-color: transparent;
+		height: 48px;
+		line-height: 48px;
+		font-size: 16px;
+		color: @cyan500;
+		border-bottom: 2px solid @cyan100;
+		padding: 0 4px;
+		font-family: 'Roboto', sans-serif;
+
+		&:focus {
+			color: @cyan700;
+			border-bottom-color: @cyan500;
+		}
+	}
+
+	textarea {
+		display: block;
+		width: 100%;
+		border: 0;
+		background-color: @cyan50;
+		outline: 0;
+		margin: 8px 0;
+		padding: 16px;
+		font-size: 16px;
+		color: @cyan700;
+		border-bottom: 2px solid transparent;
+		font-family: 'Roboto', sans-serif;
+		transition: border-color .2s, box-shadow .2s;
+		box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+		border-radius: 2px;
+
+		&:focus {
+			color: @cyan900;
+			border-bottom-color: @cyan500;
+			box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+		}
+	}
+}
+
+.form-submit {
+	margin: 24px 0 0 0;
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 36px;
+	line-height: 36px;
+	background-color: @cyan700;
+	color: @cyan50;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	font-weight: 500;
+	border: 0;
+	border-radius: 2px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+	transition: background-color .2s;
+
+	&:hover {
+		background-color: @cyan800;
+	}
+}
+
+.form-select {
+	text-align: left;
+	height: 48px;
+	line-height: 48px;
+	font-size: 14px;
+	position: relative;
+	cursor: pointer;
+	border-bottom: 1px solid @cyan100;
+
+	&::before {
+		position: absolute;
+		right: 0;
+		top: 0;
+		margin: 0;
+		width: 32px;
+		font-size: 16px;
+	}
+
+	.form-select-selected {
+		padding: 0 8px;
+	}
+
+	.form-select-list {
+		position: absolute;
+		top: 48px;
+		left: 0;
+		width: 100%;
+		border-left: 1px solid @cyan100;
+		border-right: 1px solid @cyan100;
+		border-bottom: 1px solid @cyan100;
+		display: none;
+
+		li {
+			height: 36px;
+			line-height: 36px;
+			background-color: white;
+			padding: 0 8px;
+
+			&:hover {
+				background-color: @cyan50;
+			}
+
+			&.active {
+				background-color: @cyan500;
+				color: white;
+			}
+		}
+	}
+
+	&:hover {
+		background-color: @cyan50;
+	}
+
+	&.active {
+		background-color: @cyan50;
+
+		.form-select-list {
+			display: block;
+		}
+	}
+}
+
 .alert {
 	margin: 8px 0;
 	padding: 16px;

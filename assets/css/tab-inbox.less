@@ -250,70 +250,7 @@
 
 			.filter-project {
 				float: left;
-				text-align: left;
 				width: 75%;
-				height: 48px;
-				line-height: 48px;
-				font-size: 14px;
-
-				.filter-project-list {
-					border-bottom: 1px solid @cyan100;
-					position: relative;
-					cursor: pointer;
-					height: 100%;
-
-					&::before {
-						position: absolute;
-						right: 0;
-						top: 0;
-						margin: 0;
-						width: 32px;
-						font-size: 16px;
-					}
-				}
-
-				.filter-project-selected {
-					padding: 0 8px;
-				}
-
-				.filter-project-items {
-					position: absolute;
-					top: 48px;
-					left: 0;
-					width: 100%;
-					border-left: 1px solid @cyan100;
-					border-right: 1px solid @cyan100;
-					border-bottom: 1px solid @cyan100;
-					display: none;
-
-					li {
-						height: 36px;
-						line-height: 36px;
-						background-color: white;
-						padding: 0 8px;
-
-						&:hover {
-							background-color: @cyan50;
-						}
-
-						&.active {
-							background-color: @cyan500;
-							color: white;
-						}
-					}
-				}
-
-				&:hover {
-					background-color: @cyan50;
-				}
-
-				&.active {
-					background-color: @cyan50;
-
-					.filter-project-items {
-						display: block;
-					}
-				}
 			}
 		}
 	}

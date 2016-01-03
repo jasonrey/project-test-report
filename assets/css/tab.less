@@ -18,7 +18,7 @@
 		border-bottom: 1px solid @bluegrey200;
 		transition: color .2s, background-color .2s;
 
-		&:first-child, &:last-child {
+		&:last-child {
 			border-right: 0;
 		}
 
@@ -51,7 +51,8 @@
 	}
 
 	[data-tab="report"] & [data-name="report"],
-	[data-tab="inbox"] & [data-name="inbox"] {
+	[data-tab="inbox"] & [data-name="inbox"],
+	[data-tab="settings"] & [data-name="settings"] {
 		background-color: white;
 		color: @cyan500;
 		box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.2);
@@ -71,7 +72,8 @@
 	}
 
 	[data-tab="report"] & [data-name="report"],
-	[data-tab="inbox"] & [data-name="inbox"] {
+	[data-tab="inbox"] & [data-name="inbox"],
+	[data-tab="settings"] & [data-name="settings"] {
 		display: block;
 	}
 }
