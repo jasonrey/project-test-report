@@ -31,7 +31,8 @@ body {
 	}
 
 	[data-tab="report"] & [data-name="report"],
-	[data-tab="inbox"] & [data-name="inbox"] {
+	[data-tab="inbox"] & [data-name="inbox"],
+	[data-tab="settings"] & [data-name="settings"] {
 		color: @@color500;
 
 		&::before {
@@ -117,31 +118,49 @@ body {
 				}
 			}
 		}
+	}
+}
 
-		.form-select {
-			border-bottom-color: @@color100;
+.form-select {
+	border-bottom-color: @@color100;
 
-			.form-select-list {
-				border-color: @@color100;
+	.form-select-list {
+		border-color: @@color100;
 
-				li {
-					&:hover {
-						background-color: @@color50;
-					}
-
-					&.active {
-						background-color: @@color500;
-					}
-				}
-			}
-
+		li {
 			&:hover {
 				background-color: @@color50;
 			}
 
 			&.active {
-				background-color: @@color50;
+				background-color: @@color500;
 			}
+		}
+	}
+
+	&:hover {
+		background-color: @@color50;
+	}
+
+	&.active {
+		background-color: @@color50;
+	}
+}
+
+.form-checkbox {
+	&::before {
+		border-color: @@color100;
+	}
+
+	&:hover {
+		&::before {
+			background-color: @@color50;
+		}
+	}
+
+	&.active {
+		&::before {
+			color: @@color500;
 		}
 	}
 }
