@@ -17,15 +17,19 @@ class UserTable extends Table
 	{
 		$projectId = 0;
 
-		if (!empty($project) && $project !== 'all' && $project !== '-1') {
-			$projectTable = Lib::table('project');
-			$projectTable->load(array('name' => $project));
+		if ($project instanceof ProjectTable) {
+			$projectId = $project->id;
+		} else {
+			if (!empty($project) && $project !== 'all' && $project !== '-1') {
+				$projectTable = Lib::table('project');
+				$projectTable->load(array('name' => $project));
 
-			$projectId = $projectTable->id;
-		}
+				$projectId = $projectTable->id;
+			}
 
-		if ($project === '-1') {
-			$projectId = '-1';
+			if ($project === '-1') {
+				$projectId = '-1';
+			}
 		}
 
 		$userSettingsTable = Lib::table('user_settings');
