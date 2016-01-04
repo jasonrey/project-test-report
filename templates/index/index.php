@@ -2,7 +2,7 @@
 !defined('SERVER_EXEC') && die('No access.');
 ?>
 <?php if ($isLoggedIn) { ?>
-<div id="report-frame" data-tab="settings">
+<div id="report-frame" data-tab="inbox">
 	<div id="report-tab-navs">
 		<a href="javascript:void(0);" class="report-tab-nav" data-name="inbox"><i class="icon-feather-archive"></i><p>Inbox</p></a>
 		<a href="javascript:void(0);" class="report-tab-nav" data-name="settings"><i class="icon-feather-cog"></i><p>Settings</p></a>
