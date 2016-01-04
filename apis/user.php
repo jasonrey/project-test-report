@@ -84,25 +84,11 @@ class UserApi extends Api
 
 		$project = Req::post('project');
 
-		$projectTable = Lib::table('project');
-
-		if ($project !== 'all' && $project !== '-1' && !$projectTable->load(array('name' => $project))) {
-			return $this->fail('No such project.');
-		}
-
 		Lib::cookie('filter-settings-project', $project);
 
-		$userSettings = Lib::table('user_settings');
+		$userSettings = $user->getSettings($project)->getData();
 
-		if ($project === '-1') {
-			$projectTable->id = '-1';
-		}
-
-		if (!$userSettings->load(array('user_id' => $user->id, 'project_id' => $project === 'all' ? 0 : $projectTable->id)) && $project !== 'all') {
-			$userSettings->load(array('user_id' => $user->id, 'project_id' => 0));
-		}
-
-		return $this->success($userSettings->getData());
+		return $this->success($userSettings);
 	}
 
 	public function saveSettings()

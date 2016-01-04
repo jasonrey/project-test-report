@@ -44,18 +44,9 @@ class IndexView extends View
 			$filterSettingsProject = $cookie->get('filter-settings-project', 'all');
 
 			$projectTable = Lib::table('project');
-			$settingsProjectTable = Lib::table('project');
 
 			if ($filterProject !== 'all') {
 				$projectTable->load(array('name' => $filterProject));
-			}
-
-			if ($filterSettingsProject !== 'all' && $filterSettingsProject !== '-1') {
-				$settingsProjectTable->load(array('name' => $filterSettingsProject));
-			}
-
-			if ($filterSettingsProject === '-1') {
-				$settingsProjectTable->id = '-1';
 			}
 
 			$projectModel = Lib::model('project');
@@ -72,24 +63,9 @@ class IndexView extends View
 				'project_id' => $projectTable->id
 			));
 
-			$userSettingsTable = Lib::table('user_settings');
+			$userSettings = $user->getSettings($filterSettingsProject)->getData();
 
-			if (!$userSettingsTable->load(array(
-				'user_id' => $user->id,
-				'project_id' => $filterSettingsProject == 'all' ? 0 : $settingsProjectTable->id
-			)) && $filterSettingsProject !== 'all') {
-				$userSettingsTable->load(array('user_id' => $user->id, 'project_id' => 0));
-			}
-
-			$userSettings = $userSettingsTable->getData();
-
-			$interfaceSettingsTable = Lib::table('user_settings');
-
-			if (!$interfaceSettingsTable->load(array('user_id' => $user->id, 'project_id' => '-1'))) {
-				$interfaceSettingsTable->load(array('user_id' => $user->id, 'project_id' => 0));
-			}
-
-			$interfaceSettings = $interfaceSettingsTable->getData();
+			$interfaceSettings = $user->getSettings('-1')->getData();
 
 			if ($interfaceSettings['color'] !== 'cyan' && $interfaceSettings['color'] !== 'custom') {
 				$this->css[] = 'theme-' . str_replace(' ', '', $interfaceSettings['color']);
