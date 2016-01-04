@@ -162,24 +162,33 @@ class ReportApi extends Api
 
 		if ($user->id != $reportTable->user_id) {
 			$projectTable = Lib::table('project');
-			$projectTable->load($reportTable->project_id);
+			$projectTable->load($report->project_id);
 
-			$slackMessage = Lib::helper('slack')->newMessage();
+			$targetUser = Lib::table('user');
+			$targetUser->load($reportTable->user_id);
 
-			$slackMessage->to($reportTable->user_id);
-			$slackMessage->message($user->nick . ' marked your report as *' . constant('STATE_NAME_' . $reportTable->state) . '*.');
-			$slackMessage->username = 'Project Report Status - ' . ($reportTable->state == 1 ? 'Completed' : ($reportTable->state == 2 ? 'Rejected' : 'Pending'));
-			$slackMessage->icon_emoji = $reportTable->state == 1 ? ':thumbsup:' : ($reportTable->state == 2 ? ':x:' : ':clock1:');
+			$targetUserSettings = $targetUser->getSettings($projectTable)->getData();
 
-			$attachment = $slackMessage->newAttachment();
+			if (($reportTable->state == STATE_COMPLETED && $targetUserSettings['completed']) ||
+				($reportTable->state == STATE_REJECTED && $targetUserSettings['rejected'])
+			) {
+				$slackMessage = Lib::helper('slack')->newMessage();
 
-			$attachment->fallback = '<' . $reportTable->getLink() . '|Report ticket ID ' . $reportTable->id . '>.';
-			$attachment->color = $reportTable->state == 1 ? 'good' : ($reportTable->state == 2 ? 'danger' : 'warning');
-			$attachment->title = $projectTable->name;
-			$attachment->title_link = $reportTable->getLink();
-			$attachment->text = $reportTable->content;
+				$slackMessage->to($reportTable->user_id);
+				$slackMessage->message($user->nick . ' marked your report as *' . constant('STATE_NAME_' . $reportTable->state) . '*.');
+				$slackMessage->username = 'Project Report Status - ' . ($reportTable->state == 1 ? 'Completed' : ($reportTable->state == 2 ? 'Rejected' : 'Pending'));
+				$slackMessage->icon_emoji = $reportTable->state == 1 ? ':thumbsup:' : ($reportTable->state == 2 ? ':x:' : ':clock1:');
 
-			$slackMessage->send();
+				$attachment = $slackMessage->newAttachment();
+
+				$attachment->fallback = '<' . $reportTable->getLink() . '|Report ticket ID ' . $reportTable->id . '>.';
+				$attachment->color = $reportTable->state == 1 ? 'good' : ($reportTable->state == 2 ? 'danger' : 'warning');
+				$attachment->title = $projectTable->name;
+				$attachment->title_link = $reportTable->getLink();
+				$attachment->text = $reportTable->content;
+
+				$slackMessage->send();
+			}
 		}
 
 		return $this->success();
@@ -218,22 +227,28 @@ class ReportApi extends Api
 			$projectTable = Lib::table('project');
 			$projectTable->load($reportTable->project_id);
 
-			$slackMessage = Lib::helper('slack')->newMessage();
+			$targetUser = Lib::table('user');
+			$targetUser->load($post['assigneeid']);
+			$targetUserSettings = $targetUser->getSettings($projectTable)->getData();
 
-			$slackMessage->to($post['assigneeid']);
-			$slackMessage->message($user->nick . ' assigned you a report ticket.');
-			$slackMessage->username = 'Project Report Assignment';
-			$slackMessage->icon_emoji = ':gift:';
+			if ($targetUserSettings['assign']) {
+				$slackMessage = Lib::helper('slack')->newMessage();
 
-			$attachment = $slackMessage->newAttachment();
+				$slackMessage->to($post['assigneeid']);
+				$slackMessage->message($user->nick . ' assigned you a report ticket.');
+				$slackMessage->username = 'Project Report Assignment';
+				$slackMessage->icon_emoji = ':gift:';
 
-			$attachment->fallback = '<' . $reportTable->getLink() . '|Report ticket ID ' . $reportTable->id . '>.';
-			$attachment->color = '#00bcd4';
-			$attachment->title = $projectTable->name;
-			$attachment->title_link = $reportTable->getLink();
-			$attachment->text = $reportTable->content;
+				$attachment = $slackMessage->newAttachment();
 
-			$slackMessage->send();
+				$attachment->fallback = '<' . $reportTable->getLink() . '|Report ticket ID ' . $reportTable->id . '>.';
+				$attachment->color = '#00bcd4';
+				$attachment->title = $projectTable->name;
+				$attachment->title_link = $reportTable->getLink();
+				$attachment->text = $reportTable->content;
+
+				$slackMessage->send();
+			}
 		}
 
 		return $this->success();

@@ -73,8 +73,23 @@ class CommentApi extends Api
 		$projectTable = Lib::table('project');
 		$projectTable->load($reportTable->project_id);
 
-		if (!in_array($user->id, $recipients)) {
-			$recipients[] = $user->id;
+		if (!in_array($reportTable->user_id, $recipients)) {
+			$recipients[] = $reportTable->user_id;
+		}
+
+		$userSettingsModel = Lib::model('user_settings');
+		$userProjectsSettings = $userSettingsModel->getSettings(array('project_id' => $projectTable->id, 'user_id' => $recipients));
+		$userProjectsSettings = $userSettingsModel->assignByKey($userProjectsSettings, 'user_id');
+
+		$userAllSettings = $userSettingsModel->getSettings(array('project_id' => 0, 'user_id' => array_diff($recipients, array_keys($userProjectsSettings))));
+		$userAllSettings = $userSettingsModel->assignByKey($userAllSettings, 'user_id');
+
+		$defaultSettings = unserialize(USER_SETTINGS);
+
+		$ownerSettings = isset($userProjectsSettings[$reportTable->user_id]) ? $userProjectSettings : (isset($userAllSettings[$reportTable->user_id]) ? $userAllSettings : $defaultSettings);
+
+		if (!$ownerSettings['comment-owner']) {
+			$recipients = array_diff($recipients, array($reportTable->user_id));
 		}
 
 		foreach ($recipients as $userid) {
@@ -82,23 +97,29 @@ class CommentApi extends Api
 				continue;
 			}
 
-			$slackMessage = Lib::helper('slack')->newMessage();
-			$slackMessage->to($userid);
-			$slackMessage->message($user->nick . ' posted a new comment.');
-			$slackMessage->username = 'Project Report Comment';
-			$slackMessage->icon_emoji = ':speech_balloon:';
+			$settings = isset($userProjectsSettings[$userid]) ? $userProjectSettings : (isset($userAllSettings[$userid]) ? $userAllSettings : $defaultSettings);
 
-			$attachment = $slackMessage->newAttachment();
+			// If is owner, the fact that we reach here means the owner wants notification
+			// Or if not owner, then check for settings
+			if ($reportTable->user_id == $userid || $settings['comment-participant']) {
+				$slackMessage = Lib::helper('slack')->newMessage();
+				$slackMessage->to($userid);
+				$slackMessage->message($user->nick . ' posted a new comment.');
+				$slackMessage->username = 'Project Report Comment';
+				$slackMessage->icon_emoji = ':speech_balloon:';
 
-			$attachment->fallback = 'New comment in <' . $reportTable->getLink() . '|Report ticket ID ' . $reportTable->id . '>.';
-			$attachment->color = '#FFEB3B';
-			$attachment->title = $projectTable->name;
-			$attachment->title_link = $reportTable->getLink();
-			$attachment->text = $reportTable->content;
+				$attachment = $slackMessage->newAttachment();
 
-			$attachment->newField('Comment', $post['content']);
+				$attachment->fallback = 'New comment in <' . $reportTable->getLink() . '|Report ticket ID ' . $reportTable->id . '>.';
+				$attachment->color = '#FFEB3B';
+				$attachment->title = $projectTable->name;
+				$attachment->title_link = $reportTable->getLink();
+				$attachment->text = $reportTable->content;
 
-			$slackMessage->send();
+				$attachment->newField('Comment', $post['content']);
+
+				$slackMessage->send();
+			}
 		}
 
 		return $this->success($commentTable->id);
