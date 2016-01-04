@@ -23,7 +23,11 @@ class User_settingsModel extends Model
 		}
 
 		if (isset($options['user_id']) && $options['user_id'] !== 'all') {
-			$conditions[] = $this->db->qn('user_id') . ' = ' . $this->db->q($options['user_id']);
+			if (is_array($options['user_id'])) {
+				$conditions[] = $this->db->qn('user_id') . ' IN (' . implode(',', $this->db->q($this->db->q($options['user_id']))) . ')';
+			} else {
+				$conditions[] = $this->db->qn('user_id') . ' = ' . $this->db->q($options['user_id']);
+			}
 		}
 
 		$query .= $this->buildWhere($conditions);
