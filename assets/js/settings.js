@@ -101,9 +101,11 @@ $(function() {
 		}
 
 		if (value === 'cyan') {
-			less.registerStylesheets().then(function() {
-				less.refresh();
-			});
+			if (isDevelopment) {
+				less.registerStylesheets().then(function() {
+					less.refresh();
+				});
+			}
 
 			return;
 		}
