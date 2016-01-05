@@ -20,7 +20,8 @@ class EmbedView extends View
 		$projectTable = Lib::table('project');
 
 		if (!$projectTable->load(array('name' => $filterProject))) {
-			$this->template = 'empty-project';
+			$this->set('name', $filterProject);
+			$this->template = 'new-project';
 			return;
 		}
 
