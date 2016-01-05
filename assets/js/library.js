@@ -1,6 +1,6 @@
-'use strict';
-
 (function() {
+	'use strict';
+
 	// Cached selector
 	window.$$cached = {};
 	window.$$ = function(selector, refresh) {
@@ -16,7 +16,7 @@
 	};
 
 	window.$template = function(id, data) {
-		var item = $$('#' + id).html().replace(RegExp('\\{\\{(.+?)\\}\\}', 'g'), function(match, p1) {
+		var item = $$('#' + id).html().replace(new RegExp('\\{\\{(.+?)\\}\\}', 'g'), function(match, p1) {
 			return data[p1] !== undefined ? data[p1] : '';
 		});
 

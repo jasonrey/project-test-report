@@ -1,6 +1,6 @@
-'use strict';
-
 $(function() {
+	'use strict';
+
 	$$('#settings-form').on('change', '.settings-project', function(event) {
 		var item = $(this),
 			value = item.attr('data-value').toLowerCase();
@@ -9,7 +9,6 @@ $(function() {
 
 		$$('#settings-form').toggleClass('show-warning', value === 'all');
 		$$('#settings-form').toggleClass('hide-notification-settings', value === '-1');
-
 		$api('user/loadSettings', {
 			project: value
 		}).done(function(response) {

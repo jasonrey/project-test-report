@@ -1,6 +1,6 @@
-'use strict';
-
 $(function() {
+	'use strict';
+
 	$$('body').on('click', function(event) {
 		var target = $(event.target);
 

@@ -1,6 +1,6 @@
-'use strict';
-
 $(function() {
+	'use strict';
+
 	$$('#report-close-button').on('click', function() {
 		parent.document.getElementById('project-report-embed').className = '';
 		parent.document.getElementById('project-report-button').className = '';

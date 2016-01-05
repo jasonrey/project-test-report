@@ -1,6 +1,6 @@
-'use strict';
-
 $(function() {
+	'use strict';
+
 	$$('#filter-form').on('change', '.filter-project', function(event) {
 		var item = $(this),
 			value = item.attr('data-value');

@@ -1,6 +1,6 @@
-'use strict';
-
 $(function() {
+	'use strict';
+
 	$$('body').on('click', '.form-select', function(event) {
 		$(this).toggleClass('active');
 	});

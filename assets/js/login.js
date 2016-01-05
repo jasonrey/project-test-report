@@ -1,6 +1,6 @@
-'use strict';
-
 $(function() {
+	'use strict';
+
 	var auth2;
 
 	var signIn = function() {
@@ -17,7 +17,7 @@ $(function() {
 					location.reload();
 				} else {
 					if (response.data !== undefined) {
-						$$('#report-login-error-text').text(response.data)
+						$$('#report-login-error-text').text(response.data);
 					}
 
 					$$('#report-login-frame').attr('data-state', 'error');
@@ -27,7 +27,9 @@ $(function() {
 	};
 
 	window.checkIdentity = function() {
-		$$('#report-login-button').length && signIn();
+		if ($$('#report-login-button').length) {
+			signIn();
+		}
 	};
 
 	if ($$('#report-login-button').length) {
