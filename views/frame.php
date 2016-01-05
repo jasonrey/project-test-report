@@ -4,6 +4,9 @@
 class FrameView extends View
 {
 	public $css = 'frame';
-	// public $js = 'frame';
-	public $js = 'http://localhost/git/project-test-report/js/reporting?name=testing';
+
+	public function main()
+	{
+		$this->js = Config::getHTMLBase() . 'js/reporting?name=testing';
+	}
 }
