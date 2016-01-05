@@ -12,6 +12,7 @@
 		<div class="filter-project-bar">
 			<div class="filter-title">Project</div>
 			<div class="filter-project form-select icon-down-dir" data-value="<?php echo $filterProject; ?>">
+				<div class="form-select-highlight"></div>
 				<div class="filter-project-selected form-select-selected"><?php echo $filterProject === 'all' ? 'All' : $filterProject; ?></div>
 
 				<ul class="filter-project-list form-select-list">
@@ -27,6 +28,7 @@
 		<div class="filter-bar">
 			<div class="filter-title">Filter</div>
 			<div class="filter-item" data-name="state">
+				<div class="filter-item-highlight"></div>
 				<div class="filter-item-selected">
 					<div class="filter-item-icon">
 						<?php if ($filterState === 'all') { ?>
@@ -78,6 +80,7 @@
 				</div>
 			</div>
 			<div class="filter-item" data-name="assignee">
+				<div class="filter-item-highlight"></div>
 				<div class="filter-item-selected">
 					<div class="filter-item-icon">
 						<?php if ($filterAssignee === 'all' || empty($assignees[$filterAssignee])) { ?>
@@ -136,6 +139,7 @@
 				</div>
 			</div>
 			<div class="filter-item" data-name="sort">
+				<div class="filter-item-highlight"></div>
 				<div class="filter-item-selected">
 					<div class="filter-item-icon">
 						<?php if (empty($filterSort) || $filterSort === 'asc') { ?>

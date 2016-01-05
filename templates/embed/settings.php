@@ -8,6 +8,7 @@
 	<div class="settings-project-bar">
 		<div class="settings-project-title">Project</div>
 		<div class="settings-project form-select icon-down-dir" data-value="<?php echo $filterSettingsProject; ?>">
+			<div class="form-select-highlight"></div>
 			<div class="settings-project-selected form-select-selected"><?php echo $filterSettingsProject === 'all' ? 'All' : ($filterSettingsProject === '-1' ? 'This Interface' : $filterSettingsProject); ?></div>
 
 			<ul class="settings-project-list form-select-list">
@@ -55,6 +56,7 @@
 			</div>
 			<div class="w-75">
 				<div class="form-select icon-down-dir" data-value="<?php echo $userSettings['color']; ?>">
+					<div class="form-select-highlight"></div>
 					<div class="form-select-selected">
 						<?php if ($userSettings['color'] === 'custom') { ?>
 						<i class="icon-feather-cog"></i> Custom
