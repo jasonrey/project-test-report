@@ -34,7 +34,9 @@ class IndexView extends View
 			array_shift($this->js);
 
 			$userModel = Lib::model('user');
+
 			$assignees = $userModel->getProjectAssignees();
+			$users = $userModel->getUsers();
 
 			$filterState = $cookie->get('filter-state', 'pending');
 			$filterAssignee = $cookie->get('filter-assignee', empty($assignees[$user->id]) ? 'all' : $user->id);
@@ -84,6 +86,7 @@ class IndexView extends View
 			$this->set('reports', $reports);
 			$this->set('assignees', $assignees);
 			$this->set('userSettings', $userSettings);
+			$this->set('users', $users);
 		}
 	}
 }

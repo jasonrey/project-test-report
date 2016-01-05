@@ -27,7 +27,10 @@
 				'projects' => $projects,
 				'filterSettingsProject' => $filterSettingsProject,
 				'userSettings' => $userSettings,
-				'showProjectsFilter' => true
+				'showProjectsFilter' => true,
+				'user' => $user,
+				'assignees' => $assignees,
+				'users' => $users
 			)); ?>
 		</div>
 	</div>

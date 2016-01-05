@@ -34,4 +34,13 @@ class UserModel extends Model
 
 		return $assignees;
 	}
+
+	public function getUsers()
+	{
+		$query = 'SELECT * FROM ' . $this->db->qn($this->tablename);
+
+		$result = $this->assignbyKey($this->getResult($query));
+
+		return $result;
+	}
 }
