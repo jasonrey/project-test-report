@@ -275,4 +275,37 @@
 			display: block;
 		}
 	}
+
+	.project-assignees {
+		display: flex;
+		flex-wrap: 1;
+		margin: 8px 0 0 0;
+
+		.project-assignee {
+			height: 64px;
+			width: 64px;
+			padding: 8px;
+			cursor: pointer;
+
+			.user-avatar {
+				.user-avatar-initial {
+					width: 42px;
+					height: 42px;
+					line-height: 42px;
+				}
+			}
+
+			&:hover {
+				background-color: @cyan50;
+			}
+
+			&.active {
+				background-color: @cyan500;
+
+				.user-avatar {
+					border-color: white;
+				}
+			}
+		}
+	}
 }
