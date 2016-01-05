@@ -15,9 +15,9 @@ class Config
 			),
 			'production' => array(
 				'server' => 'localhost',
-				'username' => '',
-				'password' => 'base64_encode',
-				'database' => ''
+				'username' => 'compass1_project',
+				'password' => 'a3JsVU4zbld3VFN0',
+				'database' => 'compass1_project_test'
 			)
 		)
 	);
