@@ -74,7 +74,7 @@
 		iframe.className = 'active';
 		reportButton.className = 'hide';
 
-		iframe.contentWindow.checkIdentity();
+		iframe.contentWindow.checkIdentity && iframe.contentWindow.checkIdentity();
 	});
 
 	document.body.appendChild(reportButton);
