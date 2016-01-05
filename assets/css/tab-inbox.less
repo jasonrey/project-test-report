@@ -153,12 +153,20 @@
 				top: 64px;
 				border: 1px solid @cyan100;
 				width: 100%;
-				display: none;
+				background-color: white;
+				transform-origin: top center;
+				transform: scaleY(0);
+				transition-property: transform;
+				transition-duration: .2s;
 
 				.filter-item-option {
 					padding: 6px 0;
 					background-color: white;
 					cursor: pointer;
+					opacity: 0;
+					transition-property: opacity;
+					transition-duration: .2s;
+					transition-delay: 0s;
 				}
 			}
 
@@ -198,9 +206,12 @@
 				}
 
 				.filter-item-options {
-					display: block;
+					transform: scaleY(1);
 
 					.filter-item-option {
+						opacity: 1;
+						transition-delay: .1s;
+
 						.filter-item-assignee-image-all {
 							.filter-item-assignee-image {
 								background-color: white;
