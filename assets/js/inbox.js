@@ -322,5 +322,5 @@ $(function() {
 		});
 	};
 
-	setTimeout(commentsSyncHandler, 10000);
+	// setTimeout(commentsSyncHandler, 10000);
 });
