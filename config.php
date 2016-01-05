@@ -3,7 +3,8 @@
 
 class Config
 {
-	public static $dbenv = 'development';
+	public static $sef = true;
+
 	public static $dbconfig = array(
 		'default' => array(
 			'development' => array(
@@ -20,9 +21,17 @@ class Config
 			)
 		)
 	);
-	public static $env = 'development';
-	public static $sef = true;
-	public static $base = 'git/project-test-report';
+
+	public static $baseurl = array(
+		'localhost' => 'development',
+		'compass-interactive.com' => 'production',
+		'www.compass-interactive.com' => 'production'
+	);
+
+	public static $base = array(
+		'development' => 'git/project-test-report',
+		'production' => 'project-test-report'
+	);
 	public static $pagetitle = 'Project Reporting';
 
 	// Unique key to identify admin session
@@ -44,7 +53,6 @@ class Config
 	public static $slackApiToken = 'xoxp-2911736605-4157764484-17596689699-1ce0969cd1';
 	public static $slackHookToken = 'T02STMNHT/B0HHKPC6P/Mj4eH4rsHZ6dMlM0mydGxT5c';
 
-
 	public static function getBaseUrl()
 	{
 		return 'http://' . $_SERVER['SERVER_NAME'];
@@ -52,7 +60,7 @@ class Config
 
 	public static function getBaseFolder()
 	{
-		return self::$base;
+		return Config::$base[Config::env(false)];
 	}
 
 	public static function getHTMLBase()
@@ -81,20 +89,18 @@ class Config
 
 	public static function getDBConfig($key = 'default')
 	{
-		return self::$dbconfig[$key][self::$dbenv];
+		return self::$dbconfig[$key][Config::env(false)];
 	}
 
-	public static function env()
+	public static function env($checkget = true)
 	{
-		if (Req::hasget('development')) {
-			Lib::cookie()->set('development', Req::get('development'));
+		if ($checkget && Req::hasget('environment')) {
+			return Req::get('environment');
 		}
 
-		if (Lib::cookie()->get('development')) {
-			return 'development';
-		}
+		$serverName = $_SERVER['SERVER_NAME'];
 
-		return self::$env;
+		return isset(Config::$baseurl[$serverName]) ? Config::$baseurl[$serverName] : 'production';
 	}
 
 	public static function getAdminKey()
