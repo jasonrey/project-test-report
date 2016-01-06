@@ -34,30 +34,7 @@
 		</div>
 		<?php } ?>
 	</div>
-	<div class="item-available-assignees">
-		<div class="item-available-assignees-content">
-			<?php foreach ($assignees as $assignee) { ?>
-				<?php if (
-					(empty($assignee->project_ids) && $assignee->project_id == $report->project_id) ||
-					(!empty($assignee->project_ids) && in_array($report->project_id, $assignee->project_ids))
-				) { ?>
-				<a href="javascript:void(0);" class="item-available-assignee <?php if (!empty($report->assignee_id) && $report->assignee_id == $assignee->id) { ?>active<?php } ?> <?php if ($assignee->id == $user->id) { ?>is-self<?php } ?>" data-value="<?php echo $assignee->id; ?>">
-					<span class="item-available-assignee-image user-avatar">
-						<?php if (!empty($assignee->picture)) { ?>
-						<img src="<?php echo $assignee->picture; ?>" />
-						<?php } else { ?>
-						<span class="user-avatar-initial"><?php echo $assignee->initial; ?></span>
-						<?php } ?>
-					</span>
-				</a>
-				<?php } ?>
-			<?php } ?>
-		</div>
-	</div>
 	<div class="item-flexrow item-meta">
-		<div class="item-comments-toggle">
-			<a href="javascript:void(0);" class="item-comments-link icon-feather-speech-bubble">Comments <span class="item-comments-counter"><?php echo $report->totalcomments; ?></span> <i class="icon-right-dir"></i></a>
-		</div>
 		<div class="item-assignees">
 			<?php if (!empty($report->assignee_id)) { ?>
 				<?php if ($user->role != USER_ROLE_ADMIN) { ?>
@@ -82,27 +59,52 @@
 			<?php } ?>
 		</div>
 	</div>
+	<div class="item-available-assignees">
+		<div class="item-available-assignees-content">
+			<?php foreach ($assignees as $assignee) { ?>
+				<?php if (
+					(empty($assignee->project_ids) && $assignee->project_id == $report->project_id) ||
+					(!empty($assignee->project_ids) && in_array($report->project_id, $assignee->project_ids))
+				) { ?>
+				<a href="javascript:void(0);" class="item-available-assignee <?php if (!empty($report->assignee_id) && $report->assignee_id == $assignee->id) { ?>active<?php } ?> <?php if ($assignee->id == $user->id) { ?>is-self<?php } ?>" data-value="<?php echo $assignee->id; ?>">
+					<span class="item-available-assignee-image user-avatar">
+						<?php if (!empty($assignee->picture)) { ?>
+						<img src="<?php echo $assignee->picture; ?>" />
+						<?php } else { ?>
+						<span class="user-avatar-initial"><?php echo $assignee->initial; ?></span>
+						<?php } ?>
+					</span>
+				</a>
+				<?php } ?>
+			<?php } ?>
+		</div>
+	</div>
 	<div class="item-comments">
-		<div class="item-comments-content">
-			<ul class="comment-item-list">
-				<?php if (!empty($commentsLoaded)) { ?>
-				<?php foreach ($report->comments as $comment) { ?>
-				<?php echo Lib::output('embed/comment-item', array('comment' => $comment, 'user' => $user)); ?>
-				<?php } ?>
-				<?php } else { ?>
-				<li class="comment-loading">
-					<div class="icon-loader">
-						<span class="icon-loader-clock"></span>
-						<span class="icon-loader-hour"></span>
-						<span class="icon-loader-minute"></span>
-					</div>
-				</li>
-				<?php } ?>
-			</ul>
-			<form class="comment-reply">
-				<input type="text" class="comment-reply-input" placeholder="Your comment..." />
-				<button class="comment-reply-button icon-feather-reply">Reply</button>
-			</form>
+		<div class="item-comments-toggle">
+			<a href="javascript:void(0);" class="item-comments-link icon-feather-speech-bubble">Comments <span class="item-comments-counter"><?php echo $report->totalcomments; ?></span> <i class="icon-right-dir"></i></a>
+		</div>
+		<div class="item-comments-wrapper">
+			<div class="item-comments-content">
+				<ul class="comment-item-list">
+					<?php if (!empty($commentsLoaded)) { ?>
+					<?php foreach ($report->comments as $comment) { ?>
+					<?php echo Lib::output('embed/comment-item', array('comment' => $comment, 'user' => $user)); ?>
+					<?php } ?>
+					<?php } else { ?>
+					<li class="comment-loading">
+						<div class="icon-loader">
+							<span class="icon-loader-clock"></span>
+							<span class="icon-loader-hour"></span>
+							<span class="icon-loader-minute"></span>
+						</div>
+					</li>
+					<?php } ?>
+				</ul>
+				<form class="comment-reply">
+					<input type="text" class="comment-reply-input" placeholder="Your comment..." />
+					<button class="comment-reply-button icon-feather-reply">Reply</button>
+				</form>
+			</div>
 		</div>
 	</div>
 </li>

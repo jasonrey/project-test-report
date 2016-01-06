@@ -520,12 +520,12 @@
 		&::before {
 			content: '';
 			position: absolute;
-			bottom: 0;
+			top: 0;
 			right: 26px;
 			border-radius: 2px;
 			border-left: 6px solid transparent;
 			border-right: 6px solid transparent;
-			border-top: 10.5px solid @cyan200;
+			border-bottom: 10.5px solid @cyan200;
 			transform: scale(0);
 			transition: transform .2s;
 			transition-delay: 0s;
@@ -535,6 +535,7 @@
 			border-top: 2px solid @cyan200;
 			border-bottom: 2px solid @cyan200;
 			height: 52px;
+			margin: 8px 0 0 0;
 			text-align: center;
 			overflow-x: auto;
 			overflow-y: hidden;
@@ -576,10 +577,9 @@
 		}
 
 		.show-assignees& {
-			height: 60px;
+			height: 96px;
 
 			&::before {
-				transition-delay: .2s;
 				transform: scale(1);
 			}
 		}
@@ -589,29 +589,7 @@
 		height: 36px;
 		line-height: 36px;
 		padding: 0 16px;
-	}
-
-	.item-comments-toggle {
-		flex-grow: 1;
-		font-size: 14px;
-		height: 36px;
-		line-height: 36px;
-		white-space: nowrap;
-
-		.item-comments-counter {
-			&::before {
-				content: '(';
-			}
-
-			&::after {
-				content: ')';
-			}
-		}
-
-		i {
-			display: inline-block;
-			transition: transform .2s;
-		}
+		justify-content: flex-end;
 	}
 
 	.item-assignees {
@@ -742,9 +720,38 @@
 	}
 
 	.item-comments {
+		position: relative;
+	}
+
+	.item-comments-toggle {
+		font-size: 14px;
+		height: 36px;
+		line-height: 36px;
+		white-space: nowrap;
+		position: absolute;
+		top: -36px;
+		left: 16px;
+
+		.item-comments-counter {
+			&::before {
+				content: '(';
+			}
+
+			&::after {
+				content: ')';
+			}
+		}
+
+		i {
+			display: inline-block;
+			transition: transform .2s;
+		}
+	}
+
+	.item-comments-wrapper {
 		max-height: 0;
-		overflow: hidden;
 		transition: max-height .2s;
+		overflow: hidden;
 	}
 
 	.item-comments-content {
@@ -948,12 +955,16 @@
 		}
 
 		.item-comments {
-			max-height: 74px;
+			.item-comments-wrapper {
+				max-height: 74px;
+			}
 		}
 
 		&.loaded-comments {
 			.item-comments {
-				max-height: 360px;
+				.item-comments-wrapper {
+					max-height: 360px;
+				}
 			}
 		}
 	}
