@@ -175,12 +175,18 @@
 			<?php echo $this->loadTemplate('report-item', array('report' => $report, 'assignees' => $assignees, 'user'=> $user)); ?>
 		<?php } ?>
 	<?php } else { ?>
-	<li class="item-empty">No report found.</li>
+	<li class="item-empty">
+		<p>No report found.</p>
+		<a href="javascript: void(0);" class="refresh-list-button icon-sync">Refresh</a>
+	</li>
 	<?php } ?>
 </ul>
 
 <script type="text/html" id="report-no-result">
-<li class="item-empty">No report found.</li>
+<li class="item-empty">
+	<p>No report found.</p>
+	<a href="javascript: void(0);" class="refresh-list-button icon-sync">Refresh</a>
+</li>
 </script>
 
 <script type="text/html" id="report-item-assignee">

@@ -87,6 +87,10 @@ $(function() {
 		});
 	});
 
+	$$('body').on('click', '.refresh-list-button', function(event) {
+		$$('#filter-form').trigger('submit');
+	});
+
 	$$('#report-item-list').on('click', '.item-screenshot', function(event) {
 		var screenshot = $(this),
 			source = screenshot.find('img').attr('src');
