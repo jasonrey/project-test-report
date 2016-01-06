@@ -3,11 +3,6 @@
 
 class MaintenanceController extends Controller
 {
-	public function execute()
-	{
-
-	}
-
 	public function populateSlackUsers()
 	{
 		$identifier = Lib::cookie(Lib::hash(Config::$userkey));
