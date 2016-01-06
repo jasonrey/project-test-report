@@ -23,7 +23,7 @@
 		</div>
 	</div>
 	<div class="item-flexrow item-content">
-		<p class="item-text"><?php echo $report->content; ?></p>
+		<p class="item-text"><?php echo str_replace("\n", '<br />', $report->content); ?></p>
 
 		<?php if (!empty($report->screenshots)) { ?>
 		<div class="item-screenshots">
