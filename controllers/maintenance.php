@@ -39,4 +39,18 @@ class MaintenanceController extends Controller
 		echo 'Imported ' . count($users) . ' users.';
 		exit;
 	}
+
+	public function initTables()
+	{
+		$db = Lib::db();
+
+		foreach (glob(Config::getBasePath() . '/schemas/*.sql') as $file) {
+			$sql = file_get_contents($file);
+
+			$db->query($sql);
+		}
+
+		echo 'Completed';
+		exit;
+	}
 }
