@@ -74,6 +74,7 @@
 						<span class="user-avatar-initial"><?php echo $assignee->initial; ?></span>
 						<?php } ?>
 					</span>
+					<span class="item-available-assignee-name"><?php echo $assignee->nick; ?></span>
 				</a>
 				<?php } ?>
 			<?php } ?>

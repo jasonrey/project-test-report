@@ -534,7 +534,7 @@
 		.item-available-assignees-content {
 			border-top: 2px solid @cyan200;
 			border-bottom: 2px solid @cyan200;
-			height: 52px;
+			height: 72px;
 			margin: 8px 0 0 0;
 			text-align: center;
 			overflow-x: auto;
@@ -543,20 +543,30 @@
 		}
 
 		.item-available-assignee {
-			height: 48px;
-			width: 48px;
+			height: 68px;
 			padding: 6px 0;
 			text-align: center;
 
 			.item-available-assignee-image {
 				width: 36px;
 				height: 36px;
+				display: block;
+				margin: 0 auto;
 
 				.user-avatar-initial {
 					width: 30px;
 					height: 30px;
 					line-height: 30px;
 				}
+			}
+
+			.item-available-assignee-name {
+				height: 20px;
+				line-height: 20px;
+				font-size: 12px;
+				text-transform: uppercase;
+				display: inline-block;
+				padding: 0 8px;
 			}
 
 			&:hover {
@@ -573,11 +583,15 @@
 						color: white;
 					}
 				}
+
+				.item-available-assignee-name {
+					color: white;
+				}
 			}
 		}
 
 		.show-assignees& {
-			height: 96px;
+			height: 116px;
 
 			&::before {
 				transform: scale(1);
