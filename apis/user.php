@@ -50,15 +50,18 @@ class UserApi extends Api
 
 		$user = Lib::table('user');
 
-		$user->load(array('gid' => $data->sub));
+		$user->load(array('email' => $data->email));
 
 		$user->gid = $data->sub;
 		$user->picture = !empty($data->picture) ? $data->picture : '';
 		$user->name = $data->name;
 		$user->email = $data->email;
 		$user->identifier = Lib::generateHash();
-		$nick = explode('@', $data->email);
-		$user->nick = $nick[0];
+
+		if (empty($user->nick)) {
+			$nick = explode('@', $data->email);
+			$user->nick = $nick[0];
+		}
 
 		$user->store();
 
