@@ -148,6 +148,10 @@ $(function() {
 				content: content
 			}));
 
+		if (!content) {
+			return;
+		}
+
 		list.append(commentitem);
 
 		input.val('');
