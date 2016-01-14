@@ -126,11 +126,15 @@ class CommentApi extends Api
 
 				$attachment->newField('Comment', $post['content']);
 
+				if (!empty($files)) {
+					foreach ($files as $key => $file) {
+						$attachment->newField($file['name'], Config::getHTMLBase() . Config::$attachmentFolder . '/' . $key . '-' . $file['name']);
+					}
+				}
+
 				$slackMessage->send();
 			}
 		}
-
-		exit;
 
 		return $this->success($commentTable->id);
 	}
