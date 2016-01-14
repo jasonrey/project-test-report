@@ -45,7 +45,7 @@ class CommentModel extends Model
 			if (!isset($comments[$row->id])) {
 				$comments[$row->id] = $row;
 
-				$comments[$row->id]->attachments = [];
+				$comments[$row->id]->attachments = array();
 			}
 
 			if (!empty($row->filename)) {

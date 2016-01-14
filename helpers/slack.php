@@ -141,8 +141,11 @@ class SlackMessage
 
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_POST, true);
-		curl_setopt($curl, CURLOPT_SAFE_UPLOAD, true);
-		curl_setopt($curl, CURLOPT_POSTFIELDS, $fields);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($fields));
+
+		if (version_compare(PHP_VERSION, '5.5.0') < 0) {
+			curl_setopt($curl, CURLOPT_SAFE_UPLOAD, true);
+		}
 
 		$output = curl_exec($curl);
 
