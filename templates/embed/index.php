@@ -5,6 +5,7 @@
 
 <?php if ($isLoggedIn) { ?>
 <div id="report-frame" data-tab="<?php echo $user->role == USER_ROLE_ADMIN ? 'inbox' : 'report'; ?>">
+	<div class="alert alert-info icon-lightbulb">Do you know that you can change the color scheme in settings?</div>
 	<div id="report-tab-navs">
 		<a href="javascript:void(0);" class="report-tab-nav" data-name="report"><i class="icon-feather-paper"></i><p>Report</p></a>
 		<a href="javascript:void(0);" class="report-tab-nav" data-name="inbox"><i class="icon-feather-archive"></i><p>Inbox</p></a>
