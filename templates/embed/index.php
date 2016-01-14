@@ -27,4 +27,4 @@
 <?php echo $this->includeTemplate('screenshot-preview'); ?>
 <?php } else { ?>
 <?php echo $this->loadTemplate('before-login'); ?>
-<?php } ?>
+<?php }

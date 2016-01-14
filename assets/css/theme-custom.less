@@ -280,15 +280,16 @@ body {
 
 			.comment-user-text {
 				border-color: "@@color100";
+				background-color: "@@color50";
+				color: "@@color700";
 
 				&::after {
 					border-left-color: "@@color100";
 				}
+			}
 
-				p {
-					background-color: "@@color50";
-					color: "@@color700";
-				}
+			.comment-attachment {
+				color: "@@color400";
 			}
 		}
 	}
@@ -299,6 +300,39 @@ body {
 
 	.comment-reply-button {
 		color: "@@color500";
+
+		&:hover {
+			background-color: "@@color50";
+		}
+	}
+
+	.comment-attach-button {
+		&:hover {
+			background-color: "@@color50";
+		}
+	}
+
+	.comment-drop-file-mask {
+		background-color: "@@color500";
+	}
+
+	.comment-form-attachment-items {
+
+		.attachment-item {
+			.attachment-item-delete {
+				color: "@@color500";
+			}
+
+			&:hover {
+				background-color: "@@color50";
+
+				.attachment-item-delete {
+					&:hover {
+						background-color: "@@color500";
+					}
+				}
+			}
+		}
 	}
 }
 

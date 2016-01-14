@@ -14,9 +14,11 @@ class CommentModel extends Model
 		);
 		*/
 
-		$query = 'SELECT `a`.*, `b`.picture, `b`.`nick`, `b`.`initial` FROM ' . $this->db->qn($this->tablename) . ' AS `a`';
+		$query = 'SELECT `a`.*, `b`.picture, `b`.`nick`, `b`.`initial`, `c`.`filename`, `c`.`name` FROM ' . $this->db->qn($this->tablename) . ' AS `a`';
 		$query .= ' LEFT JOIN `user` AS `b`';
 		$query .= ' ON `a`.`user_id` = `b`.`id`';
+		$query .= ' LEFT JOIN `comment_attachment` AS `c`';
+		$query .= ' ON `c`.`comment_id` = `a`.`id`';
 
 		$conditions = array();
 
@@ -35,7 +37,26 @@ class CommentModel extends Model
 		$query .= $this->buildWhere($conditions);
 		$query .= ' ORDER BY `date` ASC';
 
-		return $this->getResult($query);
+		$result = $this->getResult($query);
+
+		$comments = array();
+
+		foreach ($result as $row) {
+			if (!isset($comments[$row->id])) {
+				$comments[$row->id] = $row;
+
+				$comments[$row->id]->attachments = [];
+			}
+
+			if (!empty($row->filename)) {
+				$comments[$row->id]->attachments[] = (object) array(
+					'filename' => $row->filename,
+					'name' => $row->name
+				);
+			}
+		}
+
+		return $comments;
 	}
 
 	public function getUsersByReportId($reportid)

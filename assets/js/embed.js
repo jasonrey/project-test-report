@@ -102,30 +102,6 @@ $(function() {
 	var attachFiles = function(files) {
 		var promises = [];
 
-		var attachFile = function(file) {
-			var promise = new Promise(function(resolve, reject) {
-				var reader = new FileReader(),
-					id = 'screenshot-' + Math.random().toString(36).substring(2);
-
-				reader.onloadend = function(e) {
-					var item = $template('report-screenshot-item', {
-						id: id,
-						img: e.target.result
-					});
-
-					$$('#report-screenshots').append(item);
-
-					attachedFiles[id] = file;
-
-					resolve();
-				};
-
-				reader.readAsDataURL(file);
-			});
-
-			return promise;
-		};
-
 		for (var i = 0; i < files.length; i++) {
 			var file = files[i];
 
@@ -135,6 +111,30 @@ $(function() {
 		}
 
 		return Promise.all(promises);
+	};
+
+	var attachFile = function(file) {
+		var promise = new Promise(function(resolve, reject) {
+			var reader = new FileReader(),
+				id = 'screenshot-' + Math.random().toString(36).substring(2);
+
+			reader.onloadend = function(e) {
+				var item = $template('report-screenshot-item', {
+					id: id,
+					img: e.target.result
+				});
+
+				$$('#report-screenshots').append(item);
+
+				attachedFiles[id] = file;
+
+				resolve();
+			};
+
+			reader.readAsDataURL(file);
+		});
+
+		return promise;
 	};
 
 	var resetForm = function() {

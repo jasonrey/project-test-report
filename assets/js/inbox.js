@@ -92,6 +92,8 @@ $(function() {
 	});
 
 	$$('#report-item-list').on('click', '.item-screenshot', function(event) {
+		event.preventDefault();
+
 		var screenshot = $(this),
 			source = screenshot.find('img').attr('src');
 
@@ -137,22 +139,18 @@ $(function() {
 
 		var form = $(this),
 			input = form.find('.comment-reply-input'),
-			content = input.val(),
-			item = form.parents('.item'),
-			id = item.attr('data-id'),
-			list = item.find('.comment-item-list'),
-			commentcount = item.find('.item-comments-counter'),
-			temporaryId = 'comment-' + Math.random().toString(36).substring(2),
-			commentitem = $($template('comment-item-self', {
-				id: temporaryId,
-				content: content
-			}));
+			content = input.val();
 
 		if (!content) {
 			return;
 		}
 
-		list.append(commentitem);
+		var item = form.parents('.item'),
+			id = item.attr('data-id'),
+			attachments = item.find('.attachment-item'),
+			list = item.find('.comment-item-list'),
+			commentcount = item.find('.item-comments-counter'),
+			temporaryId = 'comment-' + Math.random().toString(36).substring(2);
 
 		input.val('');
 
@@ -160,12 +158,58 @@ $(function() {
 
 		list.scrollTop(list[0].scrollHeight);
 
-		$api('comment/submit', {
-			id: id,
-			content: content
+		var formdata = new FormData();
+
+		formdata.append('id', id);
+		formdata.append('content', content);
+
+		var attachmentsHTML = '';
+
+		if (attachedFiles[id] !== undefined) {
+			for (var fileKey in attachedFiles[id]) {
+				formdata.append(fileKey, attachedFiles[id][fileKey]);
+
+				var isImage = ['jpg', 'png'].indexOf(attachedFiles[id][fileKey].name.substr(-3)) >= 0;
+
+				attachmentsHTML += $template('comment-item-attachment-file', {
+					imageClass: isImage ? 'comment-attachment-image' : '',
+					key: fileKey,
+					filename: fileKey + '-' + attachedFiles[id][fileKey].name,
+					name: attachedFiles[id][fileKey].name
+				});
+			}
+
+			delete attachedFiles[id];
+
+			attachments.remove();
+
+			item.removeClass('has-attachment');
+		}
+
+		var commentitem = $($template('comment-item-self', {
+			id: temporaryId,
+			content: content,
+			attachments: attachmentsHTML
+		}));
+
+		list.append(commentitem);
+
+		$api('comment/submit', formdata, {
+			processData: false,
+			contentType: false
 		}).done(function(response) {
 			if (response.state) {
 				commentitem.attr('data-id', response.data);
+
+				item.find('.comment-attachment-uploading').each(function() {
+					var attachmentItem = $(this);
+
+					attachmentItem.attr('href', attachmentItem.attr('data-href'));
+					attachmentItem.html(attachmentItem.attr('data-name'));
+					attachmentItem.removeClass('comment-attachment-uploading');
+					attachmentItem.removeAttr('data-href');
+					attachmentItem.removeAttr('data-name');
+				});
 			} else {
 				commentitem.addClass('icon-attention error');
 			}
@@ -258,6 +302,140 @@ $(function() {
 			state: value
 		});
 	});
+
+	var dragEventCounter = 0;
+
+	$$('#report-item-list').on('dragenter', '.item-comments', function(event) {
+		event.stopPropagation();
+		event.preventDefault();
+
+		dragEventCounter++;
+
+		var comments = $(this),
+			item = comments.parents('.item');
+
+		item.addClass('attaching-file');
+	});
+
+	$$('#report-item-list').on('dragleave', '.item-comments', function(event) {
+		event.stopPropagation();
+		event.preventDefault();
+
+		dragEventCounter--;
+
+		var comments = $(this),
+			item = comments.parents('.item');
+
+		if (dragEventCounter === 0) {
+			item.removeClass('attaching-file');
+		}
+	});
+
+	$$('#report-item-list').on('dragover', '.item-comments', function(event) {
+		event.stopPropagation();
+		event.preventDefault();
+	});
+
+	$$('#report-item-list').on('drop', '.item-comments', function(event) {
+		event.stopPropagation();
+		event.preventDefault();
+
+		var comments = $(this),
+			item = comments.parents('.item');
+
+		item.removeClass('attaching-file');
+		dragEventCounter = 0;
+
+		var files = event.originalEvent.dataTransfer.files;
+
+		attachFiles(item, files);
+
+		item.addClass('has-attachment');
+	});
+
+	$$('#report-item-list').on('click', '.comment-attach-button', function(event) {
+		var button = $(this),
+			form = button.parents('.comment-reply'),
+			input = form.find('.comment-attach-file');
+
+		input.trigger('click');
+	});
+
+	$$('#report-item-list').on('change', '.comment-attach-file', function(event) {
+		var input = $(this),
+			item = input.parents('.item');
+
+		attachFiles(item, this.files);
+
+		item.addClass('has-attachment');
+	});
+
+	$$('#report-item-list').on('click', '.attachment-item-delete', function(event) {
+		var button = $(this),
+			attachment = button.parents('.attachment-item'),
+			attachmentid = attachment.attr('id'),
+			attachmentList = button.parents('.comment-form-attachment-items'),
+			item = button.parents('.item'),
+			id = item.attr('data-id');
+
+		attachment.remove();
+
+		if (attachmentList.find('.attachment-item').length === 0) {
+			item.removeClass('has-attachment');
+		}
+
+		delete attachedFiles[id][attachmentid];
+	});
+
+	$$('#report-item-list').on('click', '.comment-attachment', function(event) {
+		var link = $(this);
+
+		if (link.hasClass('comment-attachment-uploading') || link.hasClass('comment-attachment-image')) {
+			event.preventDefault();
+
+			if (link.hasClass('comment-attachment-uploading')) {
+				return;
+			}
+		}
+
+		var source = link.attr('href');
+
+		$$('#screenshot-preview').find('img').attr('src', source);
+
+		$$('#screenshot-preview').addClass('active');
+	});
+
+	var attachedFiles = {};
+
+	var attachFiles = function(item, files) {
+		var promises = [];
+
+		for (var i = 0; i < files.length; i++) {
+			var file = files[i];
+
+			promises.push(attachFile(item, file));
+		}
+
+		return Promise.all(promises);
+	};
+
+	var attachFile = function(item, file) {
+		var id = item.attr('data-id'),
+			commentFiles = item.find('.comment-form-attachment-items'),
+			fileid = 'file-' + Date.now() + '-' + Math.random().toString(36).substring(2),
+			attachment = $template('comment-form-attachment-file', {
+				id: fileid,
+				name: file.name
+			});
+
+		commentFiles.append(attachment);
+
+		if (attachedFiles[id] === undefined) {
+			attachedFiles[id] = {};
+		}
+
+		attachedFiles[id][fileid] = file;
+	};
 
 	var commentsSyncHandler = function() {
 		var reports = {},

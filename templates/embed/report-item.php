@@ -1,7 +1,13 @@
 <?php
 !defined('SERVER_EXEC') && die('No access.');
 ?>
-<li id="report-<?php echo $report->id; ?>" class="item <?php if ($user->role == USER_ROLE_ADMIN || (!empty($report->assignee_id) && $report->assignee_id == $user->id)) { ?>is-assignee<?php } ?> <?php if (!empty($commentsLoaded)) { ?>show-comments loaded-comments<?php } ?>" data-id="<?php echo $report->id; ?>" data-state="<?php echo $report->state; ?>">
+<li id="report-<?php echo $report->id; ?>"
+	class="item
+		<?php if ($user->role == USER_ROLE_ADMIN || (!empty($report->assignee_id) && $report->assignee_id == $user->id)) { ?>is-assignee<?php } ?>
+		<?php if (!empty($commentsLoaded)) { ?>show-comments loaded-comments<?php } ?>"
+	data-id="<?php echo $report->id; ?>"
+	data-state="<?php echo $report->state; ?>"
+>
 	<div class="item-flexrow item-header">
 		<div class="item-user">
 			<div class="item-user-image user-avatar">
@@ -29,7 +35,7 @@
 		<div class="item-screenshots">
 			<div class="item-screenshots-title"><i class="icon-feather-paper-clip"></i></div>
 			<?php foreach ($report->screenshots as $screenshot) { ?>
-			<a href="javascript:void(0);" class="item-screenshot"><img src="screenshots/<?php echo $screenshot; ?>" /></a>
+			<a href="screenshots/<?php echo $screenshot; ?>" class="item-screenshot"><img src="screenshots/<?php echo $screenshot; ?>" /></a>
 			<?php } ?>
 		</div>
 		<?php } ?>
@@ -104,8 +110,16 @@
 				<form class="comment-reply">
 					<input type="text" class="comment-reply-input" placeholder="Your comment..." />
 					<button class="comment-reply-button icon-feather-reply">Reply</button>
+					<button class="comment-attach-button"><i class="icon-feather-paper-clip"></i></button>
+
+					<input type="file" class="comment-attach-file" name="comment-attach-file" />
+
+					<div class="comment-form-attachment-items"></div>
 				</form>
 			</div>
+		</div>
+		<div class="comment-drop-file-mask">
+			<div class="comment-drop-file-message icon-feather-paper-clip">Attach file</div>
 		</div>
 	</div>
 </li>

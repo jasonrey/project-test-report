@@ -215,6 +215,20 @@
 		<span class="user-avatar-initial"><?php echo $user->initial; ?>
 		<?php } ?>
 	</div>
-	<div class="comment-user-text"><p>{{content}}</p></div>
+	<div class="comment-user-text">
+		<p>{{content}}</p>
+		<div class="comment-attachments">{{attachments}}</div>
+	</div>
 </li>
+</script>
+
+<script type="text/html" id="comment-form-attachment-file">
+<div id="{{id}}" class="attachment-item">
+	<div class="attachment-filename icon-feather-paper">{{name}}</div>
+	<button type="button" class="attachment-item-delete"><i class="icon-feather-cross"></i></button>
+</div>
+</script>
+
+<script type="text/html" id="comment-item-attachment-file">
+<a href="javascript:void(0);" data-key="{{key}}" data-href="uploads/{{filename}}" data-name="{{name}}" target="_blank" class="comment-attachment comment-attachment-uploading icon-feather-paper-clip {{imageClass}}">Uploading...</a>
 </script>

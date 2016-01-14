@@ -49,6 +49,7 @@ class Config
 	public static $iframepath = 'embed';
 
 	public static $screenshotFolder = 'screenshots';
+	public static $attachmentFolder = 'uploads';
 
 	public static $slackApiToken = 'xoxp-2911736605-4157764484-17596689699-1ce0969cd1';
 	public static $slackHookToken = 'T02STMNHT/B0HHKPC6P/Mj4eH4rsHZ6dMlM0mydGxT5c';

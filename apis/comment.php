@@ -64,6 +64,14 @@ class CommentApi extends Api
 		$commentTable->content = $post['content'];
 		$commentTable->store();
 
+		$files = Req::file();
+
+		if (!empty($files)) {
+			foreach ($files as $key => $file) {
+				$commentTable->attach($key, $file);
+			}
+		}
+
 		$commentModel = Lib::model('comment');
 		$recipients = $commentModel->getUsersByReportId($post['id']);
 
@@ -121,6 +129,8 @@ class CommentApi extends Api
 				$slackMessage->send();
 			}
 		}
+
+		exit;
 
 		return $this->success($commentTable->id);
 	}
