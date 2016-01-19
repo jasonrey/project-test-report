@@ -62,6 +62,29 @@ $(function() {
 		});
 	});
 
+	$$('.assignees-settings').on('click', '.user-avatar', function(event) {
+		var item = $(this),
+			avatar = item.parents('.project-assignee'),
+			checkbox = avatar.find('.form-checkbox');
+
+		checkbox.trigger('click');
+	});
+
+	$$('.assignees-settings').on('change', '.form-checkbox', function(event) {
+		var checkbox = $(this),
+			item = checkbox.parents('.project-assignee'),
+			userid = item.attr('data-id'),
+			project = document.forms['settings-form'].project.value;
+
+		$api('project/saveAssignees', {
+			project: project,
+			setting: JSON.stringify({
+				id: userid,
+				value: checkbox.hasClass('active')
+			})
+		});
+	});
+
 	$$('.theme-settings').on('change', '.form-select', function(event) {
 		var item = $(this),
 			field = item.parents('.form-field'),
