@@ -213,10 +213,9 @@
 
 		<div class="project-assignees">
 		<?php foreach ($users as $u) { ?>
-			<div data-id="<?php echo $u->id; ?>" data-nick="<?php echo $u->nick; ?>" class="project-assignee <?php if (isset($assignees[$u->id])) { ?>active<?php } ?>">
+			<div data-id="<?php echo $u->id; ?>" data-nick="<?php echo $u->nick; ?>" class="project-assignee">
 				<div class="user-avatar">
 					<?php if (!empty($u->picture)) { ?>
-					<!-- <img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg"> -->
 					<img src="<?php echo $u->picture; ?>">
 					<?php } else { ?>
 					<span class="user-avatar-initial"><?php echo $u->initial; ?></span>

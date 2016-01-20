@@ -33,10 +33,9 @@ class ProjectApi extends Api
 		if ($project !== 'all') {
 			$projectAssignee = Lib::table('project_assignee');
 
-			$projectAssignee->project_id = $projectTable->id;
-			$projectAssignee->user_id = $setting->id;
+			$projectAssignee->load(array('user_id' => $setting->id, 'project_id' => $projectTable->id));
 
-			if (!$projectAssignee->load(array('user_id' => $projectAssignee->user_id, 'project_id' => $projectAssignee->project_id))) {
+			if ($setting->value) {
 				$projectAssignee->store();
 			} else {
 				$projectAssignee->delete();
