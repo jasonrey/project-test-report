@@ -220,7 +220,7 @@
 			}
 		}
 
-		.hide-notification-settings& {
+		[data-scope="this"]& {
 			display: none;
 		}
 	}
@@ -271,7 +271,15 @@
 			content: '*';
 		}
 
-		.show-warning& {
+		[data-scope="all"]& {
+			display: block;
+		}
+	}
+
+	.assignees-settings {
+		display: none;
+
+		[data-scope="project"]& {
 			display: block;
 		}
 	}
@@ -308,14 +316,6 @@
 			&:hover {
 				background-color: @cyan50;
 			}
-
-			/*&.active {
-				background-color: @cyan500;
-
-				.user-avatar {
-					border-color: white;
-				}
-			}*/
 		}
 	}
 }

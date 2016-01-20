@@ -1,7 +1,7 @@
 <?php
 !defined('SERVER_EXEC') && die('No access.');
 ?>
-<form id="settings-form" class="<?php if ($filterSettingsProject === 'all') { ?>show-warning<?php } ?> <?php if ($filterSettingsProject === '-1') { ?>hide-notification-settings<?php } ?>">
+<form id="settings-form" data-scope="<?php echo $filterSettingsProject === 'all' ? 'all' : ($filterSettingsProject === '-1' ? 'this' : 'project'); ?>">
 	<input type="hidden" name="project" value="<?php echo $filterSettingsProject; ?>" />
 
 	<?php if (!empty($showProjectsFilter)) { ?>

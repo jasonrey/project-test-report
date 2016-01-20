@@ -7,8 +7,14 @@ $(function() {
 
 		document.forms['settings-form'].project.value = value;
 
-		$$('#settings-form').toggleClass('show-warning', value === 'all');
-		$$('#settings-form').toggleClass('hide-notification-settings', value === '-1');
+		if (value === 'all') {
+			$$('#settings-form').attr('data-scope', 'all');
+		} else if (value === '-1') {
+			$$('#settings-form').attr('data-scope', 'this');
+		} else {
+			$$('#settings-form').attr('data-scope', 'project');
+		}
+
 		$api('user/loadSettings', {
 			project: value
 		}).done(function(response) {
