@@ -19,7 +19,7 @@ class ScriptView extends View
 		switch ($script) {
 			case 'reporting':
 				$project = Req::get('name', 'sample-project');
-				$iframepath = Config::$iframepath . '?project=' . $project;
+				$iframepath = Config::getHTMLBase() . Config::$iframepath . '?project=' . $project;
 
 				$this->set('iframepath', $iframepath);
 

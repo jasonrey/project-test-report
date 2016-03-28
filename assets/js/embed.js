@@ -1,9 +1,26 @@
 $(function() {
 	'use strict';
 
+	var currentLocation;
+
+	parent.postMessage('getLocation', '*');
+
 	$$('#report-close-button').on('click', function() {
-		parent.document.getElementById('project-report-embed').className = '';
-		parent.document.getElementById('project-report-button').className = '';
+		parent.postMessage('project-test-report-close', '*');
+	});
+
+	window.addEventListener('message', function(event) {
+		if (event.data === 'checkIdentity') {
+			if (window.checkIdentity) {
+				window.checkIdentity();
+			}
+		}
+
+		if (typeof event.data === 'object') {
+			if (event.data.name === 'location') {
+				currentLocation = event.data.data;
+			}
+		}
 	});
 
 	var dragEventCounter = 0;
@@ -74,11 +91,11 @@ $(function() {
 
 		$$('#report-form').addClass('submitting');
 
-		var formdata = new FormData;
+		var formdata = new FormData();
 
 		formdata.append('project', project);
 		formdata.append('content', content);
-		formdata.append('url', parent.location.toString());
+		formdata.append('url', currentLocation);
 
 		for (var fileKey in attachedFiles) {
 			formdata.append(fileKey, attachedFiles[fileKey]);

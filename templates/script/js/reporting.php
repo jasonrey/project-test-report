@@ -59,7 +59,6 @@
 	var iframe = document.createElement('iframe');
 
 	iframe.id = 'project-report-embed';
-	iframe.className = 'active';
 	iframe.src = '<?php echo $iframepath; ?>';
 
 	document.body.appendChild(iframe);
@@ -74,8 +73,22 @@
 		iframe.className = 'active';
 		reportButton.className = 'hide';
 
-		iframe.contentWindow.checkIdentity && iframe.contentWindow.checkIdentity();
+		iframe.contentWindow.postMessage('checkIdentity', '*');
 	});
 
 	document.body.appendChild(reportButton);
+
+	window.addEventListener('message', function(event) {
+		if (event.data === 'project-test-report-close') {
+			document.getElementById('project-report-embed').className = '';
+			document.getElementById('project-report-button').className = '';
+		}
+
+		if (event.data === 'getLocation') {
+			iframe.contentWindow.postMessage({
+				name: 'location',
+				data: location.toString()
+			}, '*');
+		}
+	});
 });
