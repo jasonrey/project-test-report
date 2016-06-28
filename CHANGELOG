@@ -1,0 +1,20 @@
+1.0.0 - 2016-01-06
+
+- Initial release
+
+1.1.0 - 2016-01-14
+
+- Added comment attachment feature
+- Updated log in API to use email address
+
+1.2.0 - 2016-01-20
+
+- Added project assignees settings
+
+1.2.1 - 2016-03-28
+
+- Fixed cross domain issue
+
+1.2.2 - 2016-06-28
+
+- Updated project assignees to only allow admin access
