@@ -207,25 +207,26 @@
 		</div>
 	</div>
 
+	<?php if ($user->role == USER_ROLE_ADMIN) { ?>
+		<div class="form-group assignees-settings">
+			<label class="icon-feather-head">Assignees</label>
 
-	<div class="form-group assignees-settings">
-		<label class="icon-feather-head">Assignees</label>
-
-		<div class="project-assignees">
-		<?php foreach ($users as $u) { ?>
-			<div data-id="<?php echo $u->id; ?>" data-nick="<?php echo $u->nick; ?>" class="project-assignee">
-				<div class="user-avatar">
-					<?php if (!empty($u->picture)) { ?>
-					<img src="<?php echo $u->picture; ?>">
-					<?php } else { ?>
-					<span class="user-avatar-initial"><?php echo $u->initial; ?></span>
-					<?php } ?>
+			<div class="project-assignees">
+			<?php foreach ($users as $u) { ?>
+				<div data-id="<?php echo $u->id; ?>" data-nick="<?php echo $u->nick; ?>" class="project-assignee">
+					<div class="user-avatar">
+						<?php if (!empty($u->picture)) { ?>
+						<img src="<?php echo $u->picture; ?>">
+						<?php } else { ?>
+						<span class="user-avatar-initial"><?php echo $u->initial; ?></span>
+						<?php } ?>
+					</div>
+					<div class="form-field" data-name="assign">
+						<div class="form-checkbox <?php if (isset($assignees[$u->id])) { ?>active<?php } ?>"></div>
+					</div>
 				</div>
-				<div class="form-field" data-name="assign">
-					<div class="form-checkbox <?php if (isset($assignees[$u->id])) { ?>active<?php } ?>"></div>
-				</div>
+			<?php } ?>
 			</div>
-		<?php } ?>
 		</div>
-	</div>
+	<?php } ?>
 </form>
