@@ -1,7 +1,7 @@
 <?php
 !defined('SERVER_EXEC') && die('No access.');
 ?>
-<form id="settings-form" class="<?php if ($filterSettingsProject === 'all') { ?>show-warning<?php } ?> <?php if ($filterSettingsProject === '-1') { ?>hide-notification-settings<?php } ?>">
+<form id="settings-form" data-scope="<?php echo $filterSettingsProject === 'all' ? 'all' : ($filterSettingsProject === '-1' ? 'this' : 'project'); ?>">
 	<input type="hidden" name="project" value="<?php echo $filterSettingsProject; ?>" />
 
 	<?php if (!empty($showProjectsFilter)) { ?>
@@ -207,23 +207,25 @@
 		</div>
 	</div>
 
-	<?php if ($user->role == USER_ROLE_ADMIN && false) { ?>
+
 	<div class="form-group assignees-settings">
 		<label class="icon-feather-head">Assignees</label>
 
 		<div class="project-assignees">
 		<?php foreach ($users as $u) { ?>
-			<div class="project-assignee <?php if (isset($assignees[$u->id])) { ?>active<?php } ?>">
+			<div data-id="<?php echo $u->id; ?>" data-nick="<?php echo $u->nick; ?>" class="project-assignee">
 				<div class="user-avatar">
 					<?php if (!empty($u->picture)) { ?>
-					<img src="https://lh4.googleusercontent.com/-RLuDMRx_XDY/AAAAAAAAAAI/AAAAAAAAAA8/83RkyfXwqTg/s96-c/photo.jpg">
+					<img src="<?php echo $u->picture; ?>">
 					<?php } else { ?>
 					<span class="user-avatar-initial"><?php echo $u->initial; ?></span>
 					<?php } ?>
+				</div>
+				<div class="form-field" data-name="assign">
+					<div class="form-checkbox <?php if (isset($assignees[$u->id])) { ?>active<?php } ?>"></div>
 				</div>
 			</div>
 		<?php } ?>
 		</div>
 	</div>
-	<?php } ?>
 </form>

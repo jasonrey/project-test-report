@@ -220,7 +220,7 @@
 			}
 		}
 
-		.hide-notification-settings& {
+		[data-scope="this"]& {
 			display: none;
 		}
 	}
@@ -271,23 +271,37 @@
 			content: '*';
 		}
 
-		.show-warning& {
+		[data-scope="all"]& {
+			display: block;
+		}
+	}
+
+	.assignees-settings {
+		display: none;
+
+		[data-scope="project"]& {
 			display: block;
 		}
 	}
 
 	.project-assignees {
 		display: flex;
-		flex-wrap: 1;
+		flex-wrap: wrap;
+		justify-content: center;
 		margin: 8px 0 0 0;
 
 		.project-assignee {
 			height: 64px;
-			width: 64px;
-			padding: 8px;
+			width: auto;
+			padding: 0 0 0 8px;
 			cursor: pointer;
+			margin: 2px 4px;
 
 			.user-avatar {
+				width: 48px;
+				height: 48px;
+				display: inline-block;
+
 				.user-avatar-initial {
 					width: 42px;
 					height: 42px;
@@ -295,16 +309,12 @@
 				}
 			}
 
-			&:hover {
-				background-color: @cyan50;
+			.form-field {
+				display: inline-block;
 			}
 
-			&.active {
-				background-color: @cyan500;
-
-				.user-avatar {
-					border-color: white;
-				}
+			&:hover {
+				background-color: @cyan50;
 			}
 		}
 	}

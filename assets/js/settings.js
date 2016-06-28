@@ -7,8 +7,14 @@ $(function() {
 
 		document.forms['settings-form'].project.value = value;
 
-		$$('#settings-form').toggleClass('show-warning', value === 'all');
-		$$('#settings-form').toggleClass('hide-notification-settings', value === '-1');
+		if (value === 'all') {
+			$$('#settings-form').attr('data-scope', 'all');
+		} else if (value === '-1') {
+			$$('#settings-form').attr('data-scope', 'this');
+		} else {
+			$$('#settings-form').attr('data-scope', 'project');
+		}
+
 		$api('user/loadSettings', {
 			project: value
 		}).done(function(response) {
@@ -57,6 +63,29 @@ $(function() {
 			project: project,
 			setting: JSON.stringify({
 				name: name,
+				value: checkbox.hasClass('active')
+			})
+		});
+	});
+
+	$$('.assignees-settings').on('click', '.user-avatar', function(event) {
+		var item = $(this),
+			avatar = item.parents('.project-assignee'),
+			checkbox = avatar.find('.form-checkbox');
+
+		checkbox.trigger('click');
+	});
+
+	$$('.assignees-settings').on('change', '.form-checkbox', function(event) {
+		var checkbox = $(this),
+			item = checkbox.parents('.project-assignee'),
+			userid = item.attr('data-id'),
+			project = document.forms['settings-form'].project.value;
+
+		$api('project/saveAssignees', {
+			project: project,
+			setting: JSON.stringify({
+				id: userid,
 				value: checkbox.hasClass('active')
 			})
 		});
