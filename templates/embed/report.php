@@ -14,6 +14,15 @@
 	</div>
 
 	<div class="form-group">
+		<label for="report-category" class="icon-feather-folder">Category</label>
+		<select name="report-category" id="report-category">
+			<?php foreach ($categories as $category) { ?>
+			<option value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
+			<?php } ?>
+		</select>
+	</div>
+
+	<div class="form-group">
 		<label for="report-text" class="icon-feather-clipboard">Report</label>
 		<textarea name="report-text"></textarea>
 	</div>

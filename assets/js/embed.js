@@ -83,7 +83,8 @@ $(function() {
 
 		var form = this,
 			content = form['report-text'].value,
-			project = form['project'].value;
+			category = form['report-category'].value,
+			project = form.project.value;
 
 		if (content.length === 0) {
 			return;
@@ -95,6 +96,7 @@ $(function() {
 
 		formdata.append('project', project);
 		formdata.append('content', content);
+		formdata.append('category', category);
 		formdata.append('url', currentLocation);
 
 		for (var fileKey in attachedFiles) {

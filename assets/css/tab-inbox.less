@@ -315,12 +315,17 @@
 
 	.item-header {
 		padding: 0 0 0 16px;
-		height: 48px;
+		height: 72px;
+	}
+
+	.item-user {
+		display: flex;
 	}
 
 	.item-user-image {
 		width: 48px;
 		height: 48px;
+		margin: auto;
 
 		.user-avatar-initial {
 			width: 42px;
@@ -334,43 +339,28 @@
 		margin: 0 16px;
 		overflow: hidden;
 		flex-grow: 1;
-	}
 
-	.item-url {
-		font-size: 14px;
-		height: 24px;
-		line-height: 24px;
-		white-space: nowrap;
+		> div {
+			font-size: 14px;
+			height: 24px;
+			line-height: 24px;
+			white-space: nowrap;
 
-		&::before {
-			vertical-align: top;
-		}
+			&::before {
+				vertical-align: top;
+			}
 
-		a:hover {
-			text-decoration: underline;
-			white-space: pre;
-			text-overflow: ellipsis;
-			overflow: hidden;
+			a:hover {
+				text-decoration: underline;
+				white-space: pre;
+				text-overflow: ellipsis;
+				overflow: hidden;
+			}
 		}
 	}
 
 	.item-date {
 		flex-shrink: 0;
-		font-size: 14px;
-		height: 24px;
-		line-height: 24px;
-		white-space: nowrap;
-
-		&::before {
-			vertical-align: top;
-		}
-
-		a:hover {
-			text-decoration: underline;
-			white-space: pre;
-			text-overflow: ellipsis;
-			overflow: hidden;
-		}
 	}
 
 	.item-state {

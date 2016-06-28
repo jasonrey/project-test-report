@@ -19,8 +19,9 @@
 			</div>
 		</div>
 		<div class="item-details">
+			<div class="item-category icon-feather-folder"><?php echo $report->getCategory()->name; ?></div>
 			<div class="item-url icon-feather-link"><a href="<?php echo $report->url; ?>"><?php echo $report->url; ?></a></div>
-			<div class="item-date icon-calendar"><a href="<?php echo $report->getLink(); ?>"><?php echo $report->date; ?></div>
+			<div class="item-date icon-calendar"><a href="<?php echo $report->getLink(); ?>"><?php echo $report->date; ?></a></div>
 		</div>
 		<div class="item-state">
 			<a href="javascript:void(0);" class="item-state-option item-state-pending <?php if ($report->state == STATE_PENDING) { ?>item-state-selected<?php } ?>" data-value="0"><i class="icon-feather-clock"></i></a>

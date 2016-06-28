@@ -6,6 +6,7 @@ class ReportTable extends Table
 	public $project_id;
 	public $user_id;
 	public $assignee_id;
+	public $category_id;
 	public $url;
 	public $content;
 	public $state;
@@ -42,5 +43,19 @@ class ReportTable extends Table
 		$this->comments = Lib::model('comment')->getComments(array('report_id' => $this->id));
 
 		$this->totalcomments = count($this->comments);
+	}
+
+	public function getCategory()
+	{
+		static $categories = [];
+
+		if (!isset($categories[$this->category_id])) {
+			$category = Lib::table('category');
+			$category->load($this->category_id);
+
+			$categories[$this->category_id] = $category;
+		}
+
+		return $categories[$this->category_id];
 	}
 }
