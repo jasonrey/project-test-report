@@ -6,6 +6,9 @@ RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteRule ^.*$ ./index.php
 
+# Disallow git folder
+RedirectMatch 404 /.git
+
 # Requires mod_deflate
 # Compress text, html, javascript, css
 
