@@ -44,7 +44,7 @@ class Config
 	public static $userkey = 'project-test-report';
 
 	public static $googleClientId = '75424359881-ltlh68uuviheq4tscjqksdl98vmtnqj7';
-	public static $googleAllowedDomain = 'compass-interactive.com';
+	public static $googleAllowedDomain = ['compass-interactive.com', 'matrixinvent.com'];
 
 	public static $iframepath = 'embed';
 
