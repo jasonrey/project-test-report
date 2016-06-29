@@ -214,7 +214,7 @@
 			<ul id="category-settings-list">
 				<?php foreach ($categories as $category) { ?>
 				<li data-id="<?php echo $category->id; ?>">
-					<?php echo $category->name; ?>
+					<div><?php echo $category->name; ?></div>
 					<button type="button"><i class="icon-feather-cross"></i></button>
 				</li>
 				<?php } ?>
@@ -252,5 +252,5 @@
 </form>
 
 <script type="text/html" id="category-settings-list-item">
-<li id="{{id}}" class="loading">{{name}}<button type="button"><i class="icon-feather-cross"></i></button></li>
+<li id="{{id}}" class="loading"><div>{{name}}</div><button type="button"><i class="icon-feather-cross"></i></button></li>
 </script>

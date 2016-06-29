@@ -13,7 +13,7 @@ class CategoryApi extends Api
 
 		$user = Lib::table('user');
 
-		$isLoggedIn = !empty($identifier) && $user->load(array('identifier' => $identifier));
+		$isLoggedIn = !empty($identifier) && $user->load(['identifier' => $identifier]);
 
 		if (!$isLoggedIn || $user->role != USER_ROLE_ADMIN) {
 			return $this->fail('You are not authorized.');
@@ -41,7 +41,7 @@ class CategoryApi extends Api
 
 		$user = Lib::table('user');
 
-		$isLoggedIn = !empty($identifier) && $user->load(array('identifier' => $identifier));
+		$isLoggedIn = !empty($identifier) && $user->load(['identifier' => $identifier]);
 
 		if (!$isLoggedIn || $user->role != USER_ROLE_ADMIN) {
 			return $this->fail('You are not authorized.');
@@ -52,10 +52,42 @@ class CategoryApi extends Api
 		$category = Lib::table('category');
 
 		if (!$category->load($id)) {
-			return $this->fail('Invalid data');
+			return $this->fail('Invalid data.');
 		}
 
 		$category->delete();
+
+		return $this->success();
+	}
+
+	public function update()
+	{
+		if (!Req::haspost(['id', 'name'])) {
+			return $this->fail('Insufficient data.');
+		}
+
+		$identifier = Lib::cookie(Lib::hash(Config::$userkey));
+
+		$user = Lib::table('user');
+
+		$isLoggedIn = !empty($identifier) && $user->load(['identifier' => $identifier]);
+
+		if (!$isLoggedIn || $user->role != USER_ROLE_ADMIN) {
+			return $this->fail('You are not authorized.');
+		}
+
+		$id = Req::post('id');
+		$name = Req::post('name');
+
+		$table = Lib::table('category');
+
+		if (!$table->load($id)) {
+			return $this->false('Invalid data.');
+		}
+
+		$table->name = $name;
+
+		$table->store();
 
 		return $this->success();
 	}
