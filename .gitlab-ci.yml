@@ -1,0 +1,34 @@
+image: compass/runner:latest
+
+stages:
+  - test
+  - build
+  - deploy
+
+lint-js:
+  stage: test
+  only:
+    - master
+  script:
+    - lint-js assets/js
+
+compile-less:
+  stage: build
+  only:
+    - master
+  script:
+    - compile-less assets/less assets/css
+  artifacts:
+    paths:
+      - assets/css/*.css
+    expire_in: 1 day
+
+upload:
+  stage: deploy
+  only:
+    - master
+  before_script:
+    - ssh-keyscan compass-interactive.com >> ~/.ssh/known_hosts
+  script:
+    - rsync -az --exclude=".git*" ./ compass-interactive.com:/var/www/html/project-test-report
+    - slack-message
