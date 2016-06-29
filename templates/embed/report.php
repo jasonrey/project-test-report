@@ -48,3 +48,7 @@
 	<button type="button" class="report-screenshot-delete"><i class="icon-feather-cross"></i></button>
 </div>
 </script>
+
+<script type="text/html" id="report-category-item">
+<option value="{{id}}">{{name}}</option>
+</script>
