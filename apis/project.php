@@ -17,7 +17,7 @@ class ProjectApi extends Api
 
 		$isLoggedIn = !empty($identifier) && $user->load(array('identifier' => $identifier));
 
-		if (!$isLoggedIn) {
+		if (!$isLoggedIn || $user->role != USER_ROLE_ADMIN) {
 			return $this->fail('You are not authorized.');
 		}
 

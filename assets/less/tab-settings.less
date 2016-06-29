@@ -1,0 +1,380 @@
+@import 'colors';
+@import 'library';
+
+#settings-form {
+	padding: 0 0 16px 0;
+	background-color: white;
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	position: relative;
+
+	.theme-blue {
+		color: @blue500;
+
+		&:hover {
+			background-color: @blue50;
+		}
+
+		&.active {
+			background-color: @blue500;
+		}
+	}
+
+	.theme-bluegrey {
+		color: @bluegrey500;
+
+		&:hover {
+			background-color: @bluegrey50;
+		}
+
+		&.active {
+			background-color: @bluegrey500;
+		}
+	}
+
+	.theme-brown {
+		color: @brown500;
+
+		&:hover {
+			background-color: @brown50;
+		}
+
+		&.active {
+			background-color: @brown500;
+		}
+	}
+
+	.theme-cyan {
+		color: @cyan500;
+
+		&:hover {
+			background-color: @cyan50;
+		}
+
+		&.active {
+			background-color: @cyan500;
+		}
+	}
+
+	.theme-deeporange {
+		color: @deeporange500;
+
+		&:hover {
+			background-color: @deeporange50;
+		}
+
+		&.active {
+			background-color: @deeporange500;
+		}
+	}
+
+	.theme-deeppurple {
+		color: @deeppurple500;
+
+		&:hover {
+			background-color: @deeppurple50;
+		}
+
+		&.active {
+			background-color: @deeppurple500;
+		}
+	}
+
+	.theme-green {
+		color: @green500;
+
+		&:hover {
+			background-color: @green50;
+		}
+
+		&.active {
+			background-color: @green500;
+		}
+	}
+
+	.theme-grey {
+		color: @grey500;
+
+		&:hover {
+			background-color: @grey50;
+		}
+
+		&.active {
+			background-color: @grey500;
+		}
+	}
+
+	.theme-indigo {
+		color: @indigo500;
+
+		&:hover {
+			background-color: @indigo50;
+		}
+
+		&.active {
+			background-color: @indigo500;
+		}
+	}
+
+	.theme-lightblue {
+		color: @lightblue500;
+
+		&:hover {
+			background-color: @lightblue50;
+		}
+
+		&.active {
+			background-color: @lightblue500;
+		}
+	}
+
+	.theme-lightgreen {
+		color: @lightgreen500;
+
+		&:hover {
+			background-color: @lightgreen50;
+		}
+
+		&.active {
+			background-color: @lightgreen500;
+		}
+	}
+
+	.theme-pink {
+		color: @pink500;
+
+		&:hover {
+			background-color: @pink50;
+		}
+
+		&.active {
+			background-color: @pink500;
+		}
+	}
+
+	.theme-purple {
+		color: @purple500;
+
+		&:hover {
+			background-color: @purple50;
+		}
+
+		&.active {
+			background-color: @purple500;
+		}
+	}
+
+	.theme-red {
+		color: @red500;
+
+		&:hover {
+			background-color: @red50;
+		}
+
+		&.active {
+			background-color: @red500;
+		}
+	}
+
+	.theme-teal {
+		color: @teal500;
+
+		&:hover {
+			background-color: @teal50;
+		}
+
+		&.active {
+			background-color: @teal500;
+		}
+	}
+
+	[class^="theme-"].active {
+		color: white;
+	}
+
+	.form-group {
+		padding: 16px 16px 0 16px;
+		margin: 0;
+	}
+
+	.notification-settings {
+		.form-checkbox {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		.form-title {
+			padding: 0 0 0 48px;
+		}
+
+		.form-field {
+			cursor: pointer;
+
+			&:hover {
+				.form-checkbox {
+					&::before {
+						background-color: @cyan50;
+					}
+				}
+			}
+		}
+
+		[data-scope="this"]& {
+			display: none;
+		}
+	}
+
+	.theme-settings {
+		.custom-theme-settings {
+			display: none;
+
+			input[type="text"] {
+				text-transform: uppercase;
+			}
+
+			&.active {
+				display: block;
+			}
+		}
+	}
+
+	.settings-project-bar {
+		height: 48px;
+		position: relative;
+		z-index: 2;
+		.clearfix();
+
+		.settings-project-title {
+			float: left;
+			width: 25%;
+			height: 48px;
+			line-height: 48px;
+			text-transform: uppercase;
+			font-size: 14px;
+			text-align: center;
+		}
+
+		.settings-project {
+			float: left;
+			width: 75%;
+		}
+	}
+
+	.filter-project-all-warning {
+		margin: 8px 0 0 25%;
+		font-size: 14px;
+		font-weight: 500;
+		display: none;
+
+		&::before {
+			content: '*';
+		}
+
+		[data-scope="all"]& {
+			display: block;
+		}
+	}
+
+	.category-settings {
+		> div {
+			position: relative;
+		}
+	}
+
+	#category-settings-list {
+		margin: 16px 0 8px 0;
+		padding: 0 16px;
+
+		li {
+			height: 36px;
+			line-height: 36px;
+			border-bottom: 1px solid @red50;
+			position: relative;
+
+			button {
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 36px;
+				height: 36px;
+				line-height: 36px;
+				text-align: center;
+				color: @red200;
+
+				&:hover {
+					color: @red500;
+				}
+			}
+
+			&.loading {
+				button {
+					display: none;
+				}
+			}
+		}
+	}
+
+	#category-settings-new {
+		width: 100%;
+		margin: 0 0 16px 0;
+	}
+
+	#category-settings-add {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 48px;
+		height: 48px;
+		line-height: 48px;
+		background-color: @red50;
+		text-align: center;
+
+		&:hover {
+			background-color: @red100;
+		}
+	}
+
+	.assignees-settings {
+		display: none;
+
+		[data-scope="project"]& {
+			display: block;
+		}
+	}
+
+	.project-assignees {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		margin: 8px 0 0 0;
+
+		.project-assignee {
+			height: 64px;
+			width: auto;
+			padding: 0 0 0 8px;
+			cursor: pointer;
+			margin: 2px 4px;
+
+			.user-avatar {
+				width: 48px;
+				height: 48px;
+				display: inline-block;
+
+				.user-avatar-initial {
+					width: 42px;
+					height: 42px;
+					line-height: 42px;
+				}
+			}
+
+			.form-field {
+				display: inline-block;
+			}
+
+			&:hover {
+				background-color: @cyan50;
+			}
+		}
+	}
+}

@@ -81,6 +81,8 @@ class EmbedView extends View
 				$this->css[] = 'theme-' . str_replace(' ', '', $userSettings['color']);
 			}
 
+			$categories = Lib::model('category')->getCategories();
+
 			$this->set('filterState', $filterState);
 			$this->set('filterAssignee', $filterAssignee);
 			$this->set('filterSort', $filterSort);
@@ -89,6 +91,7 @@ class EmbedView extends View
 			$this->set('userSettings', $userSettings);
 			$this->set('users', $users);
 			$this->set('projectTable', $projectTable);
+			$this->set('categories', $categories);
 		}
 	}
 }

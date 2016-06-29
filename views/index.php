@@ -77,6 +77,8 @@ class IndexView extends View
 				$this->css[] = Config::getHtmlBase() . 'css/theme-custom/-1';
 			}
 
+			$categories = Lib::model('category')->getCategories();
+
 			$this->set('projects', $projects);
 			$this->set('filterState', $filterState);
 			$this->set('filterAssignee', $filterAssignee);
@@ -87,6 +89,7 @@ class IndexView extends View
 			$this->set('assignees', $assignees);
 			$this->set('userSettings', $userSettings);
 			$this->set('users', $users);
+			$this->set('categories', $categories);
 		}
 	}
 }

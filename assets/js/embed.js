@@ -83,7 +83,8 @@ $(function() {
 
 		var form = this,
 			content = form['report-text'].value,
-			project = form['project'].value;
+			category = form['report-category'].value,
+			project = form.project.value;
 
 		if (content.length === 0) {
 			return;
@@ -95,6 +96,7 @@ $(function() {
 
 		formdata.append('project', project);
 		formdata.append('content', content);
+		formdata.append('category', category);
 		formdata.append('url', currentLocation);
 
 		for (var fileKey in attachedFiles) {
@@ -164,5 +166,69 @@ $(function() {
 
 	$$('#report-item-list').on('click', '.item-date a', function(event) {
 		event.preventDefault();
+	});
+
+	$$('#category-settings-new').on('keyup', function(event) {
+		if (event.keyCode === 13) {
+			$$('#category-settings-add').trigger('click');
+		}
+	});
+
+	$$('#category-settings-add').on('click', function(event) {
+		var name = $$('#category-settings-new').val();
+
+		if (name === '') {
+			return;
+		}
+
+		var randomId = 'tmp' + Math.random().toString().substr(2);
+
+		var data = {
+			id: randomId,
+			name: name
+		};
+
+		var html = $template('category-settings-list-item', data);
+
+		$api('category/save', {
+			name: name
+		}).done(function(response) {
+			if (response.state) {
+				$$('#' + randomId)
+					.removeClass('loading')
+					.attr('data-id', response.data);
+
+				if ($$('#report-category').length > 0) {
+					$$('#report-category').append($template('report-category-item', {
+						id: response.data,
+						name: name
+					}));
+				}
+			} else {
+				$$('#' + randomId).remove();
+			}
+		});
+
+		$$('#category-settings-new').val('');
+
+		$$('#category-settings-list').append(html);
+	});
+
+	$$('#category-settings-list').on('click', 'li button', function() {
+		var button = $(this),
+			item = button.parents('li'),
+			id = item.attr('data-id');
+
+		item.remove();
+
+		$api('category/delete', {
+			id: id
+		}).done(function(response) {
+			if (response.state) {
+				if ($$('#report-category').length > 0) {
+					$$('#report-category').find('option[value="' + id + '"]').remove();
+				}
+			}
+		});
 	});
 });

@@ -5,7 +5,7 @@ class ReportApi extends Api
 {
 	public function save()
 	{
-		$keys = array('project', 'content', 'url');
+		$keys = array('project', 'content', 'url', 'category');
 
 		if (!Req::haspost($keys)) {
 			return $this->fail('Insufficient data.');
@@ -35,6 +35,7 @@ class ReportApi extends Api
 		$reportTable->link($projectTable);
 		$reportTable->link($user);
 		$reportTable->content = $content;
+		$reportTable->category_id = $category;
 		$reportTable->url = $url;
 
 		$reportTable->store();

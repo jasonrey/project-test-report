@@ -208,6 +208,26 @@
 	</div>
 
 	<?php if ($user->role == USER_ROLE_ADMIN) { ?>
+		<div class="form-group category-settings">
+			<label class="icon-feather-folder">Categories</label>
+
+			<ul id="category-settings-list">
+				<?php foreach ($categories as $category) { ?>
+				<li data-id="<?php echo $category->id; ?>">
+					<?php echo $category->name; ?>
+					<button type="button"><i class="icon-feather-cross"></i></button>
+				</li>
+				<?php } ?>
+			</ul>
+
+			<div>
+				<input type="text" id="category-settings-new" placeholder="Add New Category" />
+				<button id="category-settings-add" type="button"><i class="icon-feather-plus"></i></button>
+			</div>
+		</div>
+	<?php } ?>
+
+	<?php if ($user->role == USER_ROLE_ADMIN) { ?>
 		<div class="form-group assignees-settings">
 			<label class="icon-feather-head">Assignees</label>
 
@@ -230,3 +250,7 @@
 		</div>
 	<?php } ?>
 </form>
+
+<script type="text/html" id="category-settings-list-item">
+<li id="{{id}}" class="loading">{{name}}<button type="button"><i class="icon-feather-cross"></i></button></li>
+</script>
