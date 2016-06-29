@@ -44,8 +44,20 @@ class UserApi extends Api
 		}
 
 		// Check allowed domain
-		if (!empty(Config::$googleAllowedDomain) && (empty($data->hd) || Config::$googleAllowedDomain !== $data->hd)) {
-			return $this->fail('Please sign in with your Compass email.');
+		if (!empty(Config::$googleAllowedDomain)) {
+			if (empty($data->hd)) {
+				return $this->fail('Please sign in with your Compass email.');
+			}
+
+			$allowedDomain = Config::$googleAllowedDomain;
+
+			if (is_string(Config::$googleAllowedDomain)) {
+				$allowedDomain = [Config::$googleAllowedDomain];
+			}
+
+			if (!in_array($data->hd, $allowedDomain)) {
+				return $this->fail('Please sign in with your Compass email.');
+			}
 		}
 
 		$user = Lib::table('user');

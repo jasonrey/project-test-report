@@ -30,7 +30,8 @@
 				'showProjectsFilter' => true,
 				'user' => $user,
 				'assignees' => $assignees,
-				'users' => $users
+				'users' => $users,
+				'categories' => $categories
 			)); ?>
 		</div>
 	</div>
