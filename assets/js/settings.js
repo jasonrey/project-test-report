@@ -154,7 +154,7 @@ $(function() {
 			}
 		});
 
-		link.attr('href', 'assets/css/theme-' + value.replace(' ', '') + '.' + (isDevelopment ? 'less' : 'css'));
+		link.attr('href', 'assets/' + (isDevelopment ? 'less' : 'css') + '/theme-' + value.replace(' ', '') + '.' + (isDevelopment ? 'less' : 'css'));
 
 		if (value === 'custom') {
 			link.attr('href', 'css/theme-custom/' + project);

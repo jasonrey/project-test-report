@@ -30,12 +30,12 @@
 	<?php if (!empty($css)) { ?>
 		<?php if (is_array($css)) { ?>
 			<?php foreach ($css as $file) { ?>
-				<link rel="stylesheet<?php if (Config::env() === 'development') { ?>/less<?php } ?>" type="text/css" href="<?php echo (strpos($file, 'http') === 0 ? '' : 'assets/css/') . $file; ?><?php echo strpos($file, 'http') === 0 ? '' : (Config::env() === 'development' ? '.less' : '.css'); ?>" class="page-stylesheet" />
+				<link rel="stylesheet<?php if (Config::env() === 'development') { ?>/less<?php } ?>" type="text/css" href="<?php echo (strpos($file, 'http') === 0 ? '' : 'assets/' . (Config::env() === 'development' ? 'less' : 'css') . '/') . $file; ?><?php echo strpos($file, 'http') === 0 ? '' : (Config::env() === 'development' ? '.less' : '.css'); ?>" class="page-stylesheet" />
 			<?php } ?>
 		<?php } ?>
 
 		<?php if (is_string($css)) { ?>
-			<link rel="stylesheet<?php if (Config::env() === 'development') { ?>/less<?php } ?>" type="text/css" href="<?php echo (strpos($css, 'http') === 0 ? '' : 'assets/css/') . $css; ?><?php echo strpos($file, 'http') === 0 ? '' : (Config::env() === 'development' ? '.less' : '.css'); ?>" class="page-stylesheet" />
+			<link rel="stylesheet<?php if (Config::env() === 'development') { ?>/less<?php } ?>" type="text/css" href="<?php echo (strpos($css, 'http') === 0 ? '' : 'assets/' . (Config::env() === 'development' ? 'less' : 'css') . '/') . $css; ?><?php echo strpos($file, 'http') === 0 ? '' : (Config::env() === 'development' ? '.less' : '.css'); ?>" class="page-stylesheet" />
 		<?php } ?>
 	<?php } ?>
 
