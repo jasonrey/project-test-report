@@ -85,6 +85,10 @@ class CommentApi extends Api
 			$recipients[] = $reportTable->user_id;
 		}
 
+		if (!in_array($reportTable->assignee_id, $recipients)) {
+			$recipients[] = $reportTable->assignee_id;
+		}
+
 		$userSettingsModel = Lib::model('user_settings');
 		$userProjectsSettings = $userSettingsModel->getSettings(array('project_id' => $projectTable->id, 'user_id' => $recipients));
 		$userProjectsSettings = $userSettingsModel->assignByKey($userProjectsSettings, 'user_id');
@@ -110,29 +114,63 @@ class CommentApi extends Api
 			// If is owner, the fact that we reach here means the owner wants notification
 			// Or if not owner, then check for settings
 			if ($reportTable->user_id == $userid || $settings['comment-participant']) {
-				$slackMessage = Lib::helper('slack')->newMessage();
-				$slackMessage->to($userid);
-				$slackMessage->message($user->nick . ' posted a new comment.');
-				$slackMessage->username = 'Project Report Comment';
-				$slackMessage->icon_emoji = ':speech_balloon:';
-
-				$attachment = $slackMessage->newAttachment();
-
-				$attachment->fallback = 'New comment in <' . $reportTable->getLink() . '|Report ticket ID ' . $reportTable->id . '>.';
-				$attachment->color = '#FFEB3B';
-				$attachment->title = $projectTable->name;
-				$attachment->title_link = $reportTable->getLink();
-				$attachment->text = $reportTable->content;
-
-				$attachment->newField('Comment', $post['content']);
+				$notificationFields = [
+					'Comment' => $post['content']
+				];
 
 				if (!empty($files)) {
 					foreach ($files as $key => $file) {
-						$attachment->newField($file['name'], Config::getHTMLBase() . Config::$attachmentFolder . '/' . $key . '-' . $file['name']);
+						$notificationFields[$file['name']] = Config::getHTMLBase() . Config::$attachmentFolder . '/' . $key . '-' . $file['name'];
 					}
 				}
 
-				$slackMessage->send();
+				$targetUser = Lib::table('user');
+				$targetUser->load($userid);
+
+				$notificationData = [
+					'to' => $targetUser->email,
+					'text' => $user->nick . ' posted a new comment.',
+					'username' => 'Project Report Comment',
+					'icon_emoji' => ':speech_balloon',
+					'attachments' => [
+						[
+							'fallback' => 'New comment in <' . $reportTable->getLink() . '|Report ticket ID ' . $reportTable->id . '>.',
+							'color' => '#FFEB3B',
+							'title' => $projectTable->name,
+							'title_link' => $reportTable->getLink(),
+							'text' => $reportTable->content,
+							'fields' => $notificationFields
+						]
+					]
+				];
+
+				Lib::load('helper/notification');
+
+				NotificationHelper::send($notificationData);
+
+				// $slackMessage = Lib::helper('slack')->newMessage();
+				// $slackMessage->to($userid);
+				// $slackMessage->message($user->nick . ' posted a new comment.');
+				// $slackMessage->username = 'Project Report Comment';
+				// $slackMessage->icon_emoji = ':speech_balloon:';
+
+				// $attachment = $slackMessage->newAttachment();
+
+				// $attachment->fallback = 'New comment in <' . $reportTable->getLink() . '|Report ticket ID ' . $reportTable->id . '>.';
+				// $attachment->color = '#FFEB3B';
+				// $attachment->title = $projectTable->name;
+				// $attachment->title_link = $reportTable->getLink();
+				// $attachment->text = $reportTable->content;
+
+				// $attachment->newField('Comment', $post['content']);
+
+				// if (!empty($files)) {
+				// 	foreach ($files as $key => $file) {
+				// 		$attachment->newField($file['name'], Config::getHTMLBase() . Config::$attachmentFolder . '/' . $key . '-' . $file['name']);
+				// 	}
+				// }
+
+				// $slackMessage->send();
 			}
 		}
 
