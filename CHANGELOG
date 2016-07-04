@@ -42,3 +42,7 @@
 1.3.3 - 2016-06-29
 
 - Added category edit feature
+
+1.4.0 - 2016-07-04
+
+- Added Email notification for users without Slack
