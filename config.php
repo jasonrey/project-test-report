@@ -52,6 +52,12 @@ class Config
 	public static $slackApiToken = '';
 	public static $slackHookToken = '';
 
+	public static $googleMailName = '';
+	public static $googleMailUsername = '';
+	public static $googleMailPassword = '';
+	public static $googleMailHost = 'smtp.gmail.com';
+	public static $googleMailPort = '465';
+
 	public static function getBaseUrl()
 	{
 		return 'http://' . $_SERVER['SERVER_NAME'];
