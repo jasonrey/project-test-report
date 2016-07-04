@@ -14,24 +14,22 @@ class Config
 				'database' => 'project_report'
 			),
 			'production' => array(
-				'server' => 'localhost',
-				'username' => 'compass1_project',
-				'password' => 'a3JsVU4zbld3VFN0',
-				'database' => 'compass1_project_test'
+				'server' => '',
+				'username' => '',
+				'password' => '',
+				'database' => ''
 			)
 		)
 	);
 
 	public static $baseurl = array(
-		'localhost' => 'development',
-		'compass-interactive.com' => 'production',
-		'www.compass-interactive.com' => 'production'
+		'localhost' => 'development'
 	);
 
 	public static $base = array(
-		'development' => 'git/project-test-report',
-		'production' => 'project-test-report'
+		'development' => 'git/project-test-report'
 	);
+
 	public static $pagetitle = 'Project Reporting';
 
 	// Unique key to identify admin session
@@ -43,16 +41,16 @@ class Config
 	// This key will be hashed to use as cookie key
 	public static $userkey = 'project-test-report';
 
-	public static $googleClientId = '75424359881-ltlh68uuviheq4tscjqksdl98vmtnqj7';
-	public static $googleAllowedDomain = ['compass-interactive.com', 'matrixinvent.com'];
+	public static $googleClientId = '';
+	public static $googleAllowedDomain = '';
 
 	public static $iframepath = 'embed';
 
 	public static $screenshotFolder = 'screenshots';
 	public static $attachmentFolder = 'uploads';
 
-	public static $slackApiToken = 'xoxp-2911736605-4157764484-17596689699-1ce0969cd1';
-	public static $slackHookToken = 'T02STMNHT/B0HHKPC6P/Mj4eH4rsHZ6dMlM0mydGxT5c';
+	public static $slackApiToken = '';
+	public static $slackHookToken = '';
 
 	public static function getBaseUrl()
 	{
