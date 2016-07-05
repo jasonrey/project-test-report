@@ -77,7 +77,9 @@ class IndexView extends View
 				$this->css[] = Config::getHtmlBase() . 'css/theme-custom/-1';
 			}
 
-			$categories = Lib::model('category')->getCategories();
+			$categories = Lib::model('category')->getCategories([
+				'projectid' => $projectTable->id
+			]);
 
 			$this->set('projects', $projects);
 			$this->set('filterState', $filterState);
