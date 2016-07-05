@@ -208,9 +208,12 @@ $(function() {
 			name: name
 		};
 
+		var project = document.forms['settings-form'].project.value;
+
 		var html = $template('category-settings-list-item', data);
 
 		$api('category/save', {
+			project: project,
 			name: name
 		}).done(function(response) {
 			if (response.state) {

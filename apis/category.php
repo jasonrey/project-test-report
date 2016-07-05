@@ -5,7 +5,7 @@ class CategoryApi extends Api
 {
 	public function save()
 	{
-		if (!Req::haspost('name')) {
+		if (!Req::haspost(['name', 'project'])) {
 			return $this->fail('Insufficient data.');
 		}
 
@@ -20,11 +20,19 @@ class CategoryApi extends Api
 		}
 
 		$name = Req::post('name');
+		$projectName = Req::post('project');
+
+		$project = Lib::table('project');
+		if (!$project->load(['name' => $projectName])) {
+			return $this->fail('No such project.');
+		}
 
 		$category = Lib::table('category');
 
 		$category->name = $name;
 		$category->date = date('Y-m-d H:i:s');
+
+		$category->link($project);
 
 		$category->store();
 

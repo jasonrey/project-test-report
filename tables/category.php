@@ -3,6 +3,7 @@
 
 class CategoryTable extends Table
 {
+	public $project_id;
 	public $name;
 	public $date;
 }
