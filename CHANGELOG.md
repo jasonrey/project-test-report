@@ -1,5 +1,7 @@
 # 1.4.2 - 2016-08-25
 
+- Fixed report view not showing owner initial
+
 # 1.4.1 - 2016-07-05
 
 - Updated category to obey project
