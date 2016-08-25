@@ -24,6 +24,7 @@ class ReportTable extends Table
 
 		$this->picture = $owner->picture;
 		$this->nick = $owner->nick;
+		$this->initial = $owner->initial;
 
 		if (!empty($this->assignee_id)) {
 			$assignee = Lib::table('user');
